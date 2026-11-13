@@ -19,6 +19,7 @@ Site em HTML/CSS/JS puros que implementa o protótipo do documento P1: o muníci
   - `registrar.html`: novo registro
   - `detalhes.html?id=N`: detalhes + histórico (o servidor vê também o formulário de status)
   - `servidor.html`: painel do servidor (lista + filtro por status)
+  - `conta.html`: configurações da conta (dados + sair), aberta pelo ícone de perfil do cabeçalho
 - **JS compartilhado:**
   - `js/config.js`: URL e chave pública do Supabase;
   - `js/db.js`: todas as chamadas ao banco, async;
@@ -80,6 +81,7 @@ Detalhes, critérios de aceite e verificação em [todo.md](todo.md).
 - [x] Tarefa 11: Schema, regras e carga no Supabase (`sql/`)
 - [x] Tarefa 12: Site usando o Supabase (`js/db.js` + páginas async)
 - [x] Tarefa 14: Login avisa "CPF não cadastrado" (`sql/04_cpf_cadastrado.sql`)
+- [x] Tarefa 15: Ícone de perfil com menu + página de configurações da conta
 - [ ] Tarefa 13: Configurar o projeto Supabase do grupo e rodar a checklist
 
 ## Riscos e mitigações

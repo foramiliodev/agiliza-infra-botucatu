@@ -147,7 +147,7 @@ Ao concluir cada tarefa: seguir a regra de documentação do [CLAUDE.md](../CLAU
 ### Checkpoint final
 - [x] RF01–RF12 implementados e cobertos por testes automáticos das regras (16/16)
 - [x] `docs/` e `CHANGELOG` atualizados
-- [ ] Rodar a [checklist de testes manuais](../docs/checklist-testes.md) (71 itens)
+- [ ] Rodar a [checklist de testes manuais](../docs/checklist-testes.md) (75 itens)
 - [ ] Pronto para apresentar
 
 ---
@@ -184,12 +184,21 @@ Ao concluir cada tarefa: seguir a regra de documentação do [CLAUDE.md](../CLAU
 **Arquivos:** `sql/04_cpf_cadastrado.sql`, `js/db.js`, `js/tests.js`, `sql/testes.sql`
 **Tamanho:** S
 
+### [x] Tarefa 15: Menu de perfil e configurações da conta
+**Descrição:** Trocar nome + "Sair" do cabeçalho por um ícone de perfil com menu ("Configurações da conta"); a página da conta mostra os dados e tem o botão de sair (pedido do usuário).
+**Critérios de aceite:**
+- [x] Ícone de perfil em todas as páginas logadas; menu com o nome e o link; fecha com Esc, clique fora ou Tab
+- [x] `conta.html` com os dados do perfil (munícipe/servidor) e "SAIR DA CONTA"
+- [x] `DB.minhaConta` verificada contra PostgREST local; telas conferidas por screenshot (menu aberto, 360 px)
+**Arquivos:** `conta.html`, `js/conta.js`, `js/auth.js`, `js/db.js`, `css/style.css`, `home.html`, `registrar.html`, `detalhes.html`, `servidor.html`
+**Tamanho:** M
+
 ### [ ] Tarefa 13: Configurar o projeto Supabase do grupo e conferir
 **Descrição:** Seguir `docs/supabase.md` no projeto real e rodar a checklist.
 **Critérios de aceite:**
 - [x] `js/config.js` preenchido com o projeto do grupo
-- [ ] "Confirm email" desligado
-- [ ] `sql/04_cpf_cadastrado.sql` rodado (aviso de CPF não cadastrado no login)
+- [x] "Confirm email" desligado (conferido pela API em 2026-11-13)
+- [x] `sql/01` e `sql/04` aplicados (conferido pela API)
 - [ ] `sql/testes.sql` passa no Supabase
 - [ ] Cadastro, login e envio de foto funcionam no Supabase real (Auth e Storage não puderam ser testados localmente)
 - [ ] Checklist manual completa

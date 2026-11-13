@@ -1,5 +1,20 @@
 # Changelog
 
+## 2026-11-13: Correção: login e cadastro não funcionavam; CPF e senha apareciam na URL
+- **Causa:** `js/db.js` lia a configuração como `globalThis.AGILIZA_CONFIG`, mas o `const AGILIZA_CONFIG` de `js/config.js` (script clássico) não vira propriedade de `window`. O Supabase recebia a URL vazia ("supabaseUrl is required"), o `db.js` quebrava e, sem o script da página, o navegador enviava o formulário por GET, com CPF e senha na URL.
+- **Correção:** `db.js` lê `AGILIZA_CONFIG` direto (com `typeof`). Se o Supabase não iniciar, `DB` continua existindo e cada chamada mostra "Configure o Supabase…" na tela, em vez de quebrar a página.
+- **Defesa:** formulários de login e cadastro com `method="post"`: mesmo que um script falhe, a senha nunca vai para a URL.
+- **Teste de regressão:** `npm test` agora carrega `config.js` + `db.js` como o navegador e confere a URL/chave usadas no cliente (falha com o código antigo, passa com o novo). Páginas index, cadastro, home e conta abertas no Firefox headless sem erros de JavaScript.
+- Projeto Supabase do grupo conferido (consultas só de leitura): Confirm email desligado, cadastro liberado, `01` e `04` aplicados.
+- **Lição:** os testes anteriores (Node e PostgREST) injetavam a configuração em `globalThis` e por isso não reproduziam o navegador.
+
+## 2026-11-13: Ícone de perfil e configurações da conta
+- Cabeçalho: nome + botão "Sair" substituídos por um **ícone de perfil** com menu (nome do usuário + "Configurações da conta"). É acessível: `aria-expanded`, Esc fecha e devolve o foco, clique fora fecha. Lógica em `Auth.ligarMenuPerfil` (`js/auth.js`).
+- Nova `conta.html` + `js/conta.js`: dados da conta (só leitura, conforme munícipe/servidor) e botão **SAIR DA CONTA**.
+- `DB.minhaConta(usuario)`; estilos `.perfil*` e `.botao-secundario`; removidos `.topo-usuario` e `.botao-sair`.
+- Verificado: `minhaConta` contra PostgREST local (munícipe e servidor); screenshots com o menu aberto a 360 px; `npm test` passando.
+- Docs: telas, dados, decisões, checklist, README, plano, todo.
+
 ## 2026-11-13: Revisão da documentação
 - README: ordem de execução dos SQL (01 → 02 → 04 → 03 → testes), aviso de que `js/config.js` já aponta para o projeto do grupo, mensagens do login.
 - `tasks/plan.md` e `tasks/todo.md`: Tarefa 14 (aviso de CPF não cadastrado) registrada; `config.js` marcado como preenchido; novo risco (`cpf_cadastrado` revela se um CPF tem conta).

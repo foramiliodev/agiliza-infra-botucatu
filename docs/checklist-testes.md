@@ -36,15 +36,19 @@ Testador: ______________ Data: ___/___/______ Navegador: ______________
 ## 2. Login e sessão (RF02)
 
 - [ ] **2.1** O brasão de Botucatu aparece na tela de login.
+- [ ] **2.1b** Ao enviar o login ou o cadastro, o endereço do navegador **não** muda e **não** mostra CPF nem senha.
 - [ ] **2.2** CPF cadastrado com senha errada → "CPF ou senha incorretos." em vermelho.
 - [ ] **2.2b** CPF válido sem cadastro (ex.: 862.883.667-57) → "CPF não cadastrado. Clique em "Cadastre-se" para criar sua conta." em vermelho.
 - [ ] **2.2c** CPF com dígitos errados (ex.: 123.456.789-00) → "CPF inválido." em vermelho.
 - [ ] **2.3** Munícipe entra → vai para "Suas entradas".
 - [ ] **2.4** Servidor entra → vai para "Registros da secretaria".
-- [ ] **2.5** "Sair" → volta para o login; o botão Voltar do navegador não reabre a página protegida.
-- [ ] **2.6** Sem estar logado, abrir `http://localhost:8000/home.html` direto → volta para o login.
-- [ ] **2.7** Logado como munícipe, abrir `servidor.html` → volta para o login.
-- [ ] **2.8** Logado como servidor, abrir `home.html` ou `registrar.html` → volta para o login.
+- [ ] **2.5** Ícone de perfil (canto direito do cabeçalho) → menu com o nome e "Configurações da conta".
+- [ ] **2.6** "Configurações da conta" mostra os dados certos do perfil (munícipe: telefone/bairro; servidor: secretaria/matrícula/cargo) e o "←" volta para a home/painel.
+- [ ] **2.7** "SAIR DA CONTA" → volta para o login; o botão Voltar do navegador não reabre a página protegida.
+- [ ] **2.8** O menu fecha ao clicar fora dele e com a tecla Esc.
+- [ ] **2.9** Sem estar logado, abrir `http://localhost:8000/home.html` direto → volta para o login.
+- [ ] **2.10** Logado como munícipe, abrir `servidor.html` → volta para o login.
+- [ ] **2.11** Logado como servidor, abrir `home.html` ou `registrar.html` → volta para o login.
 
 ## 3. Home do munícipe (RF03, RF04, RN03)
 
@@ -106,19 +110,19 @@ No DevTools (Ctrl+Shift+M), testar em **360 px**, **768 px** e **1280 px**:
 
 - [ ] **8.1** Nenhuma página tem rolagem horizontal.
 - [ ] **8.2** No celular, o card ocupa a largura toda; no computador, fica centralizado.
-- [ ] **8.3** O cabeçalho com nome longo (servidor de Serviços Públicos) quebra linha sem cortar o botão "Sair".
+- [ ] **8.3** No celular, o menu do perfil abre inteiro dentro da tela (nome longo quebra linha).
 - [ ] **8.4** Títulos longos de registro quebram linha sem empurrar o badge para fora.
 
 ## 9. Acessibilidade (RNF01, RNF02)
 
-- [ ] **9.1** Navegar só com o teclado (Tab / Shift+Tab / Enter) faz todo o fluxo: cadastro → login → registrar → detalhes → sair.
+- [ ] **9.1** Navegar só com o teclado (Tab / Shift+Tab / Enter) faz todo o fluxo: cadastro → login → registrar → detalhes → menu do perfil → configurações → sair.
 - [ ] **9.2** O foco é sempre visível, inclusive no cabeçalho azul (contorno branco).
 - [ ] **9.3** O primeiro Tab em qualquer página mostra "Ir para o conteúdo"; Enter pula o cabeçalho.
 - [ ] **9.4** Clicar no texto de cada rótulo (label) foca o campo correspondente.
 - [ ] **9.5** O status nunca depende só da cor (o texto está sempre no badge).
 - [ ] **9.6** Zoom de 200% (Ctrl +) → tudo legível, sem sobreposição.
 - [ ] **9.7** Lighthouse (Chrome DevTools → Lighthouse → Acessibilidade) ≥ 90 em login, cadastro, home, registrar, detalhes e painel.
-- [ ] **9.8** *(Opcional)* Leitor de tela (NVDA/Orca): os erros de formulário e o "Status atualizado." são lidos.
+- [ ] **9.8** *(Opcional)* Leitor de tela (NVDA/Orca): os erros de formulário e o "Status atualizado." são lidos; o ícone de perfil é anunciado como "Menu da conta, recolhido/expandido".
 
 ## 10. Banco e limites (conferir que se comportam como esperado)
 
@@ -129,6 +133,6 @@ No DevTools (Ctrl+Shift+M), testar em **360 px**, **768 px** e **1280 px**:
 
 ---
 
-**Resultado:** ____ de 71 itens OK. Problemas encontrados (nº do item + o que aconteceu):
+**Resultado:** ____ de 75 itens OK. Problemas encontrados (nº do item + o que aconteceu):
 
 - 

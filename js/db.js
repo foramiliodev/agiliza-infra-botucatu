@@ -2,11 +2,20 @@
 // As regras de verdade ficam no banco (RLS, triggers e atualizar_status em sql/01_schema.sql);
 // as validações daqui só dão mensagens melhores antes de enviar.
 const DB = (() => {
-  const cfg = globalThis.AGILIZA_CONFIG ?? {};
+  // `const` de outro <script> não vira propriedade de window: por isso o typeof, e não globalThis.AGILIZA_CONFIG.
+  const cfg = (typeof AGILIZA_CONFIG !== 'undefined' && AGILIZA_CONFIG) || {};
   // Sessão por aba (sessionStorage), como no protótipo: fechou a aba, saiu.
-  const sb = globalThis.supabase?.createClient(cfg.SUPABASE_URL, cfg.SUPABASE_ANON_KEY, {
-    auth: { storage: globalThis.sessionStorage },
-  });
+  // Se o Supabase não iniciar (config vazia, CDN fora), DB continua existindo e cada chamada mostra o erro na tela.
+  let sb = null;
+  let erroInicio = null;
+  try {
+    sb = globalThis.supabase?.createClient(cfg.SUPABASE_URL, cfg.SUPABASE_ANON_KEY, {
+      auth: { storage: globalThis.sessionStorage },
+    }) ?? null;
+  } catch (e) {
+    erroInicio = e;
+    console.error(e);
+  }
 
   const URGENCIAS = ['BAIXO', 'MEDIO', 'ALTO'];
   const STATUS_CONCLUIDO = 3;
@@ -46,8 +55,10 @@ const DB = (() => {
   }
 
   function cliente() {
-    if (!sb) throw new Error('Supabase não carregou. Verifique js/config.js e a conexão.');
-    if (/SEU-PROJETO/.test(cfg.SUPABASE_URL)) throw new Error('Configure o Supabase em js/config.js (ver docs/supabase.md).');
+    if (erroInicio || !cfg.SUPABASE_URL || /SEU-PROJETO/.test(cfg.SUPABASE_URL)) {
+      throw new Error('Configure o Supabase em js/config.js (ver docs/supabase.md).');
+    }
+    if (!sb) throw new Error('Supabase não carregou. Verifique a conexão com a internet.');
     return sb;
   }
 
@@ -107,6 +118,16 @@ const DB = (() => {
     const { data: { session } } = await cliente().auth.getSession();
     if (!session) return null;
     return consulta(sb.from('usuario').select('id, nome, tipo_usuario').eq('id', session.user.id).maybeSingle());
+  }
+
+  // Dados da própria conta para a página de configurações (a RLS só deixa ler os próprios)
+  async function minhaConta(usuario) {
+    const servidor = usuario.tipo_usuario === 'SERVIDOR';
+    const extra = servidor ? 'servidor(matricula, cargo, secretaria(nome))' : 'municipe(telefone, bairro)';
+    const c = await consulta(cliente().from('usuario')
+      .select(`nome, cpf, e_mail, tipo_usuario, data_cadastro, ${extra}`).eq('id', usuario.id).single());
+    const sub = c.servidor ?? c.municipe;
+    return { ...c, detalhe: (Array.isArray(sub) ? sub[0] : sub) ?? {} };
   }
 
   // ---------------------------------------------------------------- domínio
@@ -203,7 +224,7 @@ const DB = (() => {
 
   return {
     ErroCampo, somenteDigitos, validarCPF, formatarCPF,
-    cadastrarMunicipe, entrar, sair, usuarioAtual,
+    cadastrarMunicipe, entrar, sair, usuarioAtual, minhaConta,
     categorias, listaStatus,
     registrosDoMunicipe, criarRegistro, adicionarFoto, detalhesRegistro,
     perfilServidor, registrosDaSecretaria, atualizarStatus,

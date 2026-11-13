@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Configurações da conta · Agiliza Botucatu</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <a href="#principal" class="pular">Ir para o conteúdo</a>
+  <header class="topo">
+    <a href="home.html" class="topo-voltar"><span aria-hidden="true">←</span> CONFIGURAÇÕES DA CONTA</a>
+    <div class="perfil">
+      <button type="button" class="perfil-botao" aria-expanded="false" aria-controls="perfil-menu" aria-label="Menu da conta">
+        <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4.4 3.6-7 8-7s8 2.6 8 7"/></svg>
+      </button>
+      <div id="perfil-menu" class="perfil-menu" hidden>
+        <p id="nome-usuario" class="perfil-nome"></p>
+        <a href="conta.html" aria-current="page">Configurações da conta</a>
+      </div>
+    </div>
+  </header>
+  <main id="principal" tabindex="-1" class="card">
+    <h1>Configurações da conta</h1>
+    <dl id="dados" class="detalhes"></dl>
+
+    <h2>Sessão</h2>
+    <p>Sair desta conta neste navegador.</p>
+    <button type="button" id="sair" class="botao botao-secundario">SAIR DA CONTA</button>
+  </main>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4/dist/umd/supabase.min.js"></script>
+  <script src="js/config.js"></script>
+  <script src="js/db.js"></script>
+  <script src="js/auth.js"></script>
+  <script src="js/ui.js"></script>
+  <script src="js/conta.js"></script>
+</body>
+</html>

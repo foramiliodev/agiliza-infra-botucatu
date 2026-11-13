@@ -46,6 +46,13 @@ teste('login recusa CPF inválido antes de chamar o banco', async () => {
   throw new Error('deveria ter falhado');
 });
 
+teste('db.js lê o js/config.js (const de outro script) ao criar o cliente Supabase', () => {
+  if (typeof globalThis.clienteCriado === 'undefined') return; // só no Node, com o Supabase falso
+  igual(globalThis.clienteCriado.url, AGILIZA_CONFIG.SUPABASE_URL);
+  igual(globalThis.clienteCriado.chave, AGILIZA_CONFIG.SUPABASE_ANON_KEY);
+  igual(typeof globalThis.AGILIZA_CONFIG, 'undefined'); // garante que o teste reproduz o caso do navegador
+});
+
 async function rodarTestes(relatar) {
   let falhas = 0;
   for (const [nome, fn] of testes) {

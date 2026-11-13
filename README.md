@@ -25,6 +25,7 @@ Não precisa de `npm install`. O `js/config.js` já aponta para o projeto Supaba
 
 ## Como usar
 
+- Depois de entrar, o **ícone de perfil** no canto do cabeçalho abre o menu com "Configurações da conta", onde ficam os dados e o botão de sair.
 - **Munícipe:** clique em "Cadastre-se", crie a conta com um CPF válido e entre. No login, o site avisa em vermelho se o CPF é inválido, se não está cadastrado ou se a senha está errada.
 - **Servidor (demonstração):** cadastre os CPFs abaixo pelo site e rode `sql/03_servidores_demo.sql` (ver docs/supabase.md).
 
@@ -53,6 +54,7 @@ home.html         "Suas entradas" + menu de serviços
 registrar.html    novo registro (urgência, fotos, protocolo)
 detalhes.html     detalhes e histórico do registro
 servidor.html     painel do servidor
+conta.html        configurações da conta (dados + sair)
 css/style.css     estilo (identidade do protótipo)
 js/config.js      URL e chave pública do projeto Supabase
 js/db.js          acesso ao banco (Supabase)
@@ -75,4 +77,4 @@ tasks/            plano e lista de tarefas
 - [docs/telas.md](docs/telas.md): telas
 - [docs/decisoes.md](docs/decisoes.md): decisões e atalhos assumidos
 - [docs/testes.md](docs/testes.md): como rodar e o que os testes cobrem
-- [docs/checklist-testes.md](docs/checklist-testes.md): checklist de testes manuais no navegador (71 itens)
+- [docs/checklist-testes.md](docs/checklist-testes.md): checklist de testes manuais no navegador (75 itens)

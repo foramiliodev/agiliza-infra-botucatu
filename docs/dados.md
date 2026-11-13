@@ -60,6 +60,7 @@ Todas async, menos as utilitárias de CPF.
 | `cadastrarMunicipe(dados)` | Valida e chama `auth.signUp` (o trigger cria usuario + municipe); depois sai | RF01, RN02 |
 | `entrar(cpf, senha)` | Recusa CPF inválido; `signInWithPassword` com `<cpf>@DOMINIO_EMAIL`; devolve o perfil, `null` (senha errada) ou lança "CPF não cadastrado" (consulta `cpf_cadastrado`) | RF02 |
 | `sair()`, `usuarioAtual()` | Sessão (por aba: `sessionStorage`) e perfil da tabela `usuario` | RF02 |
+| `minhaConta(usuario)` | Dados da própria conta + `detalhe` (municipe: telefone/bairro; servidor: matrícula/cargo/secretaria) | — |
 | `categorias()`, `listaStatus()` | Tabelas de domínio | RF04 |
 | `registrosDoMunicipe(id)` | Lista com `.status` | RF03, RN03 |
 | `criarRegistro(municipe_id, dados)` | Valida e insere; o banco gera protocolo/status/histórico | RF05, RF06, RF08 |

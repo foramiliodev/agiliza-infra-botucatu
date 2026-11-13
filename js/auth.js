@@ -23,6 +23,22 @@ const Auth = {
     document.getElementById('sair')?.addEventListener('click', () => this.sair());
     const nome = document.getElementById('nome-usuario');
     if (nome) nome.textContent = u.nome;
+    this.ligarMenuPerfil();
     return u;
+  },
+
+  // Ícone de perfil no cabeçalho: abre/fecha o menu (padrão "disclosure": botão com aria-expanded)
+  ligarMenuPerfil() {
+    const botao = document.querySelector('.perfil-botao');
+    if (!botao) return;
+    const caixa = botao.closest('.perfil');
+    const menu = document.getElementById(botao.getAttribute('aria-controls'));
+    const abrir = aberto => { menu.hidden = !aberto; botao.setAttribute('aria-expanded', String(aberto)); };
+    botao.addEventListener('click', () => abrir(menu.hidden));
+    document.addEventListener('click', e => { if (!caixa.contains(e.target)) abrir(false); });
+    document.addEventListener('keydown', e => {
+      if (e.key === 'Escape' && !menu.hidden) { abrir(false); botao.focus(); }
+    });
+    caixa.addEventListener('focusout', e => { if (e.relatedTarget && !caixa.contains(e.relatedTarget)) abrir(false); });
   },
 };

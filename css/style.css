@@ -52,18 +52,45 @@ main:focus { outline: none; }
   padding: .9rem 1rem;
 }
 .topo-titulo { font-weight: 600; letter-spacing: .04em; font-size: .95rem; }
-.topo-usuario { display: flex; align-items: center; gap: .75rem; font-size: .9rem; min-width: 0; overflow-wrap: anywhere; }
 .topo :focus-visible { outline-color: #fff; }
-.botao-sair {
+
+/* Ícone de perfil + menu da conta */
+.perfil { position: relative; margin-left: auto; }
+.perfil-botao {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.5rem;
+  height: 2.5rem;
+  padding: 0;
+  border: 2px solid #fff;
+  border-radius: 50%;
   background: none;
   color: #fff;
-  border: 1px solid #fff;
-  border-radius: 4px;
-  padding: .3rem .8rem;
-  min-height: 2.5rem;
-  font: inherit;
   cursor: pointer;
 }
+.perfil-botao:hover, .perfil-botao[aria-expanded="true"] { background: var(--azul-escuro); }
+.perfil-botao svg { width: 1.4rem; height: 1.4rem; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; }
+.perfil-menu {
+  position: absolute;
+  right: 0;
+  top: calc(100% + .5rem);
+  z-index: 20;
+  min-width: 14rem;
+  max-width: calc(100vw - 2rem);
+  padding: .4rem 0;
+  border-radius: 6px;
+  background: var(--card);
+  color: var(--texto);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, .25);
+}
+.perfil-nome { margin: 0; padding: .5rem 1rem .6rem; font-weight: 600; border-bottom: 1px solid var(--borda); overflow-wrap: anywhere; }
+.perfil-menu a { display: block; padding: .65rem 1rem; color: var(--texto); text-decoration: none; }
+.perfil-menu a:hover { background: var(--fundo); }
+.topo .perfil-menu :focus-visible { outline-color: var(--azul); outline-offset: -3px; }
+
+.botao.botao-secundario { background: var(--card); color: var(--erro); border: 2px solid var(--erro); }
+.botao.botao-secundario:hover { background: var(--erro); color: #fff; }
 
 .card {
   background: var(--card);

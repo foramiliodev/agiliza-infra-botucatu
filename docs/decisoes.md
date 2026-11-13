@@ -26,6 +26,8 @@
 | 2026-11-13 | Bucket de fotos privado com links temporários (1 h) | LGPD: fotos podem mostrar pessoas/casas | — |
 | 2026-11-13 | Sessão por aba (`sessionStorage`) também no Supabase | Mantém o comportamento do protótipo | Se quiserem "lembrar de mim" |
 | 2026-11-13 | Login avisa "CPF não cadastrado" (pedido do usuário), via função `cpf_cadastrado` liberada sem login | Mensagem mais clara para o munícipe. Custo: qualquer pessoa consegue descobrir se um CPF tem conta (sem ver nenhum outro dado). Substitui a mensagem genérica | Se a prefeitura exigir não revelar contas: voltar à mensagem genérica |
+| 2026-11-13 | Cabeçalho com ícone de perfil e menu (nome + "Configurações da conta"); "Sair" só na página da conta (pedido do usuário) | Cabeçalho mais limpo | — |
+| 2026-11-13 | Configurações da conta só mostram os dados (sem editar) | Não foi pedido; editar exigiria novas regras no banco (ex.: trocar CPF) | Se pedirem edição de telefone/bairro/senha |
 
 ## Limites conhecidos
 - Precisa de internet (Supabase na nuvem) e de um projeto configurado (docs/supabase.md).

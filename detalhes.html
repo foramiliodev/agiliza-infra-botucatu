@@ -10,7 +10,15 @@
   <a href="#principal" class="pular">Ir para o conteúdo</a>
   <header class="topo">
     <a href="home.html" class="topo-voltar"><span aria-hidden="true">←</span> DETALHES</a>
-    <span class="topo-usuario"><span id="nome-usuario"></span><button type="button" id="sair" class="botao-sair">Sair</button></span>
+    <div class="perfil">
+      <button type="button" class="perfil-botao" aria-expanded="false" aria-controls="perfil-menu" aria-label="Menu da conta">
+        <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4.4 3.6-7 8-7s8 2.6 8 7"/></svg>
+      </button>
+      <div id="perfil-menu" class="perfil-menu" hidden>
+        <p id="nome-usuario" class="perfil-nome"></p>
+        <a href="conta.html">Configurações da conta</a>
+      </div>
+    </div>
   </header>
   <main id="principal" tabindex="-1" class="card">
     <h1>Detalhes do registro</h1>

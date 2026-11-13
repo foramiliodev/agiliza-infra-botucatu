@@ -10,9 +10,11 @@ Todas usam [css/style.css](../css/style.css) e montam conteúdo dinâmico com [j
 | `registrar.html`: novo registro | `js/registrar.js` | munícipe | pronta |
 | `detalhes.html?id=N`: detalhes | `js/detalhes.js` | munícipe e servidor | pronta |
 | `servidor.html`: painel | `js/servidor.js` | servidor | pronta |
+| `conta.html`: configurações da conta | `js/conta.js` | munícipe e servidor | pronta |
 
 ## Login (`index.html`)
 - Brasão oficial (`img/brasao.png`), CPF com máscara, senha, botão ENTRAR.
+- O formulário usa `method="post"`: se o JavaScript falhar, CPF e senha não vão para a URL.
 - Mensagens em vermelho: "CPF inválido." (dígitos errados), "CPF não cadastrado. Clique em \"Cadastre-se\"…" (CPF sem conta) e "CPF ou senha incorretos." (senha errada).
 - Após o cadastro chega com `?cadastro=ok` e mostra a confirmação.
 - Munícipe → `home.html`; servidor → `servidor.html`.
@@ -51,6 +53,11 @@ Todas usam [css/style.css](../css/style.css) e montam conteúdo dinâmico com [j
 - Status sempre com cor + texto. Erros ligados ao campo (`aria-describedby`, `aria-invalid`, foco); mensagens com `role="alert"`/`role="status"`.
 - Celular (≤ 480 px): card de largura total; o cabeçalho quebra linha com nomes longos; botões com altura mínima de 40 px.
 
+## Configurações da conta (`conta.html`)
+- Acessada pelo menu do ícone de perfil; o "←" volta para a home (munícipe) ou para o painel (servidor).
+- Mostra os dados da conta (só leitura): nome, CPF, e-mail, tipo de conta e, conforme o tipo, telefone e bairro (munícipe) ou secretaria, matrícula e cargo (servidor), além da data de cadastro. Campo vazio aparece como "Não informado".
+- Seção "Sessão" com o botão **SAIR DA CONTA** (contorno vermelho).
+
 ## Carregamento (Supabase)
 - Todas as páginas carregam `supabase-js` (CDN, versão fixa 2.45.4), `js/config.js` e `js/db.js`, nesta ordem.
 - Os dados chegam de forma assíncrona; se falhar (sem internet, config errada), `UI.falhaAoCarregar` mostra a mensagem no topo do conteúdo.
@@ -59,5 +66,7 @@ Todas usam [css/style.css](../css/style.css) e montam conteúdo dinâmico com [j
 
 ## Páginas protegidas
 - `await Auth.exigir('MUNICIPE')`, `('SERVIDOR')` ou `('MUNICIPE', 'SERVIDOR')` no início do script (consulta a sessão do Supabase): sem sessão ou com o perfil errado, volta ao login.
-- Botão "Sair" (`#sair`) e nome do usuário (`#nome-usuario`) no cabeçalho são ligados automaticamente.
+- No cabeçalho, à direita, fica o **ícone de perfil** (`.perfil-botao`). Ele abre um menu com o nome do usuário (`#nome-usuario`) e o link "Configurações da conta" (`conta.html`). `Auth.ligarMenuPerfil` liga tudo automaticamente.
+  - Acessível (padrão *disclosure*): botão com `aria-expanded`/`aria-controls` e rótulo "Menu da conta". Enter/Espaço abre; Esc fecha e devolve o foco; clicar fora ou sair com Tab fecha.
+- O botão "Sair" (`#sair`) fica só na página de configurações da conta.
 - Depois de sair, o Voltar do navegador não reabre a página do cache (`pageshow`).

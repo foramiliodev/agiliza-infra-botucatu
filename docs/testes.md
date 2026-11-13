@@ -15,6 +15,8 @@ Cobre:
 ## 2. Funções do navegador: `npm test`
 Roda [js/tests.js](../js/tests.js) no Node, sem Supabase: validação e máscara de CPF e as validações de formulário de `cadastrarMunicipe`/`criarRegistro`/`entrar` (que falham antes de chamar o banco).
 
+Inclui um teste de regressão que carrega `js/config.js` + `js/db.js` no mesmo escopo, como scripts clássicos no navegador, e confere que o cliente Supabase é criado com a URL e a chave do `config.js`. Ele existe por causa de um bug real: o `db.js` lia `globalThis.AGILIZA_CONFIG`, que não existe no navegador.
+
 ## 3. Telas: [checklist de testes manuais](checklist-testes.md)
 
 ## Como isto foi verificado (2026-11-13)
