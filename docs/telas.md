@@ -51,12 +51,16 @@ Todas usam [css/style.css](../css/style.css) e montam conteúdo dinâmico com [j
 - Foco sempre visível: contorno azul no conteúdo, branco no cabeçalho.
 - Contraste (WCAG AA): textos ≥ 5,3:1, borda dos campos 4,5:1.
 - Status sempre com cor + texto. Erros ligados ao campo (`aria-describedby`, `aria-invalid`, foco); mensagens com `role="alert"`/`role="status"`.
-- Celular (≤ 480 px): card de largura total; o cabeçalho quebra linha com nomes longos; botões com altura mínima de 40 px.
+- Celular (≤ 480 px): card de largura total, preenchendo até o fim da tela; o cabeçalho quebra linha com nomes longos; botões com altura mínima de 40 px.
+- Sem rolagem quando o conteúdo cabe: `body` em coluna com `min-height: 100dvh` e card com `flex: 1` (antes, `calc(100vh - 3.3rem)` deixava a página maior que a tela).
 
 ## Configurações da conta (`conta.html`)
 - Acessada pelo menu do ícone de perfil; o "←" volta para a home (munícipe) ou para o painel (servidor).
-- Mostra os dados da conta (só leitura): nome, CPF, e-mail, tipo de conta e, conforme o tipo, telefone e bairro (munícipe) ou secretaria, matrícula e cargo (servidor), além da data de cadastro. Campo vazio aparece como "Não informado".
-- Seção "Sessão" com o botão **SAIR DA CONTA** (contorno vermelho).
+- **Barra lateral** de funcionalidades (`<nav class="conta-menu">`). Cada item mostra só a sua seção (`<section class="conta-secao">`), e o endereço guarda a seção (`conta.html#sessao`) sem pular a página. No celular (≤ 640 px) a barra vira abas no topo.
+- **Para adicionar uma funcionalidade:** um `<li><a href="#id">` na barra + uma `<section id="id" class="conta-secao" tabindex="-1" hidden>`. A troca já funciona (`mostrarSecao` em `js/conta.js`).
+- Seções atuais:
+  - **Dados da conta** (só leitura): nome, CPF, e-mail, tipo de conta e, conforme o tipo, telefone e bairro (munícipe) ou secretaria, matrícula e cargo (servidor), além da data de cadastro. Campo vazio aparece como "Não informado".
+  - **Sessão**: botão **SAIR DA CONTA** (contorno vermelho).
 
 ## Carregamento (Supabase)
 - Todas as páginas carregam `supabase-js` (CDN, versão fixa 2.45.4), `js/config.js` e `js/db.js`, nesta ordem.

@@ -24,4 +24,6 @@ Tudo que fizermos deve ficar registrado em `.md` para preservar o contexto entre
 ## Convenções
 
 - Idioma do código, comentários e docs: português (nomes como no DER: `registro`, `municipe`, `grau_urgencia`...).
+- **Página da conta (`conta.html`):** toda funcionalidade nova da conta entra como um item da barra lateral (`.conta-menu`) + uma `<section class="conta-secao">`, sem precisar de JS novo para a troca de seção.
+- Páginas não podem rolar quando o conteúdo cabe na tela: o `body` é uma coluna com `min-height: 100dvh` e o card usa `flex: 1`. Não usar `calc(100vh - ...)`.
 - Atalhos conhecidos levam o comentário `// shortcut: <limite>, <quando trocar>`.

@@ -1,5 +1,11 @@
 # Changelog
 
+## 2026-11-13: Barra lateral na conta e páginas sem rolagem sobrando
+- **Rolagem:** no celular o card tinha `min-height: calc(100vh - 3.3rem)`, mas o cabeçalho com o ícone de perfil tem ~4,3rem, e o `100vh` do celular inclui a barra de endereço. Resultado: dava para arrastar a página sem conteúdo. Agora o `body` é uma coluna com `min-height: 100dvh` e o card usa `flex: 1` (vale para todas as páginas).
+- **Conta:** barra lateral de funcionalidades (`.conta-menu`), com "Dados da conta" e "Sessão" (sair). Cada item mostra só a sua seção, o endereço guarda a seção (`#sessao`) e no celular a barra vira abas.
+- Regra no CLAUDE.md: funcionalidades novas da conta entram na barra lateral; não usar `calc(100vh - …)`.
+- Verificado por medição em Firefox headless: sem rolagem a 360×640 e 1280×720 (conta/Sessão, home, painel). "Dados da conta" no celular rola 13px porque o conteúdo é maior que a tela (esperado). `npm test` passando.
+
 ## 2026-11-13: Correção: login e cadastro não funcionavam; CPF e senha apareciam na URL
 - **Causa:** `js/db.js` lia a configuração como `globalThis.AGILIZA_CONFIG`, mas o `const AGILIZA_CONFIG` de `js/config.js` (script clássico) não vira propriedade de `window`. O Supabase recebia a URL vazia ("supabaseUrl is required"), o `db.js` quebrava e, sem o script da página, o navegador enviava o formulário por GET, com CPF e senha na URL.
 - **Correção:** `db.js` lê `AGILIZA_CONFIG` direto (com `typeof`). Se o Supabase não iniciar, `DB` continua existindo e cada chamada mostra "Configure o Supabase…" na tela, em vez de quebrar a página.

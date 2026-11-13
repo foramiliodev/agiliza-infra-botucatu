@@ -20,13 +20,28 @@
       </div>
     </div>
   </header>
-  <main id="principal" tabindex="-1" class="card">
+  <main id="principal" tabindex="-1" class="card card-largo card-conta">
     <h1>Configurações da conta</h1>
-    <dl id="dados" class="detalhes"></dl>
-
-    <h2>Sessão</h2>
-    <p>Sair desta conta neste navegador.</p>
-    <button type="button" id="sair" class="botao botao-secundario">SAIR DA CONTA</button>
+    <div class="conta-layout">
+      <!-- Barra lateral: cada funcionalidade nova da conta = um item aqui + uma <section class="conta-secao"> abaixo -->
+      <nav class="conta-menu" aria-label="Seções da conta">
+        <ul>
+          <li><a href="#dados">Dados da conta</a></li>
+          <li><a href="#sessao">Sessão</a></li>
+        </ul>
+      </nav>
+      <div>
+        <section id="dados" class="conta-secao" tabindex="-1" aria-labelledby="titulo-dados">
+          <h2 id="titulo-dados">Dados da conta</h2>
+          <dl id="dados-lista" class="detalhes"></dl>
+        </section>
+        <section id="sessao" class="conta-secao" tabindex="-1" aria-labelledby="titulo-sessao" hidden>
+          <h2 id="titulo-sessao">Sessão</h2>
+          <p>Sair desta conta neste navegador.</p>
+          <button type="button" id="sair" class="botao botao-secundario">SAIR DA CONTA</button>
+        </section>
+      </div>
+    </div>
   </main>
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4/dist/umd/supabase.min.js"></script>
   <script src="js/config.js"></script>

@@ -54,7 +54,7 @@ home.html         "Suas entradas" + menu de serviços
 registrar.html    novo registro (urgência, fotos, protocolo)
 detalhes.html     detalhes e histórico do registro
 servidor.html     painel do servidor
-conta.html        configurações da conta (dados + sair)
+conta.html        configurações da conta (barra lateral: dados, sessão/sair)
 css/style.css     estilo (identidade do protótipo)
 js/config.js      URL e chave pública do projeto Supabase
 js/db.js          acesso ao banco (Supabase)
@@ -77,4 +77,4 @@ tasks/            plano e lista de tarefas
 - [docs/telas.md](docs/telas.md): telas
 - [docs/decisoes.md](docs/decisoes.md): decisões e atalhos assumidos
 - [docs/testes.md](docs/testes.md): como rodar e o que os testes cobrem
-- [docs/checklist-testes.md](docs/checklist-testes.md): checklist de testes manuais no navegador (75 itens)
+- [docs/checklist-testes.md](docs/checklist-testes.md): checklist de testes manuais no navegador (77 itens)
