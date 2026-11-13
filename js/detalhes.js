@@ -44,7 +44,11 @@ async function render(mensagem) {
   }
 
   const item = (rotulo, valor) => [UI.el('dt', {}, rotulo), UI.el('dd', {}, valor)];
-  alvo.append(
+  // computador: duas colunas (dados | status e histórico); celular: uma embaixo da outra
+  const principal = UI.el('div', { class: 'detalhes-principal' });
+  const lateral = UI.el('aside', { class: 'detalhes-lateral', 'aria-label': 'Status e histórico' });
+  alvo.append(UI.el('div', { class: 'detalhes-grade' }, principal, lateral));
+  principal.append(
     UI.el('p', { class: 'protocolo' }, `Registro nº ${r.numero_protocolo}`),
     UI.el('dl', { class: 'detalhes' },
       ...item('Serviço', r.categoria.nome),
@@ -56,14 +60,14 @@ async function render(mensagem) {
       ...item('Status', UI.badge(r.status))),
   );
 
-  if (ehServidor) alvo.append(formularioStatus(r, status, mensagem));
+  if (ehServidor) lateral.append(formularioStatus(r, status, mensagem));
 
   if (r.fotos.length) {
-    alvo.append(UI.el('h2', {}, 'Fotos'), UI.el('ul', { class: 'previas' },
+    principal.append(UI.el('h2', {}, 'Fotos'), UI.el('ul', { class: 'previas' },
       ...r.fotos.map((f, i) => UI.el('li', {}, UI.el('img', { src: f.url ?? '', alt: `Foto ${i + 1} do registro` })))));
   }
 
-  alvo.append(UI.el('h2', {}, 'Histórico'), UI.el('ol', { class: 'historico' },
+  lateral.append(UI.el('h2', {}, 'Histórico'), UI.el('ol', { class: 'historico' },
     ...r.historico.map(h => UI.el('li', {},
       UI.el('time', { datetime: h.data_alteracao }, UI.data(h.data_alteracao)),
       ` ${h.status_novo}${h.observacao ? `: ${h.observacao}` : ''}`))));

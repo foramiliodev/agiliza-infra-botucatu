@@ -46,6 +46,16 @@ Todas usam [css/style.css](../css/style.css) e montam conteúdo dinâmico com [j
 - Cada item mostra título, badge de status, protocolo, serviço, urgência e data, e leva aos detalhes.
 - Ordem: abertos antes dos concluídos, depois por urgência, depois os mais antigos.
 
+## Layout no computador (≥ 1024 px)
+O celular segue o protótipo; no computador (`@media (min-width: 64rem)`, no fim de `css/style.css`):
+- **Cabeçalho:** brasão + "Agiliza Botucatu / Portal da Prefeitura" e menu de navegação montado por `Auth.montarNavegacao`: munícipe tem "Suas entradas" e "Novo registro"; servidor, "Registros da secretaria". O link da página atual fica destacado. O "← TÍTULO" do celular some.
+- **Login e cadastro:** tela dividida, com apresentação do serviço em azul à esquerda (`.acesso-apresentacao`) e o formulário à direita; o cadastro tem campos em duas colunas.
+- **Home:** entradas (2/3) com data e botão "+ Novo registro" ao lado do título; menu de serviços numa coluna à direita. No celular, o "+" é o botão redondo fixo embaixo.
+- **Novo registro:** campos em duas colunas (serviço/urgência, identificação/localização), descrição e fotos em largura total.
+- **Detalhes:** dados à esquerda (rótulo | valor) e fotos; à direita, atualizar status (servidor) e histórico.
+- **Painel do servidor:** tabela (protocolo, registro, serviço, urgência, aberto em, status) com o filtro na mesma linha. No celular, cada registro é um cartão.
+- **Rodapé** com a prefeitura e o projeto. Largura máxima do conteúdo: 72rem.
+
 ## Acessibilidade e responsividade (RNF01–RNF03)
 - Toda página começa com o link "Ir para o conteúdo" (aparece no primeiro Tab) apontando para `<main id="principal">`.
 - Foco sempre visível: contorno azul no conteúdo, branco no cabeçalho.

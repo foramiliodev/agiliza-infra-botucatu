@@ -1,5 +1,15 @@
 # Changelog
 
+## 2026-11-13: Layout para computador
+- Novo layout a partir de 1024 px (`@media (min-width: 64rem)` no fim de `css/style.css`); o celular continua igual ao protótipo.
+- **Cabeçalho:** brasão + "Agiliza Botucatu / Portal da Prefeitura" e navegação por perfil (`Auth.montarNavegacao`, link atual destacado). **Rodapé** em todas as páginas.
+- **Login/cadastro:** tela dividida com apresentação do serviço; cadastro em duas colunas (layout `.acesso`).
+- **Home:** entradas com data + botão "+ Novo registro" e menu de serviços em coluna lateral; no celular, o "+" virou botão fixo embaixo.
+- **Novo registro:** campos em duas colunas. **Detalhes:** dados à esquerda, status e histórico à direita.
+- **Painel do servidor:** tabela com cabeçalho e filtro na mesma linha; urgência com maiúscula.
+- Verificado por screenshots (Firefox headless, Supabase simulado): 7 telas a 1440×900; celular a 360 px e tablet a 800 px sem rolagem horizontal. `npm test` passando.
+- Docs: telas, decisões, checklist, README, CLAUDE.md (regra: toda tela nova com versão celular e computador), plano, todo.
+
 ## 2026-11-13: Barra lateral na conta e páginas sem rolagem sobrando
 - **Rolagem:** no celular o card tinha `min-height: calc(100vh - 3.3rem)`, mas o cabeçalho com o ícone de perfil tem ~4,3rem, e o `100vh` do celular inclui a barra de endereço. Resultado: dava para arrastar a página sem conteúdo. Agora o `body` é uma coluna com `min-height: 100dvh` e o card usa `flex: 1` (vale para todas as páginas).
 - **Conta:** barra lateral de funcionalidades (`.conta-menu`), com "Dados da conta" e "Sessão" (sair). Cada item mostra só a sua seção, o endereço guarda a seção (`#sessao`) e no celular a barra vira abas.

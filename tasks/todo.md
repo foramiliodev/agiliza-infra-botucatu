@@ -147,7 +147,7 @@ Ao concluir cada tarefa: seguir a regra de documentação do [CLAUDE.md](../CLAU
 ### Checkpoint final
 - [x] RF01–RF12 implementados e cobertos por testes automáticos das regras (16/16)
 - [x] `docs/` e `CHANGELOG` atualizados
-- [ ] Rodar a [checklist de testes manuais](../docs/checklist-testes.md) (77 itens)
+- [ ] Rodar a [checklist de testes manuais](../docs/checklist-testes.md) (80 itens)
 - [ ] Pronto para apresentar
 
 ---
@@ -201,6 +201,15 @@ Ao concluir cada tarefa: seguir a regra de documentação do [CLAUDE.md](../CLAU
 - [x] Regra registrada no CLAUDE.md para as próximas funcionalidades
 **Arquivos:** `conta.html`, `js/conta.js`, `css/style.css`, `CLAUDE.md`
 **Tamanho:** S
+
+### [x] Tarefa 17: Layout para computador
+**Descrição:** As telas pareciam um app de celular esticado no computador; criar um layout próprio a partir de 1024 px, mantendo o celular igual ao protótipo (pedido do usuário).
+**Critérios de aceite:**
+- [x] Cabeçalho com marca + navegação por perfil; rodapé
+- [x] Login/cadastro em tela dividida; home, detalhes e formulários em colunas; painel em tabela
+- [x] Celular sem mudanças visuais em relação ao protótipo (conferido por screenshot a 360 px e 800 px)
+**Arquivos:** todas as páginas HTML, `css/style.css`, `js/auth.js`, `js/home.js`, `js/servidor.js`, `js/detalhes.js`
+**Tamanho:** L
 
 ### [ ] Tarefa 13: Configurar o projeto Supabase do grupo e conferir
 **Descrição:** Seguir `docs/supabase.md` no projeto real e rodar a checklist.

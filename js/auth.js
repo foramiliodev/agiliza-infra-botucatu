@@ -24,7 +24,27 @@ const Auth = {
     const nome = document.getElementById('nome-usuario');
     if (nome) nome.textContent = u.nome;
     this.ligarMenuPerfil();
+    this.montarNavegacao(u);
     return u;
+  },
+
+  // Links do cabeçalho (aparecem no computador) conforme o perfil; marca o da página atual
+  montarNavegacao(u) {
+    const inicio = u.tipo_usuario === 'SERVIDOR' ? 'servidor.html' : 'home.html';
+    document.querySelector('.topo-marca')?.setAttribute('href', inicio);
+    const nav = document.querySelector('.topo-nav');
+    if (!nav) return;
+    const links = u.tipo_usuario === 'SERVIDOR'
+      ? [['servidor.html', 'Registros da secretaria']]
+      : [['home.html', 'Suas entradas'], ['registrar.html', 'Novo registro']];
+    const atual = location.pathname.split('/').pop() || 'index.html';
+    nav.replaceChildren(...links.map(([href, texto]) => {
+      const a = document.createElement('a');
+      a.href = href;
+      a.textContent = texto;
+      if (href === atual) a.setAttribute('aria-current', 'page');
+      return a;
+    }));
   },
 
   // Ícone de perfil no cabeçalho: abre/fecha o menu (padrão "disclosure": botão com aria-expanded)
