@@ -1,0 +1,9 @@
+{
+  "name": "agiliza-botucatu",
+  "private": true,
+  "description": "Agiliza Infraestrutura Botucatu: site em HTML/CSS/JS puros",
+  "scripts": {
+    "start": "npx --yes http-server@14.1.1 -p 8000 -c-1 -o",
+    "test": "node js/tests-node.js"
+  }
+}

@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Painel do servidor · Agiliza Botucatu</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <a href="#principal" class="pular">Ir para o conteúdo</a>
+  <header class="topo">
+    <span class="topo-titulo">PORTAL DA PREFEITURA</span>
+    <span class="topo-usuario"><span id="nome-usuario"></span><button type="button" id="sair" class="botao-sair">Sair</button></span>
+  </header>
+  <main id="principal" tabindex="-1" class="card card-largo">
+    <h1>Registros da secretaria</h1>
+    <p id="secretaria" class="subtitulo"></p>
+    <label for="filtro">Mostrar</label>
+    <select id="filtro"><option value="">Todos os status</option></select>
+    <p id="contagem" class="contagem" role="status"></p>
+    <ul id="lista" class="lista-servidor"></ul>
+  </main>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4/dist/umd/supabase.min.js"></script>
+  <script src="js/config.js"></script>
+  <script src="js/db.js"></script>
+  <script src="js/auth.js"></script>
+  <script src="js/ui.js"></script>
+  <script src="js/servidor.js"></script>
+</body>
+</html>

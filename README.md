@@ -15,11 +15,17 @@ npm start   # abre http://localhost:8000
 npm test    # roda os testes no terminal
 ```
 
-Não precisa de `npm install`. Antes da primeira vez, configure o banco: **[docs/supabase.md](docs/supabase.md)** (criar o projeto, rodar os SQL e preencher `js/config.js`).
+Não precisa de `npm install`. O `js/config.js` já aponta para o projeto Supabase do grupo. Para montar o banco do zero (ou usar outro projeto), siga **[docs/supabase.md](docs/supabase.md)**. Ordem dos SQL no SQL Editor:
+
+1. `sql/01_schema.sql`: tabelas, regras (RLS), triggers e bucket de fotos
+2. `sql/02_dados_iniciais.sql`: status, secretarias e categorias
+3. `sql/04_cpf_cadastrado.sql`: aviso de "CPF não cadastrado" no login
+4. `sql/03_servidores_demo.sql`: depois de cadastrar pelo site os CPFs dos servidores (abaixo)
+5. `sql/testes.sql` *(opcional)*: confere as regras e não grava nada
 
 ## Como usar
 
-- **Munícipe:** clique em "Cadastre-se", crie a conta com um CPF válido e entre.
+- **Munícipe:** clique em "Cadastre-se", crie a conta com um CPF válido e entre. No login, o site avisa em vermelho se o CPF é inválido, se não está cadastrado ou se a senha está errada.
 - **Servidor (demonstração):** cadastre os CPFs abaixo pelo site e rode `sql/03_servidores_demo.sql` (ver docs/supabase.md).
 
   | Secretaria | CPF | Senha |
@@ -31,7 +37,7 @@ Não precisa de `npm install`. Antes da primeira vez, configure o banco: **[docs
 
 HTML, CSS e JavaScript puros, sem framework e sem build. Banco de dados no **[Supabase](https://supabase.com)** (PostgreSQL), com as tabelas do DER do documento:
 
-- **Auth:** login por CPF + senha (bcrypt, no Supabase).
+- **Auth:** login por CPF + senha (bcrypt, no Supabase); aviso de "CPF não cadastrado" pela função `cpf_cadastrado`.
 - **RLS:** o munícipe só vê os próprios registros; o servidor, só os da sua secretaria.
 - **Triggers:** protocolo e histórico gerados pelo banco.
 - **Storage:** fotos num bucket privado.

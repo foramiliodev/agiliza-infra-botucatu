@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Novo registro · Agiliza Botucatu</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <a href="#principal" class="pular">Ir para o conteúdo</a>
+  <header class="topo">
+    <a href="home.html" class="topo-voltar"><span aria-hidden="true">←</span> REGISTRAR NOVO</a>
+    <span class="topo-usuario"><span id="nome-usuario"></span><button type="button" id="sair" class="botao-sair">Sair</button></span>
+  </header>
+  <main id="principal" tabindex="-1" class="card">
+    <section id="formulario">
+      <h1>Digite os dados do novo registro</h1>
+      <form id="form-registro">
+        <label for="categoria_id">Serviço</label>
+        <select id="categoria_id" name="categoria_id" required aria-describedby="erro-categoria_id">
+          <option value="">Escolha o serviço…</option>
+        </select>
+        <p id="erro-categoria_id" class="erro"></p>
+
+        <label for="identificacao">Identificação</label>
+        <input id="identificacao" name="identificacao" maxlength="120" placeholder="Ex.: Buraco na rua" required aria-describedby="erro-identificacao">
+        <p id="erro-identificacao" class="erro"></p>
+
+        <label for="descricao">Descrição</label>
+        <textarea id="descricao" name="descricao" rows="4" required aria-describedby="erro-descricao"></textarea>
+        <p id="erro-descricao" class="erro"></p>
+
+        <label for="localizacao">Localização</label>
+        <input id="localizacao" name="localizacao" maxlength="200" placeholder="Rua, número, bairro ou ponto de referência" autocomplete="street-address" required aria-describedby="erro-localizacao">
+        <p id="erro-localizacao" class="erro"></p>
+
+        <label for="grau_urgencia">Grau de urgência</label>
+        <select id="grau_urgencia" name="grau_urgencia" required aria-describedby="erro-grau_urgencia">
+          <option value="BAIXO">Baixo</option>
+          <option value="MEDIO">Médio</option>
+          <option value="ALTO">Alto</option>
+        </select>
+        <p id="erro-grau_urgencia" class="erro"></p>
+
+        <label for="fotos">Fotos <span class="opcional">(opcional, até 5)</span></label>
+        <input id="fotos" name="fotos" type="file" accept="image/*" multiple aria-describedby="erro-fotos">
+        <p id="erro-fotos" class="erro" role="alert"></p>
+        <ul id="previas" class="previas"></ul>
+
+        <p id="erro-geral" class="erro" role="alert"></p>
+        <button type="submit" class="botao">REGISTRAR</button>
+      </form>
+    </section>
+
+    <section id="confirmacao" hidden tabindex="-1">
+      <h1>Registro enviado</h1>
+      <p>Seu protocolo é <strong id="protocolo" class="protocolo"></strong>. Guarde este número para acompanhar o atendimento.</p>
+      <p id="aviso-fotos" class="erro"></p>
+      <p><a id="link-detalhes" href="home.html">Ver detalhes</a> · <a href="home.html">Voltar ao início</a></p>
+    </section>
+  </main>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4/dist/umd/supabase.min.js"></script>
+  <script src="js/config.js"></script>
+  <script src="js/db.js"></script>
+  <script src="js/auth.js"></script>
+  <script src="js/ui.js"></script>
+  <script src="js/registrar.js"></script>
+</body>
+</html>
