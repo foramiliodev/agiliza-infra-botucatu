@@ -147,7 +147,7 @@ Ao concluir cada tarefa: seguir a regra de documentação do [CLAUDE.md](../CLAU
 ### Checkpoint final
 - [x] RF01–RF12 implementados e cobertos por testes automáticos das regras (16/16)
 - [x] `docs/` e `CHANGELOG` atualizados
-- [ ] Rodar a [checklist de testes manuais](../docs/checklist-testes.md) (75 itens)
+- [ ] Rodar a [checklist de testes manuais](../docs/checklist-testes.md) (77 itens)
 - [ ] Pronto para apresentar
 
 ---
@@ -192,6 +192,15 @@ Ao concluir cada tarefa: seguir a regra de documentação do [CLAUDE.md](../CLAU
 - [x] `DB.minhaConta` verificada contra PostgREST local; telas conferidas por screenshot (menu aberto, 360 px)
 **Arquivos:** `conta.html`, `js/conta.js`, `js/auth.js`, `js/db.js`, `css/style.css`, `home.html`, `registrar.html`, `detalhes.html`, `servidor.html`
 **Tamanho:** M
+
+### [x] Tarefa 16: Conta com barra lateral e páginas sem rolagem sobrando
+**Descrição:** Funcionalidades da conta numa barra lateral; corrigir páginas que rolavam sem ter conteúdo (pedido do usuário).
+**Critérios de aceite:**
+- [x] `conta.html` com barra lateral (abas no celular): "Dados da conta" e "Sessão"; endereço guarda a seção
+- [x] Sem rolagem quando o conteúdo cabe (medido a 360×640 e 1280×720: conta/Sessão, home, painel sem rolagem)
+- [x] Regra registrada no CLAUDE.md para as próximas funcionalidades
+**Arquivos:** `conta.html`, `js/conta.js`, `css/style.css`, `CLAUDE.md`
+**Tamanho:** S
 
 ### [ ] Tarefa 13: Configurar o projeto Supabase do grupo e conferir
 **Descrição:** Seguir `docs/supabase.md` no projeto real e rodar a checklist.

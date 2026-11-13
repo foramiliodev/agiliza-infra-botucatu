@@ -23,6 +23,11 @@ body {
   background: var(--fundo);
   color: var(--texto);
   line-height: 1.5;
+  /* Coluna da altura exata da tela: o card preenche o resto sem criar rolagem quando não há conteúdo */
+  min-height: 100vh;
+  min-height: 100dvh; /* celular: desconta a barra de endereço */
+  display: flex;
+  flex-direction: column;
 }
 
 a { color: var(--azul); }
@@ -100,7 +105,7 @@ main:focus { outline: none; }
   border-radius: 6px;
 }
 @media (max-width: 30rem) {
-  .card { margin: 0; border-radius: 0; min-height: calc(100vh - 3.3rem); }
+  .card { margin: 0; border-radius: 0; flex: 1; }
 }
 
 h1 { font-size: 1.25rem; margin: 0 0 1rem; }
@@ -227,6 +232,31 @@ h2 { font-size: 1.05rem; margin: 1.75rem 0 .75rem; }
 .item-titulo { font-weight: 600; overflow-wrap: anywhere; }
 .item-info { grid-column: 1 / -1; font-size: .85rem; color: var(--texto-suave); }
 .form-status { border-top: 1px solid var(--borda); margin-top: 1.75rem; }
+
+/* Configurações da conta: barra lateral de funcionalidades (novas funcionalidades entram como novos itens) */
+.card-conta { width: 100%; }
+.conta-layout { display: grid; grid-template-columns: 13rem 1fr; gap: 1.5rem; align-items: start; }
+.conta-menu ul { list-style: none; margin: 0; padding: 0; }
+.conta-menu a {
+  display: block;
+  padding: .6rem .8rem;
+  border-left: 3px solid transparent;
+  border-radius: 0 4px 4px 0;
+  color: var(--texto);
+  text-decoration: none;
+}
+.conta-menu a:hover { background: var(--fundo); }
+.conta-menu a[aria-current] { background: var(--fundo); border-left-color: var(--azul); color: var(--azul); font-weight: 600; }
+.conta-secao h2 { margin-top: 0; }
+.conta-secao:focus { outline: none; }
+.conta-secao .botao { margin-left: 0; }
+@media (max-width: 40rem) {
+  /* sem largura para coluna lateral: a barra vira abas no topo */
+  .conta-layout { grid-template-columns: 1fr; gap: 1rem; }
+  .conta-menu ul { display: flex; overflow-x: auto; border-bottom: 1px solid var(--borda); }
+  .conta-menu a { border-left: 0; border-bottom: 3px solid transparent; border-radius: 0; white-space: nowrap; }
+  .conta-menu a[aria-current] { border-bottom-color: var(--azul); }
+}
 
 /* Status: cor + texto (RNF01/RNF02) */
 .badge { display: inline-block; padding: .1rem .7rem; border-radius: 999px; font-size: .75rem; font-weight: 600; color: var(--texto); }

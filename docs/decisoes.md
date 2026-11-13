@@ -28,6 +28,8 @@
 | 2026-11-13 | Login avisa "CPF não cadastrado" (pedido do usuário), via função `cpf_cadastrado` liberada sem login | Mensagem mais clara para o munícipe. Custo: qualquer pessoa consegue descobrir se um CPF tem conta (sem ver nenhum outro dado). Substitui a mensagem genérica | Se a prefeitura exigir não revelar contas: voltar à mensagem genérica |
 | 2026-11-13 | Cabeçalho com ícone de perfil e menu (nome + "Configurações da conta"); "Sair" só na página da conta (pedido do usuário) | Cabeçalho mais limpo | — |
 | 2026-11-13 | Configurações da conta só mostram os dados (sem editar) | Não foi pedido; editar exigiria novas regras no banco (ex.: trocar CPF) | Se pedirem edição de telefone/bairro/senha |
+| 2026-11-13 | Conta com barra lateral de funcionalidades; no celular vira abas no topo (pedido do usuário) | Lugar fixo para crescer; em 360 px não cabe coluna lateral | — |
+| 2026-11-13 | Altura da página: `body` flex em coluna + `100dvh`, card `flex: 1` | `calc(100vh - 3.3rem)` quebrou quando o cabeçalho cresceu, e o `100vh` do celular inclui a barra de endereço | — |
 
 ## Limites conhecidos
 - Precisa de internet (Supabase na nuvem) e de um projeto configurado (docs/supabase.md).

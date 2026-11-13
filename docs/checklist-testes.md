@@ -46,6 +46,7 @@ Testador: ______________ Data: ___/___/______ Navegador: ______________
 - [ ] **2.6** "Configurações da conta" mostra os dados certos do perfil (munícipe: telefone/bairro; servidor: secretaria/matrícula/cargo) e o "←" volta para a home/painel.
 - [ ] **2.7** "SAIR DA CONTA" → volta para o login; o botão Voltar do navegador não reabre a página protegida.
 - [ ] **2.8** O menu fecha ao clicar fora dele e com a tecla Esc.
+- [ ] **2.8b** Configurações da conta: a barra lateral (abas no celular) troca entre "Dados da conta" e "Sessão" sem pular a página; recarregar em `conta.html#sessao` abre direto em Sessão.
 - [ ] **2.9** Sem estar logado, abrir `http://localhost:8000/home.html` direto → volta para o login.
 - [ ] **2.10** Logado como munícipe, abrir `servidor.html` → volta para o login.
 - [ ] **2.11** Logado como servidor, abrir `home.html` ou `registrar.html` → volta para o login.
@@ -109,6 +110,7 @@ Antes: como munícipe, crie um registro de **Buracos** (urgência Baixo), um de 
 No DevTools (Ctrl+Shift+M), testar em **360 px**, **768 px** e **1280 px**:
 
 - [ ] **8.1** Nenhuma página tem rolagem horizontal.
+- [ ] **8.1b** Páginas com pouco conteúdo (home vazia, painel vazio, conta → Sessão) **não** deixam arrastar para baixo, no celular e no computador.
 - [ ] **8.2** No celular, o card ocupa a largura toda; no computador, fica centralizado.
 - [ ] **8.3** No celular, o menu do perfil abre inteiro dentro da tela (nome longo quebra linha).
 - [ ] **8.4** Títulos longos de registro quebram linha sem empurrar o badge para fora.
@@ -133,6 +135,6 @@ No DevTools (Ctrl+Shift+M), testar em **360 px**, **768 px** e **1280 px**:
 
 ---
 
-**Resultado:** ____ de 75 itens OK. Problemas encontrados (nº do item + o que aconteceu):
+**Resultado:** ____ de 77 itens OK. Problemas encontrados (nº do item + o que aconteceu):
 
 - 
