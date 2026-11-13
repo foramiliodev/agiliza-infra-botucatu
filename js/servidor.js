@@ -9,8 +9,12 @@ function render() {
     UI.el('li', {}, UI.el('a', { href: 'detalhes.html?id=' + r.id, class: 'item-servidor' },
       UI.el('span', { class: 'item-titulo' }, r.identificacao),
       UI.badge(r.status),
+      // celular: uma linha "protocolo · serviço · urgência · data"; computador: uma coluna para cada (display: contents)
       UI.el('span', { class: 'item-info' },
-        `${r.numero_protocolo} · ${r.categoria.nome} · Urgência ${UI.URGENCIA[r.grau_urgencia].toLowerCase()} · ${UI.data(r.data_abertura)}`)))));
+        UI.el('span', { class: 'item-protocolo' }, r.numero_protocolo),
+        UI.el('span', { class: 'item-categoria' }, r.categoria.nome),
+        UI.el('span', { class: 'item-urgencia' }, UI.el('span', { class: 'rotulo-celular' }, 'Urgência: '), UI.URGENCIA[r.grau_urgencia]),
+        UI.el('span', { class: 'item-data' }, UI.data(r.data_abertura)))))));
 }
 
 (async () => {

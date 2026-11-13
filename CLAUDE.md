@@ -24,6 +24,7 @@ Tudo que fizermos deve ficar registrado em `.md` para preservar o contexto entre
 ## Convenções
 
 - Idioma do código, comentários e docs: português (nomes como no DER: `registro`, `municipe`, `grau_urgencia`...).
+- **Layout:** o celular segue o protótipo do documento (Figura 7); a partir de 1024 px (`@media (min-width: 64rem)`, no fim de `css/style.css`) há um layout próprio para computador. Toda tela nova precisa das duas versões.
 - **Página da conta (`conta.html`):** toda funcionalidade nova da conta entra como um item da barra lateral (`.conta-menu`) + uma `<section class="conta-secao">`, sem precisar de JS novo para a troca de seção.
 - Páginas não podem rolar quando o conteúdo cabe na tela: o `body` é uma coluna com `min-height: 100dvh` e o card usa `flex: 1`. Não usar `calc(100vh - ...)`.
 - Atalhos conhecidos levam o comentário `// shortcut: <limite>, <quando trocar>`.

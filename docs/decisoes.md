@@ -30,6 +30,9 @@
 | 2026-11-13 | Configurações da conta só mostram os dados (sem editar) | Não foi pedido; editar exigiria novas regras no banco (ex.: trocar CPF) | Se pedirem edição de telefone/bairro/senha |
 | 2026-11-13 | Conta com barra lateral de funcionalidades; no celular vira abas no topo (pedido do usuário) | Lugar fixo para crescer; em 360 px não cabe coluna lateral | — |
 | 2026-11-13 | Altura da página: `body` flex em coluna + `100dvh`, card `flex: 1` | `calc(100vh - 3.3rem)` quebrou quando o cabeçalho cresceu, e o `100vh` do celular inclui a barra de endereço | — |
+| 2026-11-13 | Layout próprio para computador a partir de 1024 px; celular mantém o protótipo (pedido do usuário) | O protótipo é de celular; no computador as telas pareciam um app esticado | — |
+| 2026-11-13 | Navegação do cabeçalho montada por JS conforme o perfil (`Auth.montarNavegacao`) | Evita repetir os links em cada HTML; detalhes e conta servem aos dois perfis | — |
+| 2026-11-13 | Painel do servidor: o mesmo HTML vira cartão (celular) ou linha de tabela (computador) via CSS (`display: contents`) | Um só código de renderização | Se precisar ordenar por coluna: trocar por `<table>` |
 
 ## Limites conhecidos
 - Precisa de internet (Supabase na nuvem) e de um projeto configurado (docs/supabase.md).

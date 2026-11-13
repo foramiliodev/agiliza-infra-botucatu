@@ -27,7 +27,7 @@ Site em HTML/CSS/JS puros que implementa o protótipo do documento P1: o muníci
   - `js/ui.js`: montar elementos com texto seguro, badge e erros.
 - **Protocolo (RN01):** `ANO` + id com 6 dígitos (ex.: `2026000012`), gerado por trigger.
 - **Fotos:** reduzidas com `<canvas>` (lado máx. 1024 px, JPEG 70%), até 5 por registro, no bucket privado `fotos` (links temporários).
-- **Visual:** azul institucional do protótipo, cabeçalho "PORTAL DA PREFEITURA", cards brancos sobre fundo cinza, status com cor **e** texto.
+- **Visual:** azul institucional do protótipo, status com cor **e** texto. Celular = protótipo (cabeçalho "PORTAL DA PREFEITURA", card branco); computador (≥ 1024 px) = cabeçalho com marca e menu, telas em colunas, painel em tabela, rodapé.
 - **Testes:** `sql/testes.sql` (regras do banco, no SQL Editor), `npm test` (funções do navegador) e `docs/checklist-testes.md` (manual).
 
 ## Grafo de dependências
@@ -83,6 +83,7 @@ Detalhes, critérios de aceite e verificação em [todo.md](todo.md).
 - [x] Tarefa 14: Login avisa "CPF não cadastrado" (`sql/04_cpf_cadastrado.sql`)
 - [x] Tarefa 15: Ícone de perfil com menu + página de configurações da conta
 - [x] Tarefa 16: Barra lateral na conta + páginas sem rolagem sobrando
+- [x] Tarefa 17: Layout para computador (≥ 1024 px), celular mantém o protótipo
 - [ ] Tarefa 13: Configurar o projeto Supabase do grupo e rodar a checklist
 
 ## Riscos e mitigações

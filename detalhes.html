@@ -9,6 +9,8 @@
 <body>
   <a href="#principal" class="pular">Ir para o conteúdo</a>
   <header class="topo">
+    <a href="index.html" class="topo-marca"><img src="img/brasao.png" alt="" width="30" height="33"><span class="topo-marca-texto"><strong>Agiliza Botucatu</strong> <span>Portal da Prefeitura</span></span></a>
+    <nav class="topo-nav" aria-label="Principal"></nav>
     <a href="home.html" class="topo-voltar"><span aria-hidden="true">←</span> DETALHES</a>
     <div class="perfil">
       <button type="button" class="perfil-botao" aria-expanded="false" aria-controls="perfil-menu" aria-label="Menu da conta">
@@ -20,10 +22,11 @@
       </div>
     </div>
   </header>
-  <main id="principal" tabindex="-1" class="card">
+  <main id="principal" tabindex="-1" class="card card-largo">
     <h1>Detalhes do registro</h1>
     <div id="conteudo"></div>
   </main>
+  <footer class="rodape">Prefeitura Municipal de Botucatu · Agiliza Infraestrutura · Projeto acadêmico FATEC (2026)</footer>
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4/dist/umd/supabase.min.js"></script>
   <script src="js/config.js"></script>
   <script src="js/db.js"></script>

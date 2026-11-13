@@ -111,7 +111,10 @@ No DevTools (Ctrl+Shift+M), testar em **360 px**, **768 px** e **1280 px**:
 
 - [ ] **8.1** Nenhuma página tem rolagem horizontal.
 - [ ] **8.1b** Páginas com pouco conteúdo (home vazia, painel vazio, conta → Sessão) **não** deixam arrastar para baixo, no celular e no computador.
-- [ ] **8.2** No celular, o card ocupa a largura toda; no computador, fica centralizado.
+- [ ] **8.2** No celular, o card ocupa a largura toda e as telas seguem o protótipo (cabeçalho "PORTAL DA PREFEITURA" / "← TÍTULO", botão redondo "+").
+- [ ] **8.2b** No computador (≥ 1024 px): cabeçalho com brasão, nome e menu (o link da página atual destacado); rodapé no fim da página.
+- [ ] **8.2c** No computador: login/cadastro em tela dividida; home em duas colunas; novo registro e cadastro com campos lado a lado; detalhes com status/histórico à direita; painel do servidor em tabela.
+- [ ] **8.2d** Em 768 px (tablet) as telas continuam no formato de celular, centralizadas, sem quebrar.
 - [ ] **8.3** No celular, o menu do perfil abre inteiro dentro da tela (nome longo quebra linha).
 - [ ] **8.4** Títulos longos de registro quebram linha sem empurrar o badge para fora.
 
@@ -135,6 +138,6 @@ No DevTools (Ctrl+Shift+M), testar em **360 px**, **768 px** e **1280 px**:
 
 ---
 
-**Resultado:** ____ de 77 itens OK. Problemas encontrados (nº do item + o que aconteceu):
+**Resultado:** ____ de 80 itens OK. Problemas encontrados (nº do item + o que aconteceu):
 
 - 

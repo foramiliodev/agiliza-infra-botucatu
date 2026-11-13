@@ -6,7 +6,9 @@
     document.getElementById('vazio').hidden = registros.length > 0;
     document.getElementById('entradas').append(...registros.map(r =>
       UI.el('li', {}, UI.el('a', { href: 'detalhes.html?id=' + r.id, class: 'entrada' },
-        UI.el('span', {}, r.identificacao), UI.badge(r.status)))));
+        UI.el('span', { class: 'entrada-titulo' }, r.identificacao),
+        UI.el('span', { class: 'entrada-data' }, UI.data(r.data_abertura)),
+        UI.badge(r.status)))));
 
     document.getElementById('servicos').append(...categorias.map(c =>
       UI.el('li', {}, UI.el('a', { href: 'registrar.html?categoria=' + c.id, class: 'servico' },

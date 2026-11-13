@@ -45,6 +45,8 @@ HTML, CSS e JavaScript puros, sem framework e sem build. Banco de dados no **[Su
 
 O site fala direto com o Supabase pelo navegador (`supabase-js`), sem servidor próprio.
 
+No celular, as telas seguem o protótipo do documento; no computador (a partir de 1024 px) o layout aproveita a largura: cabeçalho com menu, telas em duas colunas e o painel do servidor em tabela.
+
 ## Estrutura
 
 ```
@@ -77,4 +79,4 @@ tasks/            plano e lista de tarefas
 - [docs/telas.md](docs/telas.md): telas
 - [docs/decisoes.md](docs/decisoes.md): decisões e atalhos assumidos
 - [docs/testes.md](docs/testes.md): como rodar e o que os testes cobrem
-- [docs/checklist-testes.md](docs/checklist-testes.md): checklist de testes manuais no navegador (77 itens)
+- [docs/checklist-testes.md](docs/checklist-testes.md): checklist de testes manuais no navegador (80 itens)
