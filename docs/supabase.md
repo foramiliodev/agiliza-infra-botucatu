@@ -28,8 +28,8 @@ A chave anon pode ficar no código: ela é pública por natureza e as regras RLS
 **Nunca** use a chave `service_role`/`secret` no site.
 
 ## 5. Criar os servidores de demonstração
-1. `npm start`, depois **Cadastre-se** com os CPFs `529.982.247-25` e `111.444.777-35` (senha sugerida: `servidor123`).
-2. No SQL Editor, rode [sql/03_servidores_demo.sql](../sql/03_servidores_demo.sql). Os dois cadastros viram servidores de Obras e de Serviços Públicos.
+No SQL Editor, rode [sql/03_servidores_demo.sql](../sql/03_servidores_demo.sql). Ele cria as contas direto no Auth (CPFs `529.982.247-25` e `111.444.777-35`, senha `servidor123`) e as transforma em servidores de Obras e de Serviços Públicos. Pode rodar de novo: conta que já existe é só promovida.
+Se trocar `DOMINIO_EMAIL` em `js/config.js`, troque o domínio também nesse arquivo.
 
 Para criar outro servidor: a pessoa se cadastra pelo site e o administrador roda
 `select promover_servidor('<cpf só números>', '<matrícula>', '<cargo>', <id da secretaria>);`
@@ -49,6 +49,7 @@ Para criar outro servidor: a pessoa se cadastra pelo site e o administrador roda
 | Cadastro falha com "Database error saving new user" no console | O trigger recusou os dados (ex.: CPF inválido que passou pelo navegador) ou o `01_schema.sql` não foi rodado | Rode o passo 3 e confira o CPF |
 | Login com CPF não cadastrado mostra "CPF ou senha incorretos." em vez de "CPF não cadastrado" | `04_cpf_cadastrado.sql` não foi rodado | Passo 3 |
 | Telas carregam mas sem categorias | `02_dados_iniciais.sql` não foi rodado | Passo 3 |
-| `promover_servidor` diz "CPF não está cadastrado" | O CPF não foi cadastrado pelo site antes | Passo 5.1 |
+| `promover_servidor` diz "CPF não está cadastrado" | O CPF não foi cadastrado pelo site antes | Cadastre pelo site (ou, para os de demonstração, rode o `03` inteiro) |
+| Servidor de demonstração não consegue entrar | `DOMINIO_EMAIL` em `js/config.js` diferente do domínio no `03` | Ajuste o domínio no `03`, apague o usuário em Authentication → Users e rode de novo |
 | `promover_servidor` falha por chave estrangeira | Esse CPF já abriu registros como munícipe | Use outro CPF para o servidor |
 | "Too many requests" ao cadastrar várias contas | Limite de cadastros por hora do Supabase | Aguarde ou aumente em Authentication → Rate Limits |

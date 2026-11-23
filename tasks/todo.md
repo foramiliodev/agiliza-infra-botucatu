@@ -211,6 +211,23 @@ Ao concluir cada tarefa: seguir a regra de documentação do [CLAUDE.md](../CLAU
 **Arquivos:** todas as páginas HTML, `css/style.css`, `js/auth.js`, `js/home.js`, `js/servidor.js`, `js/detalhes.js`
 **Tamanho:** L
 
+### [x] Tarefa 18: Servidores de demonstração direto no SQL
+**Descrição:** Criar as contas dos servidores de demonstração no `03_servidores_demo.sql`, sem cadastro pelo site (pedido do usuário).
+**Critérios de aceite:**
+- [x] `03` cria `auth.users` + `auth.identities` e promove; pode rodar de novo
+- [ ] Conferir no Supabase real: rodar o `03` e entrar com `529.982.247-25` / `servidor123`
+**Arquivos:** `sql/03_servidores_demo.sql`, `docs/supabase.md`, `docs/checklist-testes.md`, `README.md`, `tasks/plan.md`
+**Tamanho:** S
+
+### [x] Tarefa 19: Ampliar fotos nos detalhes
+**Descrição:** O servidor clica na foto e vê em tela cheia, estilo Google Maps (pedido do usuário).
+**Critérios de aceite:**
+- [x] Clique na miniatura abre a foto grande; ‹ › e setas trocam; ×, Esc e clique fora fecham
+- [x] Teclado e leitor de tela: miniaturas são botões com rótulo, foco volta ao fechar
+- [ ] Conferir com fotos reais no Supabase (celular e computador)
+**Arquivos:** `js/detalhes.js`, `css/style.css`, `docs/telas.md`, `docs/checklist-testes.md`
+**Tamanho:** S
+
 ### [ ] Tarefa 13: Configurar o projeto Supabase do grupo e conferir
 **Descrição:** Seguir `docs/supabase.md` no projeto real e rodar a checklist.
 **Critérios de aceite:**

@@ -11,7 +11,7 @@ Site em HTML/CSS/JS puros que implementa o protótipo do documento P1: o muníci
 - **Banco: Supabase** (PostgreSQL + Auth + Storage), acessado direto do navegador com `supabase-js` (CDN, versão fixa). Sem servidor próprio. Tabelas = DER do documento, adaptadas em `sql/01_schema.sql`.
 - **Regras no banco:** RLS (munícipe vê só os seus registros, servidor só os da secretaria), triggers (cadastro → usuario + municipe; protocolo; 1º histórico) e a função `atualizar_status`. O navegador só valida para dar mensagens melhores.
 - **Login:** CPF + senha no Supabase Auth, usando o e-mail técnico `<cpf>@DOMINIO_EMAIL` ("Confirm email" desligado). A senha fica com bcrypt no Auth. Mensagens separadas para CPF inválido, CPF não cadastrado (função `cpf_cadastrado`, `sql/04`) e senha errada.
-- **Servidores:** a pessoa se cadastra pelo site e o administrador roda `promover_servidor` no SQL Editor (`sql/03_servidores_demo.sql` para os de demonstração).
+- **Servidores:** a pessoa se cadastra pelo site e o administrador roda `promover_servidor` no SQL Editor (`sql/03_servidores_demo.sql` cria e promove os de demonstração direto no SQL).
 - **Páginas** (uma por tela do protótipo):
   - `index.html`: login (CPF + senha)
   - `cadastro.html`: cadastro do munícipe
@@ -68,7 +68,7 @@ Detalhes, critérios de aceite e verificação em [todo.md](todo.md).
 - [x] Tarefa 9: Atualizar status com histórico
 
 ### Checkpoint 3
-- [ ] Munícipe vê no detalhe o status alterado pelo servidor
+- [x] Munícipe vê no detalhe o status alterado pelo servidor
 
 ### Fase 4: Acabamento
 - [x] Tarefa 10: Responsividade, acessibilidade e aviso LGPD
@@ -84,6 +84,8 @@ Detalhes, critérios de aceite e verificação em [todo.md](todo.md).
 - [x] Tarefa 15: Ícone de perfil com menu + página de configurações da conta
 - [x] Tarefa 16: Barra lateral na conta + páginas sem rolagem sobrando
 - [x] Tarefa 17: Layout para computador (≥ 1024 px), celular mantém o protótipo
+- [x] Tarefa 18: Servidores de demonstração criados direto no SQL (`sql/03`)
+- [x] Tarefa 19: Fotos ampliadas nos detalhes (visualizador sobre a página)
 - [ ] Tarefa 13: Configurar o projeto Supabase do grupo e rodar a checklist
 
 ## Riscos e mitigações

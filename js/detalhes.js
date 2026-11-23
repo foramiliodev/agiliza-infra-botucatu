@@ -34,6 +34,43 @@ function formularioStatus(r, status, mensagem) {
   return form;
 }
 
+// Foto em tela cheia (estilo Google Maps): fundo escuro, ‹ › para trocar, Esc/×/clique fora fecha.
+// <dialog> nativo cuida do foco, do Esc e de travar a página atrás.
+function abrirVisualizador(fotos, inicial) {
+  let atual = inicial;
+  const img = UI.el('img', { class: 'visualizador-foto', alt: '' });
+  const contador = UI.el('p', { class: 'visualizador-contador', 'aria-live': 'polite' });
+  const botao = (classe, rotulo, texto, acao) => {
+    const b = UI.el('button', { type: 'button', class: 'visualizador-botao ' + classe, 'aria-label': rotulo }, texto);
+    b.addEventListener('click', acao);
+    return b;
+  };
+  const mostrar = i => {
+    atual = (i + fotos.length) % fotos.length;
+    img.src = fotos[atual].url ?? '';
+    img.alt = `Foto ${atual + 1} do registro`;
+    contador.textContent = `${atual + 1} de ${fotos.length}`;
+  };
+  const varias = fotos.length > 1;
+  const dialogo = UI.el('dialog', { class: 'visualizador', 'aria-label': 'Fotos do registro' },
+    botao('visualizador-fechar', 'Fechar', '×', () => dialogo.close()),
+    img,
+    ...(varias ? [
+      botao('visualizador-anterior', 'Foto anterior', '‹', () => mostrar(atual - 1)),
+      botao('visualizador-proxima', 'Próxima foto', '›', () => mostrar(atual + 1)),
+    ] : []),
+    contador);
+  dialogo.addEventListener('click', e => { if (e.target === dialogo) dialogo.close(); }); // clique no fundo
+  dialogo.addEventListener('keydown', e => {
+    if (varias && e.key === 'ArrowLeft') mostrar(atual - 1);
+    if (varias && e.key === 'ArrowRight') mostrar(atual + 1);
+  });
+  dialogo.addEventListener('close', () => dialogo.remove()); // o foco volta sozinho para a miniatura
+  mostrar(inicial);
+  document.body.append(dialogo);
+  dialogo.showModal();
+}
+
 async function render(mensagem) {
   const [r, status] = await Promise.all([DB.detalhesRegistro(id), ehServidor ? DB.listaStatus() : []]);
   alvo.replaceChildren();
@@ -64,7 +101,12 @@ async function render(mensagem) {
 
   if (r.fotos.length) {
     principal.append(UI.el('h2', {}, 'Fotos'), UI.el('ul', { class: 'previas' },
-      ...r.fotos.map((f, i) => UI.el('li', {}, UI.el('img', { src: f.url ?? '', alt: `Foto ${i + 1} do registro` })))));
+      ...r.fotos.map((f, i) => {
+        const botao = UI.el('button', { type: 'button', class: 'previa-botao', 'aria-label': `Ampliar foto ${i + 1}` },
+          UI.el('img', { src: f.url ?? '', alt: `Foto ${i + 1} do registro` }));
+        botao.addEventListener('click', () => abrirVisualizador(r.fotos, i));
+        return UI.el('li', {}, botao);
+      })));
   }
 
   lateral.append(UI.el('h2', {}, 'Histórico'), UI.el('ol', { class: 'historico' },

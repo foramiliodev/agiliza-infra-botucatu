@@ -7,13 +7,13 @@ Para conferir o site no navegador antes de apresentar. Cada item traz o requisit
 2. No SQL Editor, rodar `sql/testes.sql`: deve terminar com "TODOS OS TESTES PASSARAM".
 3. `npm test`: deve terminar com "Todos os testes passaram."
 4. `npm start`: abre `http://localhost:8000`.
-5. Servidores de demonstração: cadastrar os dois CPFs abaixo pelo site e rodar `sql/03_servidores_demo.sql`.
+5. Servidores de demonstração: rodar `sql/03_servidores_demo.sql` (cria as contas abaixo).
 
 **Contas de demonstração**
 
 | Perfil | CPF | Senha |
 |---|---|---|
-| Servidor de Obras (vê "Buracos e pavimentação") | 529.982.247-25 | `servidor123` (a que foi usada no cadastro) |
+| Servidor de Obras (vê "Buracos e pavimentação") | 529.982.247-25 | `servidor123` |
 | Servidor de Serviços Públicos (vê "Iluminação" e "Limpeza") | 111.444.777-35 | `servidor123` |
 | Munícipe A | crie no cadastro, ex.: 390.533.447-05 | escolha |
 | Munícipe B | crie no cadastro, ex.: 877.482.488-00 | escolha |
@@ -77,6 +77,7 @@ Testador: ______________ Data: ___/___/______ Navegador: ______________
 
 - [ ] **5.1** Mostra protocolo, serviço, identificação, descrição (com as quebras de linha), localização, urgência, data e status.
 - [ ] **5.2** As fotos anexadas aparecem.
+- [ ] **5.2a** Clicar numa foto → abre grande na mesma página, com o site esmaecido atrás; ‹ › e setas trocam; ×, Esc e clique fora fecham (celular e computador).
 - [ ] **5.3** O histórico tem "Aguardando: Registro aberto pelo munícipe".
 - [ ] **5.4** O "←" do cabeçalho volta para a home.
 - [ ] **5.5** **Isolamento:** anote o `?id=` de um registro do Munícipe A. Entre como Munícipe B e abra `detalhes.html?id=<esse id>` → "Registro não encontrado."

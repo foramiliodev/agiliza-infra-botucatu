@@ -39,6 +39,7 @@ Todas usam [css/style.css](../css/style.css) e montam conteúdo dinâmico com [j
 ## Detalhes (`detalhes.html?id=N`)
 - Cabeçalho "← DETALHES". Protocolo, serviço, identificação, descrição, localização, urgência, data, status, fotos e histórico em ordem cronológica.
 - Registro de outro munícipe ou inexistente: "Registro não encontrado."
+- **Fotos:** clicar numa miniatura abre a foto grande por cima da própria página (sem nova guia), com o site esmaecido atrás (estilo Google Maps), com ‹ › e as setas do teclado para trocar e o contador "1 de N". Para fechar: ×, Esc ou clique fora. É um `<dialog>` nativo, então o foco volta para a miniatura ao fechar. Vale para servidor e munícipe (a página é a mesma).
 - **Servidor:** o "←" volta para o painel, e abaixo dos dados aparece "Atualizar status" (novo status + observação opcional, que o munícipe também vê no histórico). Depois de salvar, a página é redesenhada e o foco vai para "Status atualizado.". Registro de outra secretaria: "Registro não encontrado."
 
 ## Painel do servidor (`servidor.html`)

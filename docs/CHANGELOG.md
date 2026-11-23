@@ -1,5 +1,19 @@
 # Changelog
 
+## 2026-11-22: Fotos ampliadas nos detalhes
+- Em `detalhes.html`, as miniaturas viraram botões que abrem a foto grande por cima da própria página, sem nova guia (`abrirVisualizador` em `js/detalhes.js`, com `<dialog>` nativo): site esmaecido atrás, ‹ › e setas do teclado para trocar, contador, fecha com ×, Esc ou clique fora. Mesmo layout no celular e no computador.
+- Pedido para o servidor; como a página é a mesma, o munícipe também ganhou.
+- Arquivos: `js/detalhes.js`, `css/style.css`, `docs/telas.md`, `docs/checklist-testes.md` (item 5.2a), `tasks/plan.md` (tarefas 18-19 e Checkpoint 3 marcado, já verificado na Tarefa 9).
+- Verificado: `npm test` passando, screenshot do visualizador a 1280×720 (Firefox headless, página isolada). Não testado com fotos reais do Supabase.
+- Requisitos: RF10/RF11 (servidor analisa o registro), RNF de usabilidade/acessibilidade.
+
+## 2026-11-22: Servidores de demonstração criados direto no SQL
+- `sql/03_servidores_demo.sql` agora cria as duas contas no Supabase Auth (`auth.users` + `auth.identities`, senha `servidor123` com bcrypt, e-mail já confirmado) antes de chamar `promover_servidor`. Não é mais preciso cadastrar os CPFs pelo site. Pode rodar de novo: conta existente é pulada e só promovida.
+- O trigger `criar_municipe` continua criando `usuario` + `municipe`; `promover_servidor` troca para servidor.
+- Docs: supabase (passo 5 e problemas comuns), checklist, README, plano, todo.
+- Não testado no Supabase real (rodar no SQL Editor e entrar com o CPF).
+- Requisitos: RF10, RF11 (acesso do servidor), RNF06 (senha com bcrypt).
+
 ## 2026-11-13: Layout para computador
 - Novo layout a partir de 1024 px (`@media (min-width: 64rem)` no fim de `css/style.css`); o celular continua igual ao protótipo.
 - **Cabeçalho:** brasão + "Agiliza Botucatu / Portal da Prefeitura" e navegação por perfil (`Auth.montarNavegacao`, link atual destacado). **Rodapé** em todas as páginas.
