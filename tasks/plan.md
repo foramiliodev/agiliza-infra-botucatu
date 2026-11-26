@@ -19,6 +19,7 @@ Site em HTML/CSS/JS puros que implementa o protótipo do documento P1: o muníci
   - `registrar.html`: novo registro
   - `detalhes.html?id=N`: detalhes + histórico (o servidor vê também o formulário de status)
   - `servidor.html`: painel do servidor (lista + filtro por status)
+  - `termos.html`: termos de uso (pública, só HTML/CSS, sem Supabase)
   - `conta.html`: configurações da conta, aberta pelo ícone de perfil do cabeçalho; funcionalidades numa barra lateral (Dados da conta, Sessão/sair)
 - **JS compartilhado:**
   - `js/config.js`: URL e chave pública do Supabase;
@@ -88,6 +89,12 @@ Detalhes, critérios de aceite e verificação em [todo.md](todo.md).
 - [x] Tarefa 19: Fotos ampliadas nos detalhes (visualizador sobre a página)
 - [ ] Tarefa 13: Configurar o projeto Supabase do grupo e rodar a checklist
 
+### Fase 6: Termos de uso
+- [x] Tarefa 20: Tela de termos de uso (`termos.html`) com links no cadastro, no login e no rodapé
+
+### Checkpoint 6
+- [ ] `termos.html` abre sem login, no celular e no computador, sem rolagem horizontal; `npm test` verde; revisão do texto com o grupo
+
 ## Riscos e mitigações
 
 | Risco | Impacto | Mitigação |
@@ -100,7 +107,11 @@ Detalhes, critérios de aceite e verificação em [todo.md](todo.md).
 | Regra só no JS seria contornável (a chave anon é pública) | Alto | Toda regra está no banco (RLS/triggers/função) e coberta por `sql/testes.sql` |
 | Supabase/CDN fora do ar ou sem internet | Baixo | Mensagem de erro em vez de página em branco |
 
-## Perguntas respondidas (2026-11-13)
+## Perguntas respondidas
+
+**2026-11-26:** termos de uso aceitos só por aviso no cadastro, sem caixa obrigatória nem gravação no banco.
+
+**2026-11-13:**
 
 1. **Login:** CPF + senha (sem objeção do usuário; segue RF01 e o diagrama de sequência).
 2. **Brasão:** oficial em `img/brasao.png` (enviado pelo usuário).
@@ -109,4 +120,4 @@ Detalhes, critérios de aceite e verificação em [todo.md](todo.md).
 
 ## Perguntas em aberto
 
-- Nenhuma no momento. (Banco: Supabase, escolhido pelo usuário em 2026-11-13.)
+- **Texto dos termos:** redigido a partir do que o sistema já faz (P1 + aviso LGPD). Precisa de revisão do grupo; não é texto jurídico oficial da prefeitura.
