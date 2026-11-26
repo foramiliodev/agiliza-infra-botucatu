@@ -33,6 +33,7 @@
 | 2026-11-13 | Layout próprio para computador a partir de 1024 px; celular mantém o protótipo (pedido do usuário) | O protótipo é de celular; no computador as telas pareciam um app esticado | — |
 | 2026-11-13 | Navegação do cabeçalho montada por JS conforme o perfil (`Auth.montarNavegacao`) | Evita repetir os links em cada HTML; detalhes e conta servem aos dois perfis | — |
 | 2026-11-13 | Painel do servidor: o mesmo HTML vira cartão (celular) ou linha de tabela (computador) via CSS (`display: contents`) | Um só código de renderização | Se precisar ordenar por coluna: trocar por `<table>` |
+| 2026-11-26 | Termos de uso aceitos por aviso no cadastro ("Ao se cadastrar, você concorda…"), sem caixa obrigatória nem registro do aceite no banco (escolha do usuário) | Não muda o banco; projeto acadêmico | Se a prefeitura exigir prova do aceite: caixa obrigatória + coluna com a data do aceite em `municipe` (SQL + testes) |
 
 ## Limites conhecidos
 - Precisa de internet (Supabase na nuvem) e de um projeto configurado (docs/supabase.md).

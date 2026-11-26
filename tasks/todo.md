@@ -147,7 +147,7 @@ Ao concluir cada tarefa: seguir a regra de documentação do [CLAUDE.md](../CLAU
 ### Checkpoint final
 - [x] RF01–RF12 implementados e cobertos por testes automáticos das regras (16/16)
 - [x] `docs/` e `CHANGELOG` atualizados
-- [ ] Rodar a [checklist de testes manuais](../docs/checklist-testes.md) (80 itens)
+- [ ] Rodar a [checklist de testes manuais](../docs/checklist-testes.md) (85 itens)
 - [ ] Pronto para apresentar
 
 ---
@@ -238,3 +238,23 @@ Ao concluir cada tarefa: seguir a regra de documentação do [CLAUDE.md](../CLAU
 - [ ] Cadastro, login e envio de foto funcionam no Supabase real (Auth e Storage não puderam ser testados localmente)
 - [ ] Checklist manual completa
 **Dependências:** 11, 12
+
+---
+
+## Fase 6: Termos de uso
+
+### [x] Tarefa 20: Tela de termos de uso
+**Descrição:** Página pública `termos.html` com os termos de uso do site, no mesmo visual das outras (cabeçalho, card, rodapé), só HTML/CSS (não carrega Supabase nem JS: abre mesmo sem banco). Seções: o que é o serviço (projeto acadêmico FATEC), quem pode usar, cadastro e responsabilidade pela senha, uso correto (informações verdadeiras, sem ofensas, fotos sem expor pessoas), o que a prefeitura faz com o registro (protocolo, status, sem prazo garantido), privacidade (resumo do aviso LGPD do cadastro), alterações dos termos e data da última atualização. Links: no cadastro ("Ao se cadastrar, você concorda com os Termos de uso", junto do aviso LGPD), no login (`.rodape-card`) e no rodapé de todas as páginas (o rodapé só aparece no computador, por isso os links no card para o celular). Cabeçalho do celular: "← TERMOS DE USO" voltando para `index.html`.
+**Critérios de aceite:**
+- [x] `termos.html` abre sem login e sem Supabase configurado; tem link "Ir para o conteúdo", `<main id="principal">`, títulos em ordem (h1 → h2)
+- [x] Celular segue o padrão do protótipo (card branco, sem rolagem horizontal em 360 px); computador (≥ 1024 px) com card de leitura (largura ~52rem) e rodapé (screenshots no Firefox headless)
+- [x] Links para os termos no cadastro, no login e no rodapé das 7 páginas; o texto do aviso LGPD do cadastro e o dos termos não se contradizem
+**Verificação:** `npm test` (nada deve quebrar); `npm start` e abrir `termos.html` a 360 px e 1280 px; clicar nos links do cadastro, login e rodapé; Tab percorre os links com foco visível.
+**Dependências:** nenhuma
+**Arquivos:** `termos.html` (novo), `cadastro.html`, `index.html`, rodapé de `home.html`, `registrar.html`, `detalhes.html`, `servidor.html`, `conta.html`, talvez `css/style.css` (só se o card não servir para texto longo); docs: `docs/telas.md`, `docs/checklist-testes.md`, `docs/CHANGELOG.md`, `docs/decisoes.md` (sem caixa de aceite)
+**Tamanho:** M (1 página nova + 1 linha em cada página existente)
+
+### Checkpoint 6
+- [x] Tarefa 20 conferida no celular e no computador (screenshots; falta clicar no navegador real, checklist seção 11)
+- [x] `npm test` verde
+- [ ] Texto dos termos revisado pelo grupo

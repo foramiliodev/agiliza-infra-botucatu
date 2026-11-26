@@ -11,6 +11,7 @@ Todas usam [css/style.css](../css/style.css) e montam conteúdo dinâmico com [j
 | `detalhes.html?id=N`: detalhes | `js/detalhes.js` | munícipe e servidor | pronta |
 | `servidor.html`: painel | `js/servidor.js` | servidor | pronta |
 | `conta.html`: configurações da conta | `js/conta.js` | munícipe e servidor | pronta |
+| `termos.html`: termos de uso | nenhum | público | pronta |
 
 ## Login (`index.html`)
 - Brasão oficial (`img/brasao.png`), CPF com máscara, senha, botão ENTRAR.
@@ -23,6 +24,14 @@ Todas usam [css/style.css](../css/style.css) e montam conteúdo dinâmico com [j
 - CPF, nome, senha (obrigatórios); e-mail, telefone, bairro (opcionais).
 - Validação nativa do navegador (required, email, minlength) + regras do `DB` (CPF válido e único). O erro aparece embaixo do campo, que recebe `aria-invalid` e o foco.
 - Seção "Privacidade (LGPD)": para que serve cada dado, quem vê os registros e que os dados ficam no Supabase com senha criptografada e acesso por perfil.
+- Acima do botão: "Ao se cadastrar, você concorda com os Termos de uso" (link para `termos.html`).
+
+## Termos de uso (`termos.html`)
+- Página estática: só HTML/CSS, não carrega Supabase nem JS (abre mesmo sem banco configurado).
+- Card de leitura (`.card-medio.termos`): data da última atualização e seções 1–6: o serviço (projeto acadêmico, não substitui os canais oficiais), cadastro e acesso, uso correto, atendimento dos registros (protocolo, sem prazo garantido), privacidade (LGPD, mesmo texto do aviso do cadastro + fotos com links temporários) e alterações.
+- Celular: cabeçalho "← TERMOS DE USO" volta para o login. Computador: brasão no cabeçalho e rodapé.
+- Links: login (abaixo de "Cadastre-se"), cadastro ("Ao se cadastrar, você concorda com os Termos de uso", acima do botão) e rodapé de todas as páginas (o rodapé só aparece no computador).
+- Ao mudar o texto, atualizar a data no topo; se mudar a parte de privacidade, mudar também o aviso LGPD do cadastro.
 
 ## Home (`home.html`)
 - "Suas entradas": barras azuis com título e badge de status (cor + texto), mais recentes primeiro; levam aos detalhes.

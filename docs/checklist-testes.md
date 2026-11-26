@@ -20,6 +20,13 @@ Para conferir o site no navegador antes de apresentar. Cada item traz o requisit
 
 Testador: ______________ Data: ___/___/______ Navegador: ______________
 
+## 11. Termos de uso
+
+- [ ] **11.1** No login, o link "Termos de uso" abaixo de "Cadastre-se" abre `termos.html`, sem precisar entrar.
+- [ ] **11.2** No cadastro, a frase "Ao se cadastrar, você concorda com os Termos de uso" aparece acima do botão e o link abre os termos.
+- [ ] **11.3** No computador (≥ 1024 px), o rodapé de todas as páginas tem o link "Termos de uso".
+- [ ] **11.4** `termos.html` a 360 px: "← TERMOS DE USO" no topo volta ao login; sem rolagem horizontal. A 1280 px: brasão no cabeçalho, card centralizado, rodapé.
+
 ---
 
 ## 1. Cadastro (RF01, RN02)
@@ -139,6 +146,6 @@ No DevTools (Ctrl+Shift+M), testar em **360 px**, **768 px** e **1280 px**:
 
 ---
 
-**Resultado:** ____ de 80 itens OK. Problemas encontrados (nº do item + o que aconteceu):
+**Resultado:** ____ de 85 itens OK. Problemas encontrados (nº do item + o que aconteceu):
 
 - 

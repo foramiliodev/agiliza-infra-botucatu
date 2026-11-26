@@ -157,6 +157,12 @@ input:focus-visible, select:focus-visible, textarea:focus-visible, a:focus-visib
 .botao:hover { background: var(--azul-escuro); }
 
 .rodape-card { text-align: center; margin-top: 1.5rem; font-size: .9rem; }
+.aviso-termos { font-size: .85rem; color: var(--texto-suave); margin: 1rem 0 0; }
+
+/* Termos de uso: texto longo dentro do card */
+.termos-data { font-size: .85rem; color: var(--texto-suave); margin: -.5rem 0 1rem; }
+.termos h2 { margin: 1.5rem 0 .5rem; }
+.termos ul { padding-left: 1.25rem; }
 
 h2 { font-size: 1.05rem; margin: 1.75rem 0 .75rem; }
 .topo-voltar { color: #fff; text-decoration: none; font-weight: 600; letter-spacing: .04em; font-size: .95rem; }

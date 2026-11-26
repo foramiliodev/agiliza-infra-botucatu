@@ -1,5 +1,13 @@
 # Changelog
 
+## 2026-11-26: Tela de termos de uso
+- Nova página pública `termos.html` (só HTML/CSS, sem Supabase): o serviço, cadastro e acesso, uso correto, atendimento dos registros, privacidade (LGPD) e alterações, com data da última atualização. Celular com "← TERMOS DE USO"; computador com card de leitura e rodapé.
+- Links: login (abaixo de "Cadastre-se"), cadastro ("Ao se cadastrar, você concorda com os Termos de uso") e rodapé das 8 páginas.
+- Aceite só por aviso, sem caixa nem gravação no banco (decisão do usuário, em `docs/decisoes.md`).
+- Arquivos: `termos.html`, `index.html`, `cadastro.html`, `home.html`, `registrar.html`, `detalhes.html`, `servidor.html`, `conta.html`, `css/style.css`, `docs/telas.md`, `docs/checklist-testes.md` (seção 11), `docs/decisoes.md`, `README.md`, `tasks/plan.md`, `tasks/todo.md`.
+- Verificado: `npm test` passando; screenshots (Firefox headless) de `termos.html` a 360 px e 1280 px e do login a 360×640 (sem rolagem). O texto não é jurídico oficial: falta revisão do grupo.
+- Requisitos: RNF07 (LGPD/transparência no uso dos dados), RNF01–RNF03 (acessibilidade e responsividade).
+
 ## 2026-11-22: Fotos ampliadas nos detalhes
 - Em `detalhes.html`, as miniaturas viraram botões que abrem a foto grande por cima da própria página, sem nova guia (`abrirVisualizador` em `js/detalhes.js`, com `<dialog>` nativo): site esmaecido atrás, ‹ › e setas do teclado para trocar, contador, fecha com ×, Esc ou clique fora. Mesmo layout no celular e no computador.
 - Pedido para o servidor; como a página é a mesma, o munícipe também ganhou.
