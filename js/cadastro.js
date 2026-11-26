@@ -9,7 +9,7 @@ form.addEventListener('submit', async e => {
   botao.disabled = true;
   try {
     await DB.cadastrarMunicipe(Object.fromEntries(new FormData(form)));
-    location.href = 'index.html?cadastro=ok';
+    location.href = 'login.html?cadastro=ok';
   } catch (err) {
     UI.mostrarErro(form, err);
   }

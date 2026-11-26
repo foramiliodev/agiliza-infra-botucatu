@@ -13,14 +13,15 @@ Site em HTML/CSS/JS puros que implementa o protótipo do documento P1: o muníci
 - **Login:** CPF + senha no Supabase Auth, usando o e-mail técnico `<cpf>@DOMINIO_EMAIL` ("Confirm email" desligado). A senha fica com bcrypt no Auth. Mensagens separadas para CPF inválido, CPF não cadastrado (função `cpf_cadastrado`, `sql/04`) e senha errada.
 - **Servidores:** a pessoa se cadastra pelo site e o administrador roda `promover_servidor` no SQL Editor (`sql/03_servidores_demo.sql` cria e promove os de demonstração direto no SQL).
 - **Páginas** (uma por tela do protótipo):
-  - `index.html`: login (CPF + senha)
+  - `index.html`: landing page pública (Tarefa 22)
+  - `login.html`: login (CPF + senha)
   - `cadastro.html`: cadastro do munícipe
   - `home.html`: "Suas entradas" + menu de serviços + botão "+"
   - `registrar.html`: novo registro
   - `detalhes.html?id=N`: detalhes + histórico (o servidor vê também o formulário de status)
   - `servidor.html`: painel do servidor (lista + filtro por status)
   - `termos.html`: termos de uso (pública, só HTML/CSS, sem Supabase)
-  - `conta.html`: configurações da conta, aberta pelo ícone de perfil do cabeçalho; funcionalidades numa barra lateral (Dados da conta, Sessão/sair)
+  - `conta.html`: configurações da conta, aberta pelo ícone de perfil do cabeçalho; funcionalidades numa barra lateral (Dados da conta, com o botão sair embaixo); "Sair" também no menu do perfil
 - **JS compartilhado:**
   - `js/config.js`: URL e chave pública do Supabase;
   - `js/db.js`: todas as chamadas ao banco, async;
@@ -36,7 +37,7 @@ Site em HTML/CSS/JS puros que implementa o protótipo do documento P1: o muníci
 ```
 css/style.css + js/db.js (tabelas + seed)
    └── js/auth.js (sessão)
-         ├── cadastro.html ── index.html (login)
+         ├── cadastro.html ── login.html (login)
          │                       └── home.html (lista + menu)
          │                             ├── registrar.html (+ fotos)
          │                             └── detalhes.html
@@ -91,6 +92,8 @@ Detalhes, critérios de aceite e verificação em [todo.md](todo.md).
 
 ### Fase 6: Termos de uso
 - [x] Tarefa 20: Tela de termos de uso (`termos.html`) com links no cadastro, no login e no rodapé
+- [x] Tarefa 22: Landing page em `index.html` (login passou para `login.html`)
+- [x] Tarefa 21: "Sair" no menu do perfil; seção "Sessão" removida da conta (botão sair embaixo dos dados)
 
 ### Checkpoint 6
 - [ ] `termos.html` abre sem login, no celular e no computador, sem rolagem horizontal; `npm test` verde; revisão do texto com o grupo

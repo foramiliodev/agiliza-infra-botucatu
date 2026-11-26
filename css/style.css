@@ -98,6 +98,8 @@ main:focus { outline: none; }
 .perfil-nome { margin: 0; padding: .5rem 1rem .6rem; font-weight: 600; border-bottom: 1px solid var(--borda); overflow-wrap: anywhere; }
 .perfil-menu a { display: block; padding: .65rem 1rem; color: var(--texto); text-decoration: none; }
 .perfil-menu a:hover { background: var(--fundo); }
+.perfil-sair { display: block; width: 100%; padding: .65rem 1rem; border: 0; border-top: 1px solid var(--borda); background: none; color: var(--erro); font: inherit; text-align: left; cursor: pointer; }
+.perfil-sair:hover { background: var(--fundo); }
 .topo .perfil-menu :focus-visible { outline-color: var(--azul); outline-offset: -3px; }
 
 .botao.botao-secundario { background: var(--card); color: var(--erro); border: 2px solid var(--erro); }
@@ -221,6 +223,34 @@ h2 { font-size: 1.05rem; margin: 1.75rem 0 .75rem; }
 
 /* Login/cadastro: no celular só o card; no computador, tela dividida (ver @media no fim) */
 .acesso { flex: 1; display: flex; flex-direction: column; }
+
+/* Landing (index.html): página pública, sem Supabase. Celular em coluna; computador em grade (ver @media no fim) */
+.topo-entrar { color: #fff; font-weight: 600; text-decoration: none; padding: .35rem 1rem; border: 2px solid #fff; border-radius: 4px; }
+.topo-entrar:hover { background: #fff; color: var(--azul); }
+.landing main { flex: 1; }
+.landing-hero { background: linear-gradient(160deg, var(--azul), var(--azul-escuro)); color: #fff; padding: 2.5rem 1.25rem; text-align: center; }
+.landing-hero img { display: block; margin: 0 auto 1.25rem; }
+.landing-hero h1 { font-size: 1.6rem; line-height: 1.25; margin: 0 0 1rem; }
+.landing-hero p { margin: 0 auto; max-width: 36rem; }
+.landing-hero :focus-visible { outline-color: #fff; }
+.landing-acoes { display: flex; flex-direction: column; gap: .75rem; margin-top: 1.75rem; }
+.landing-acoes .botao { margin: 0; text-decoration: none; text-align: center; }
+.botao.botao-claro { background: #fff; color: var(--azul); }
+.botao.botao-claro:hover { background: var(--fundo); }
+.botao.botao-contorno { background: none; border: 2px solid #fff; color: #fff; }
+.botao.botao-contorno:hover { background: rgba(255, 255, 255, .12); }
+.landing-secao { padding: 2rem 1.25rem; }
+.landing-secao h2 { font-size: 1.25rem; margin: 0 0 1rem; }
+.landing-grade { list-style: none; margin: 0; padding: 0; display: grid; gap: .75rem; }
+.landing-item { background: var(--card); border-radius: 6px; padding: 1rem 1.25rem; border-left: 4px solid var(--azul); }
+.landing-item h3 { font-size: 1rem; margin: 0 0 .25rem; }
+.landing-item p { margin: 0; color: var(--texto-suave); }
+.landing-passos { counter-reset: passo; }
+.landing-passos .landing-item h3::before { counter-increment: passo; content: counter(passo) ". "; color: var(--azul); }
+.landing-servidor { background: var(--card); text-align: center; }
+.landing-servidor p { max-width: 36rem; margin: 0 auto; }
+.landing-servidor .botao { display: inline-block; text-decoration: none; }
+.landing .rodape { display: block; padding: 1.25rem; text-align: center; font-size: .85rem; color: var(--texto-suave); }
 
 /* Fotos */
 .previas { display: grid; grid-template-columns: repeat(auto-fill, minmax(5.5rem, 1fr)); gap: .5rem; margin-top: .5rem; }
@@ -436,4 +466,15 @@ h2 { font-size: 1.05rem; margin: 1.75rem 0 .75rem; }
   .item-data { grid-area: data; }
   /* "Urgência" some da tela (o cabeçalho da tabela já diz), mas continua para leitor de tela */
   .rotulo-celular { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+
+  /* landing: hero largo, cartões lado a lado */
+  .landing-hero { padding: 4.5rem 1.5rem; }
+  .landing-hero h1 { font-size: 2.4rem; max-width: 40rem; margin: 0 auto 1rem; }
+  .landing-hero p { font-size: 1.15rem; }
+  .landing-acoes { flex-direction: row; justify-content: center; }
+  .landing-secao { max-width: 72rem; margin: 0 auto; padding: 3rem 1.5rem 0; width: 100%; }
+  .landing-secao h2 { font-size: 1.5rem; }
+  .landing-grade { grid-template-columns: repeat(3, 1fr); gap: 1.25rem; }
+  .landing-passos { grid-template-columns: repeat(4, 1fr); }
+  .landing-servidor { max-width: none; margin-top: 3rem; padding: 3rem 1.5rem; }
 }

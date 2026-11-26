@@ -1,4 +1,4 @@
-// Barra lateral: mostra só a seção escolhida (#dados, #sessao...). O endereço guarda a seção, sem pular a página.
+// Barra lateral: mostra só a seção escolhida (#dados...). O endereço guarda a seção, sem pular a página.
 function mostrarSecao(focar) {
   const secoes = [...document.querySelectorAll('.conta-secao')];
   const alvo = secoes.find(s => '#' + s.id === location.hash) ?? secoes[0];

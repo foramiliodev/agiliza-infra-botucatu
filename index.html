@@ -3,43 +3,56 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Entrar · Agiliza Botucatu</title>
+  <title>Agiliza Infraestrutura Botucatu</title>
+  <meta name="description" content="Registre buracos, problemas de iluminação pública e limpeza urbana em Botucatu e acompanhe o atendimento da prefeitura.">
   <link rel="stylesheet" href="css/style.css">
 </head>
-<body>
+<body class="landing">
   <a href="#principal" class="pular">Ir para o conteúdo</a>
-  <header class="topo"><a href="index.html" class="topo-marca"><img src="img/brasao.png" alt="" width="30" height="33"><span class="topo-marca-texto"><strong>Agiliza Botucatu</strong> <span>Portal da Prefeitura</span></span></a></header>
-  <div class="acesso">
-    <section class="acesso-apresentacao" aria-label="Sobre o Agiliza">
-      <img src="img/brasao.png" alt="Brasão de Botucatu" width="120" height="131">
-      <p class="acesso-titulo">Agiliza Infraestrutura Botucatu</p>
-      <p>Registre problemas de infraestrutura da cidade e acompanhe o atendimento da prefeitura.</p>
-      <ul>
-        <li>Buracos, iluminação pública e limpeza urbana</li>
-        <li>Número de protocolo para cada registro</li>
-        <li>Status do atendimento: aguardando, em andamento e concluído</li>
+  <header class="topo">
+    <a href="index.html" class="topo-marca"><img src="img/brasao.png" alt="" width="30" height="33"><span class="topo-marca-texto"><strong>Agiliza Botucatu</strong> <span>Portal da Prefeitura</span></span></a>
+    <a href="login.html" class="topo-entrar">Entrar</a>
+  </header>
+
+  <main id="principal" tabindex="-1">
+    <section class="landing-hero" aria-labelledby="titulo-landing">
+      <div class="landing-conteudo">
+        <img src="img/brasao.png" alt="Brasão de Botucatu" width="96" height="105">
+        <h1 id="titulo-landing">Viu um problema na rua? Avise a prefeitura.</h1>
+        <p>Registre buracos, lâmpadas queimadas e lixo acumulado em Botucatu e acompanhe cada etapa do atendimento, sem fila e sem telefone.</p>
+        <div class="landing-acoes">
+          <a href="cadastro.html" class="botao botao-claro">Registrar ocorrência</a>
+          <a href="login.html" class="botao botao-contorno">Já tenho conta</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="landing-secao" aria-labelledby="titulo-categorias">
+      <h2 id="titulo-categorias">O que você pode registrar</h2>
+      <ul class="landing-grade">
+        <li class="landing-item"><h3>Buracos e pavimentação</h3><p>Buracos, asfalto danificado e calçadas quebradas. Atendido pela Secretaria de Obras.</p></li>
+        <li class="landing-item"><h3>Iluminação pública</h3><p>Lâmpadas queimadas, postes apagados ou danificados. Atendido pela Secretaria de Serviços Públicos.</p></li>
+        <li class="landing-item"><h3>Limpeza urbana</h3><p>Bueiros entupidos, entulho e varrição. Atendido pela Secretaria de Serviços Públicos.</p></li>
       </ul>
     </section>
-  <main id="principal" tabindex="-1" class="card">
-    <img src="img/brasao.png" alt="Brasão de Botucatu" class="brasao" width="96" height="105">
-    <h1>Entrar</h1>
-    <p id="aviso" class="sucesso" role="status"></p>
-    <form id="form-login" method="post">
-      <label for="cpf">Digite seu CPF</label>
-      <input id="cpf" name="cpf" inputmode="numeric" autocomplete="username" placeholder="000.000.000-00" maxlength="14" required>
-      <label for="senha">Senha</label>
-      <input id="senha" name="senha" type="password" autocomplete="current-password" required>
-      <p id="erro" class="erro" role="alert"></p>
-      <button type="submit" class="botao">ENTRAR</button>
-    </form>
-    <p class="rodape-card">Não tem cadastro? <a href="cadastro.html">Cadastre-se</a><br><a href="termos.html">Termos de uso</a></p>
+
+    <section class="landing-secao" aria-labelledby="titulo-passos">
+      <h2 id="titulo-passos">Como funciona</h2>
+      <ol class="landing-grade landing-passos">
+        <li class="landing-item"><h3>Cadastre-se</h3><p>Só com CPF, nome e senha.</p></li>
+        <li class="landing-item"><h3>Descreva o problema</h3><p>Escolha a categoria, informe o endereço, o grau de urgência e anexe fotos.</p></li>
+        <li class="landing-item"><h3>Receba o protocolo</h3><p>Cada registro ganha um número único para consulta.</p></li>
+        <li class="landing-item"><h3>Acompanhe</h3><p><span class="badge badge-aguardando">Aguardando</span> <span class="badge badge-andamento">Em andamento</span> <span class="badge badge-concluido">Concluído</span></p></li>
+      </ol>
+    </section>
+
+    <section class="landing-secao landing-servidor" aria-labelledby="titulo-servidor">
+      <h2 id="titulo-servidor">É servidor da prefeitura?</h2>
+      <p>Entre com o seu CPF para ver os registros da sua secretaria, ordenados por urgência, e atualizar o status de cada atendimento.</p>
+      <a href="login.html" class="botao">Entrar como servidor</a>
+    </section>
   </main>
-  </div>
+
   <footer class="rodape">Prefeitura Municipal de Botucatu · Agiliza Infraestrutura · Projeto acadêmico FATEC (2026) · <a href="termos.html">Termos de uso</a></footer>
-  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4/dist/umd/supabase.min.js"></script>
-  <script src="js/config.js"></script>
-  <script src="js/db.js"></script>
-  <script src="js/auth.js"></script>
-  <script src="js/login.js"></script>
 </body>
 </html>
