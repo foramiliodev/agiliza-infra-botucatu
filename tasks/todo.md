@@ -254,6 +254,26 @@ Ao concluir cada tarefa: seguir a regra de documentação do [CLAUDE.md](../CLAU
 **Arquivos:** `termos.html` (novo), `cadastro.html`, `index.html`, rodapé de `home.html`, `registrar.html`, `detalhes.html`, `servidor.html`, `conta.html`, talvez `css/style.css` (só se o card não servir para texto longo); docs: `docs/telas.md`, `docs/checklist-testes.md`, `docs/CHANGELOG.md`, `docs/decisoes.md` (sem caixa de aceite)
 **Tamanho:** M (1 página nova + 1 linha em cada página existente)
 
+### [x] Tarefa 21: Sair pelo menu do perfil
+**Descrição:** O usuário sai da conta direto pelo menu do ícone de perfil, sem abrir as configurações; a seção "Sessão" sai da conta e o botão "SAIR DA CONTA" fica embaixo dos dados do perfil (pedido do usuário).
+**Critérios de aceite:**
+- [x] Menu do perfil nas 5 páginas logadas: nome, "Configurações da conta" e "Sair" (vermelho, separado por linha)
+- [x] `conta.html` sem a seção/aba "Sessão"; "SAIR DA CONTA" abaixo de "Dados da conta"
+- [x] Os dois botões usam `data-sair` (ligados em `Auth.exigir`); `npm test` verde; screenshot do menu aberto a 360 px e 1280 px
+- [ ] Clicar em "Sair" no navegador real com o Supabase (volta ao login; Voltar não reabre a página)
+**Arquivos:** `home.html`, `registrar.html`, `detalhes.html`, `servidor.html`, `conta.html`, `js/auth.js`, `js/conta.js`, `css/style.css`
+**Tamanho:** S
+
+### [x] Tarefa 22: Landing page
+**Descrição:** Página pública de apresentação na raiz do site (pedido do usuário). `index.html` vira a landing e o login passa para `login.html`.
+**Critérios de aceite:**
+- [x] `index.html` estática (sem Supabase): destaque com "Registrar ocorrência" e "Já tenho conta", categorias, como funciona, chamada para servidores, rodapé com termos; "Entrar" no cabeçalho
+- [x] Celular em coluna e computador em grade (screenshots a 360 px e 1280 px no Firefox headless); sem rolagem horizontal
+- [x] Todos os links e redirecionamentos para o login apontam para `login.html` (`js/auth.js`, `js/cadastro.js`, `cadastro.html`, `termos.html`); `npm test` verde
+- [ ] Conferir no navegador real com o Supabase: sair → login; cadastro → login com aviso; página protegida sem sessão → login
+**Arquivos:** `index.html` (nova), `login.html` (era `index.html`), `js/auth.js`, `js/cadastro.js`, `cadastro.html`, `termos.html`, `css/style.css`
+**Tamanho:** M
+
 ### Checkpoint 6
 - [x] Tarefa 20 conferida no celular e no computador (screenshots; falta clicar no navegador real, checklist seção 11)
 - [x] `npm test` verde

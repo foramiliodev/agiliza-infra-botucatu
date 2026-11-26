@@ -4,7 +4,8 @@ Todas usam [css/style.css](../css/style.css) e montam conteúdo dinâmico com [j
 
 | Página | Script | Acesso | Estado |
 |---|---|---|---|
-| `index.html`: login | `js/login.js` | público | pronta |
+| `index.html`: landing page | nenhum | público | pronta |
+| `login.html`: login | `js/login.js` | público | pronta |
 | `cadastro.html`: cadastro do munícipe | `js/cadastro.js` | público | pronta |
 | `home.html`: Suas entradas + menu | `js/home.js` | munícipe | pronta |
 | `registrar.html`: novo registro | `js/registrar.js` | munícipe | pronta |
@@ -13,7 +14,15 @@ Todas usam [css/style.css](../css/style.css) e montam conteúdo dinâmico com [j
 | `conta.html`: configurações da conta | `js/conta.js` | munícipe e servidor | pronta |
 | `termos.html`: termos de uso | nenhum | público | pronta |
 
-## Login (`index.html`)
+## Landing page (`index.html`)
+- Primeira página do site (`npm start` abre aqui). Estática como os termos: só HTML/CSS, sem Supabase (abre mesmo sem banco).
+- Cabeçalho com a marca e o botão **Entrar** (`.topo-entrar`, visível no celular e no computador).
+- Seções: destaque azul ("Viu um problema na rua? Avise a prefeitura." + botões **Registrar ocorrência** → cadastro e **Já tenho conta** → login); "O que você pode registrar" (as 3 categorias do Quadro 2 e a secretaria de cada uma); "Como funciona" (4 passos, com os badges de status); "É servidor da prefeitura?" (→ login); rodapé com os termos (aparece também no celular).
+- Celular: tudo em coluna, botões na largura toda. Computador: categorias em 3 colunas e passos em 4.
+- Quem já está logado e abre a landing continua nela; o "Entrar" leva ao login, que redireciona para a página inicial do perfil.
+- Ao mudar as categorias no banco (`sql/02`), atualizar o texto da landing.
+
+## Login (`login.html`)
 - Brasão oficial (`img/brasao.png`), CPF com máscara, senha, botão ENTRAR.
 - O formulário usa `method="post"`: se o JavaScript falhar, CPF e senha não vão para a URL.
 - Mensagens em vermelho: "CPF inválido." (dígitos errados), "CPF não cadastrado. Clique em \"Cadastre-se\"…" (CPF sem conta) e "CPF ou senha incorretos." (senha errada).
@@ -29,7 +38,7 @@ Todas usam [css/style.css](../css/style.css) e montam conteúdo dinâmico com [j
 ## Termos de uso (`termos.html`)
 - Página estática: só HTML/CSS, não carrega Supabase nem JS (abre mesmo sem banco configurado).
 - Card de leitura (`.card-medio.termos`): data da última atualização e seções 1–6: o serviço (projeto acadêmico, não substitui os canais oficiais), cadastro e acesso, uso correto, atendimento dos registros (protocolo, sem prazo garantido), privacidade (LGPD, mesmo texto do aviso do cadastro + fotos com links temporários) e alterações.
-- Celular: cabeçalho "← TERMOS DE USO" volta para o login. Computador: brasão no cabeçalho e rodapé.
+- Celular: cabeçalho "← TERMOS DE USO" volta para a landing. Computador: brasão no cabeçalho e rodapé.
 - Links: login (abaixo de "Cadastre-se"), cadastro ("Ao se cadastrar, você concorda com os Termos de uso", acima do botão) e rodapé de todas as páginas (o rodapé só aparece no computador).
 - Ao mudar o texto, atualizar a data no topo; se mudar a parte de privacidade, mudar também o aviso LGPD do cadastro.
 
@@ -76,11 +85,10 @@ O celular segue o protótipo; no computador (`@media (min-width: 64rem)`, no fim
 
 ## Configurações da conta (`conta.html`)
 - Acessada pelo menu do ícone de perfil; o "←" volta para a home (munícipe) ou para o painel (servidor).
-- **Barra lateral** de funcionalidades (`<nav class="conta-menu">`). Cada item mostra só a sua seção (`<section class="conta-secao">`), e o endereço guarda a seção (`conta.html#sessao`) sem pular a página. No celular (≤ 640 px) a barra vira abas no topo.
+- **Barra lateral** de funcionalidades (`<nav class="conta-menu">`). Cada item mostra só a sua seção (`<section class="conta-secao">`), e o endereço guarda a seção (`conta.html#dados`) sem pular a página. No celular (≤ 640 px) a barra vira abas no topo.
 - **Para adicionar uma funcionalidade:** um `<li><a href="#id">` na barra + uma `<section id="id" class="conta-secao" tabindex="-1" hidden>`. A troca já funciona (`mostrarSecao` em `js/conta.js`).
 - Seções atuais:
-  - **Dados da conta** (só leitura): nome, CPF, e-mail, tipo de conta e, conforme o tipo, telefone e bairro (munícipe) ou secretaria, matrícula e cargo (servidor), além da data de cadastro. Campo vazio aparece como "Não informado".
-  - **Sessão**: botão **SAIR DA CONTA** (contorno vermelho).
+  - **Dados da conta** (só leitura), com o botão **SAIR DA CONTA** (contorno vermelho) embaixo: nome, CPF, e-mail, tipo de conta e, conforme o tipo, telefone e bairro (munícipe) ou secretaria, matrícula e cargo (servidor), além da data de cadastro. Campo vazio aparece como "Não informado".
 
 ## Carregamento (Supabase)
 - Todas as páginas carregam `supabase-js` (CDN, versão fixa 2.45.4), `js/config.js` e `js/db.js`, nesta ordem.
@@ -90,7 +98,7 @@ O celular segue o protótipo; no computador (`@media (min-width: 64rem)`, no fim
 
 ## Páginas protegidas
 - `await Auth.exigir('MUNICIPE')`, `('SERVIDOR')` ou `('MUNICIPE', 'SERVIDOR')` no início do script (consulta a sessão do Supabase): sem sessão ou com o perfil errado, volta ao login.
-- No cabeçalho, à direita, fica o **ícone de perfil** (`.perfil-botao`). Ele abre um menu com o nome do usuário (`#nome-usuario`) e o link "Configurações da conta" (`conta.html`). `Auth.ligarMenuPerfil` liga tudo automaticamente.
+- No cabeçalho, à direita, fica o **ícone de perfil** (`.perfil-botao`). Ele abre um menu com o nome do usuário (`#nome-usuario`) o link "Configurações da conta" (`conta.html`) e o botão **Sair** (vermelho). `Auth.ligarMenuPerfil` liga tudo automaticamente.
   - Acessível (padrão *disclosure*): botão com `aria-expanded`/`aria-controls` e rótulo "Menu da conta". Enter/Espaço abre; Esc fecha e devolve o foco; clicar fora ou sair com Tab fecha.
-- O botão "Sair" (`#sair`) fica só na página de configurações da conta.
+- Botões de sair: "Sair" no menu do perfil e "SAIR DA CONTA" na conta. Qualquer botão com o atributo `data-sair` é ligado por `Auth.exigir`.
 - Depois de sair, o Voltar do navegador não reabre a página do cache (`pageshow`).

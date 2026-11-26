@@ -1,5 +1,21 @@
 # Changelog
 
+## 2026-11-26: Landing page
+- Nova `index.html`: landing pública e estática (sem Supabase) com destaque ("Registrar ocorrência" → cadastro, "Já tenho conta" → login), categorias atendidas, como funciona (4 passos com os badges de status), chamada para servidores e rodapé com os termos. Botão "Entrar" no cabeçalho. Layout de celular em coluna e de computador em grade.
+- O login passou de `index.html` para `login.html` (`git mv`); redirecionamentos e links atualizados (`js/auth.js`: sair e páginas protegidas; `js/cadastro.js`: `login.html?cadastro=ok`; "Entrar" no cadastro e nos termos). A marca do cabeçalho continua levando à raiz (landing) nas páginas públicas.
+- CSS novo: bloco "Landing" + regras no `@media (min-width: 64rem)` (`.topo-entrar`, `.landing-*`, `.botao-claro`, `.botao-contorno`).
+- Arquivos: `index.html`, `login.html`, `js/auth.js`, `js/cadastro.js`, `cadastro.html`, `termos.html`, `css/style.css`, `docs/telas.md`, `docs/decisoes.md`, `docs/checklist-testes.md`, `README.md`, `tasks/plan.md`, `tasks/todo.md`.
+- Verificado: `npm test` passando; screenshots da landing a 360 px e 1280 px (Firefox headless). Não clicado com o Supabase real.
+- Requisitos: RNF01–RNF03 (usabilidade, responsividade, acessibilidade).
+
+## 2026-11-26: Sair pelo menu do perfil
+- O menu do ícone de perfil ganhou o item **Sair** (vermelho, abaixo de "Configurações da conta") em todas as páginas logadas: não é mais preciso abrir a conta para sair.
+- `conta.html`: removida a seção/aba "Sessão"; o botão **SAIR DA CONTA** fica embaixo dos "Dados da conta".
+- Os botões de sair agora são marcados com `data-sair` (antes `id="sair"`, que não pode repetir na mesma página); `Auth.exigir` liga todos.
+- Arquivos: `home.html`, `registrar.html`, `detalhes.html`, `servidor.html`, `conta.html`, `js/auth.js`, `js/conta.js`, `css/style.css`, `docs/telas.md`, `docs/decisoes.md`, `docs/checklist-testes.md`, `README.md`, `tasks/plan.md`, `tasks/todo.md`.
+- Verificado: `npm test` passando; screenshot do menu aberto a 360 px e 1280 px (Firefox headless). Não clicado com o Supabase real.
+- Requisitos: RF02 (logout), RNF de usabilidade.
+
 ## 2026-11-26: Tela de termos de uso
 - Nova página pública `termos.html` (só HTML/CSS, sem Supabase): o serviço, cadastro e acesso, uso correto, atendimento dos registros, privacidade (LGPD) e alterações, com data da última atualização. Celular com "← TERMOS DE USO"; computador com card de leitura e rodapé.
 - Links: login (abaixo de "Cadastre-se"), cadastro ("Ao se cadastrar, você concorda com os Termos de uso") e rodapé das 8 páginas.

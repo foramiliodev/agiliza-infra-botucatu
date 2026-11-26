@@ -6,7 +6,7 @@ Para conferir o site no navegador antes de apresentar. Cada item traz o requisit
 1. Projeto Supabase configurado ([supabase.md](supabase.md)): SQL `01`, `02` e `04` rodados, `js/config.js` preenchido, "Confirm email" desligado.
 2. No SQL Editor, rodar `sql/testes.sql`: deve terminar com "TODOS OS TESTES PASSARAM".
 3. `npm test`: deve terminar com "Todos os testes passaram."
-4. `npm start`: abre `http://localhost:8000`.
+4. `npm start`: abre `http://localhost:8000` (landing page; o login fica em `login.html`).
 5. Servidores de demonstração: rodar `sql/03_servidores_demo.sql` (cria as contas abaixo).
 
 **Contas de demonstração**
@@ -25,7 +25,8 @@ Testador: ______________ Data: ___/___/______ Navegador: ______________
 - [ ] **11.1** No login, o link "Termos de uso" abaixo de "Cadastre-se" abre `termos.html`, sem precisar entrar.
 - [ ] **11.2** No cadastro, a frase "Ao se cadastrar, você concorda com os Termos de uso" aparece acima do botão e o link abre os termos.
 - [ ] **11.3** No computador (≥ 1024 px), o rodapé de todas as páginas tem o link "Termos de uso".
-- [ ] **11.4** `termos.html` a 360 px: "← TERMOS DE USO" no topo volta ao login; sem rolagem horizontal. A 1280 px: brasão no cabeçalho, card centralizado, rodapé.
+- [ ] **11.4** `termos.html` a 360 px: "← TERMOS DE USO" no topo volta à landing; sem rolagem horizontal. A 1280 px: brasão no cabeçalho, card centralizado, rodapé.
+- [ ] **11.5** Landing (`http://localhost:8000`) a 360 px e 1280 px: "Registrar ocorrência" abre o cadastro; "Já tenho conta", "Entrar" (topo) e "Entrar como servidor" abrem `login.html`; rodapé com "Termos de uso"; sem rolagem horizontal.
 
 ---
 
@@ -51,9 +52,9 @@ Testador: ______________ Data: ___/___/______ Navegador: ______________
 - [ ] **2.4** Servidor entra → vai para "Registros da secretaria".
 - [ ] **2.5** Ícone de perfil (canto direito do cabeçalho) → menu com o nome e "Configurações da conta".
 - [ ] **2.6** "Configurações da conta" mostra os dados certos do perfil (munícipe: telefone/bairro; servidor: secretaria/matrícula/cargo) e o "←" volta para a home/painel.
-- [ ] **2.7** "SAIR DA CONTA" → volta para o login; o botão Voltar do navegador não reabre a página protegida.
+- [ ] **2.7** "Sair" no menu do perfil (e "SAIR DA CONTA" na conta, embaixo dos dados) → volta para o login; o botão Voltar do navegador não reabre a página protegida.
 - [ ] **2.8** O menu fecha ao clicar fora dele e com a tecla Esc.
-- [ ] **2.8b** Configurações da conta: a barra lateral (abas no celular) troca entre "Dados da conta" e "Sessão" sem pular a página; recarregar em `conta.html#sessao` abre direto em Sessão.
+- [ ] **2.8b** Configurações da conta: a barra lateral (abas no celular) mostra "Dados da conta" (sem aba "Sessão"); `conta.html#dados` abre direto nos dados.
 - [ ] **2.9** Sem estar logado, abrir `http://localhost:8000/home.html` direto → volta para o login.
 - [ ] **2.10** Logado como munícipe, abrir `servidor.html` → volta para o login.
 - [ ] **2.11** Logado como servidor, abrir `home.html` ou `registrar.html` → volta para o login.
@@ -118,7 +119,7 @@ Antes: como munícipe, crie um registro de **Buracos** (urgência Baixo), um de 
 No DevTools (Ctrl+Shift+M), testar em **360 px**, **768 px** e **1280 px**:
 
 - [ ] **8.1** Nenhuma página tem rolagem horizontal.
-- [ ] **8.1b** Páginas com pouco conteúdo (home vazia, painel vazio, conta → Sessão) **não** deixam arrastar para baixo, no celular e no computador.
+- [ ] **8.1b** Páginas com pouco conteúdo (home vazia, painel vazio, conta) **não** deixam arrastar para baixo, no celular e no computador.
 - [ ] **8.2** No celular, o card ocupa a largura toda e as telas seguem o protótipo (cabeçalho "PORTAL DA PREFEITURA" / "← TÍTULO", botão redondo "+").
 - [ ] **8.2b** No computador (≥ 1024 px): cabeçalho com brasão, nome e menu (o link da página atual destacado); rodapé no fim da página.
 - [ ] **8.2c** No computador: login/cadastro em tela dividida; home em duas colunas; novo registro e cadastro com campos lado a lado; detalhes com status/histórico à direita; painel do servidor em tabela.

@@ -26,7 +26,7 @@
 | 2026-11-13 | Bucket de fotos privado com links temporários (1 h) | LGPD: fotos podem mostrar pessoas/casas | — |
 | 2026-11-13 | Sessão por aba (`sessionStorage`) também no Supabase | Mantém o comportamento do protótipo | Se quiserem "lembrar de mim" |
 | 2026-11-13 | Login avisa "CPF não cadastrado" (pedido do usuário), via função `cpf_cadastrado` liberada sem login | Mensagem mais clara para o munícipe. Custo: qualquer pessoa consegue descobrir se um CPF tem conta (sem ver nenhum outro dado). Substitui a mensagem genérica | Se a prefeitura exigir não revelar contas: voltar à mensagem genérica |
-| 2026-11-13 | Cabeçalho com ícone de perfil e menu (nome + "Configurações da conta"); "Sair" só na página da conta (pedido do usuário) | Cabeçalho mais limpo | — |
+| 2026-11-13 | Cabeçalho com ícone de perfil e menu (nome + "Configurações da conta"); "Sair" só na página da conta (pedido do usuário) | Cabeçalho mais limpo | Trocado em 2026-11-26 |
 | 2026-11-13 | Configurações da conta só mostram os dados (sem editar) | Não foi pedido; editar exigiria novas regras no banco (ex.: trocar CPF) | Se pedirem edição de telefone/bairro/senha |
 | 2026-11-13 | Conta com barra lateral de funcionalidades; no celular vira abas no topo (pedido do usuário) | Lugar fixo para crescer; em 360 px não cabe coluna lateral | — |
 | 2026-11-13 | Altura da página: `body` flex em coluna + `100dvh`, card `flex: 1` | `calc(100vh - 3.3rem)` quebrou quando o cabeçalho cresceu, e o `100vh` do celular inclui a barra de endereço | — |
@@ -34,6 +34,9 @@
 | 2026-11-13 | Navegação do cabeçalho montada por JS conforme o perfil (`Auth.montarNavegacao`) | Evita repetir os links em cada HTML; detalhes e conta servem aos dois perfis | — |
 | 2026-11-13 | Painel do servidor: o mesmo HTML vira cartão (celular) ou linha de tabela (computador) via CSS (`display: contents`) | Um só código de renderização | Se precisar ordenar por coluna: trocar por `<table>` |
 | 2026-11-26 | Termos de uso aceitos por aviso no cadastro ("Ao se cadastrar, você concorda…"), sem caixa obrigatória nem registro do aceite no banco (escolha do usuário) | Não muda o banco; projeto acadêmico | Se a prefeitura exigir prova do aceite: caixa obrigatória + coluna com a data do aceite em `municipe` (SQL + testes) |
+| 2026-11-26 | "Sair" também no menu do perfil; seção "Sessão" da conta removida, botão sair embaixo dos dados (pedido do usuário) | Sair sem abrir as configurações | — |
+| 2026-11-26 | Landing page em `index.html` e login movido para `login.html` (pedido do usuário) | A raiz do site apresenta o serviço antes de pedir login | — |
+| 2026-11-26 | Landing estática, sem Supabase: não redireciona quem já está logado | Abre mesmo sem banco; zero JS | Se incomodar, carregar `db.js` e chamar `Auth.irParaInicio` como no login |
 
 ## Limites conhecidos
 - Precisa de internet (Supabase na nuvem) e de um projeto configurado (docs/supabase.md).

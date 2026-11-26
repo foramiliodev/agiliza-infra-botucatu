@@ -19,6 +19,7 @@
       <div id="perfil-menu" class="perfil-menu" hidden>
         <p id="nome-usuario" class="perfil-nome"></p>
         <a href="conta.html" aria-current="page">Configurações da conta</a>
+        <button type="button" class="perfil-sair" data-sair>Sair</button>
       </div>
     </div>
   </header>
@@ -29,18 +30,13 @@
       <nav class="conta-menu" aria-label="Seções da conta">
         <ul>
           <li><a href="#dados">Dados da conta</a></li>
-          <li><a href="#sessao">Sessão</a></li>
         </ul>
       </nav>
       <div>
         <section id="dados" class="conta-secao" tabindex="-1" aria-labelledby="titulo-dados">
           <h2 id="titulo-dados">Dados da conta</h2>
           <dl id="dados-lista" class="detalhes"></dl>
-        </section>
-        <section id="sessao" class="conta-secao" tabindex="-1" aria-labelledby="titulo-sessao" hidden>
-          <h2 id="titulo-sessao">Sessão</h2>
-          <p>Sair desta conta neste navegador.</p>
-          <button type="button" id="sair" class="botao botao-secundario">SAIR DA CONTA</button>
+          <button type="button" class="botao botao-secundario" data-sair>SAIR DA CONTA</button>
         </section>
       </div>
     </div>

@@ -6,21 +6,21 @@ const Auth = {
 
   async sair() {
     await DB.sair();
-    location.href = 'index.html';
+    location.href = 'login.html';
   },
 
   // Uso: const u = await Auth.exigir('MUNICIPE'); if (!u) return;  (aceita mais de um tipo)
   async exigir(...tipos) {
     const u = await DB.usuarioAtual().catch(() => null);
     if (!u || !tipos.includes(u.tipo_usuario)) {
-      location.replace('index.html');
+      location.replace('login.html');
       return null;
     }
     // Depois de "Sair", o Voltar do navegador pode reabrir a página do cache sem rodar os scripts.
     addEventListener('pageshow', async e => {
-      if (e.persisted && !(await DB.usuarioAtual().catch(() => null))) location.replace('index.html');
+      if (e.persisted && !(await DB.usuarioAtual().catch(() => null))) location.replace('login.html');
     });
-    document.getElementById('sair')?.addEventListener('click', () => this.sair());
+    document.querySelectorAll('[data-sair]').forEach(b => b.addEventListener('click', () => this.sair()));
     const nome = document.getElementById('nome-usuario');
     if (nome) nome.textContent = u.nome;
     this.ligarMenuPerfil();

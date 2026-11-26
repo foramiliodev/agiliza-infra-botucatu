@@ -25,7 +25,8 @@ Não precisa de `npm install`. O `js/config.js` já aponta para o projeto Supaba
 
 ## Como usar
 
-- Depois de entrar, o **ícone de perfil** no canto do cabeçalho abre o menu com "Configurações da conta", onde ficam os dados e o botão de sair.
+- Depois de entrar, o **ícone de perfil** no canto do cabeçalho abre o menu com "Configurações da conta", com os dados, e o botão **Sair** (também embaixo dos dados na conta).
+- `npm start` abre a **landing page**; "Entrar" (no topo) leva ao login e "Registrar ocorrência" ao cadastro.
 - **Munícipe:** clique em "Cadastre-se", crie a conta com um CPF válido e entre. No login, o site avisa em vermelho se o CPF é inválido, se não está cadastrado ou se a senha está errada.
 - **Servidor (demonstração):** rode `sql/03_servidores_demo.sql` no SQL Editor (ver docs/supabase.md).
 
@@ -50,13 +51,14 @@ No celular, as telas seguem o protótipo do documento; no computador (a partir d
 ## Estrutura
 
 ```
-index.html        login (CPF + senha)
+index.html        landing page pública (apresenta o serviço; links para cadastro e login)
+login.html        login (CPF + senha)
 cadastro.html     cadastro do munícipe
 home.html         "Suas entradas" + menu de serviços
 registrar.html    novo registro (urgência, fotos, protocolo)
 detalhes.html     detalhes e histórico do registro
 servidor.html     painel do servidor
-conta.html        configurações da conta (barra lateral: dados, sessão/sair)
+conta.html        configurações da conta (barra lateral: dados + sair)
 termos.html       termos de uso (pública, sem JS)
 css/style.css     estilo (identidade do protótipo)
 js/config.js      URL e chave pública do projeto Supabase
