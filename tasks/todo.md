@@ -271,7 +271,9 @@ Ao concluir cada tarefa: seguir a regra de documentação do [CLAUDE.md](../CLAU
 - [x] Celular em coluna e computador em grade (screenshots a 360 px e 1280 px no Firefox headless); sem rolagem horizontal
 - [x] Todos os links e redirecionamentos para o login apontam para `login.html` (`js/auth.js`, `js/cadastro.js`, `cadastro.html`, `termos.html`); `npm test` verde
 - [ ] Conferir no navegador real com o Supabase: sair → login; cadastro → login com aviso; página protegida sem sessão → login
-**Arquivos:** `index.html` (nova), `login.html` (era `index.html`), `js/auth.js`, `js/cadastro.js`, `cadastro.html`, `termos.html`, `css/style.css`
+- [x] Foto da cidade no fundo do destaque, dividida na diagonal pelo painel azul (celular: foto em cima; computador: lado a lado), com crédito da licença; screenshots a 360, 800 e 1280 px
+- [x] Painel azul translúcido (85%); nenhuma página arrasta além do topo/fim (`overscroll-behavior-y: none`, regra no CLAUDE.md)
+**Arquivos:** `img/botucatu.jpg`, `index.html` (nova), `login.html` (era `index.html`), `js/auth.js`, `js/cadastro.js`, `cadastro.html`, `termos.html`, `css/style.css`
 **Tamanho:** M
 
 ### Checkpoint 6

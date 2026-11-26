@@ -119,6 +119,7 @@ Antes: como munícipe, crie um registro de **Buracos** (urgência Baixo), um de 
 No DevTools (Ctrl+Shift+M), testar em **360 px**, **768 px** e **1280 px**:
 
 - [ ] **8.1** Nenhuma página tem rolagem horizontal.
+- [ ] **8.1c** No celular (e trackpad), arrastar para baixo no topo de qualquer página **não** mostra área cinza acima do cabeçalho; idem no fim da página.
 - [ ] **8.1b** Páginas com pouco conteúdo (home vazia, painel vazio, conta) **não** deixam arrastar para baixo, no celular e no computador.
 - [ ] **8.2** No celular, o card ocupa a largura toda e as telas seguem o protótipo (cabeçalho "PORTAL DA PREFEITURA" / "← TÍTULO", botão redondo "+").
 - [ ] **8.2b** No computador (≥ 1024 px): cabeçalho com brasão, nome e menu (o link da página atual destacado); rodapé no fim da página.

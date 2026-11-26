@@ -17,6 +17,9 @@
 
 * { box-sizing: border-box; }
 
+/* Sem "elástico" além do topo/fim da página (arrastar mostrava o fundo cinza acima do cabeçalho) */
+html, body { overscroll-behavior-y: none; }
+
 body {
   margin: 0;
   font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
@@ -228,8 +231,12 @@ h2 { font-size: 1.05rem; margin: 1.75rem 0 .75rem; }
 .topo-entrar { color: #fff; font-weight: 600; text-decoration: none; padding: .35rem 1rem; border: 2px solid #fff; border-radius: 4px; }
 .topo-entrar:hover { background: #fff; color: var(--azul); }
 .landing main { flex: 1; }
-.landing-hero { background: linear-gradient(160deg, var(--azul), var(--azul-escuro)); color: #fff; padding: 2.5rem 1.25rem; text-align: center; }
+/* Foto da cidade ao fundo; o painel azul corta a foto na diagonal (celular: foto em cima; computador: lado a lado) */
+.landing-hero { position: relative; background: var(--azul-escuro) url(../img/botucatu.jpg) center top / cover no-repeat; color: #fff; text-align: center; padding-top: 10rem; }
+.landing-conteudo { padding: 4rem 1.25rem 2.5rem; background: linear-gradient(160deg, rgba(10, 69, 149, .85), rgba(7, 50, 109, .85)); clip-path: polygon(0 3rem, 100% 0, 100% 100%, 0 100%); }
 .landing-hero img { display: block; margin: 0 auto 1.25rem; }
+.landing-credito { position: absolute; top: .4rem; right: .5rem; margin: 0; padding: .1rem .4rem; border-radius: 3px; background: rgba(0, 0, 0, .55); font-size: .7rem; }
+.landing-hero .landing-credito a { color: #fff; }
 .landing-hero h1 { font-size: 1.6rem; line-height: 1.25; margin: 0 0 1rem; }
 .landing-hero p { margin: 0 auto; max-width: 36rem; }
 .landing-hero :focus-visible { outline-color: #fff; }
@@ -468,10 +475,17 @@ h2 { font-size: 1.05rem; margin: 1.75rem 0 .75rem; }
   .rotulo-celular { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
 
   /* landing: hero largo, cartões lado a lado */
-  .landing-hero { padding: 4.5rem 1.5rem; }
-  .landing-hero h1 { font-size: 2.4rem; max-width: 40rem; margin: 0 auto 1rem; }
-  .landing-hero p { font-size: 1.15rem; }
-  .landing-acoes { flex-direction: row; justify-content: center; }
+  .landing-hero { background-position: right center; text-align: left; padding-top: 0; }
+  .landing-conteudo {
+    width: 62%;
+    padding: 4.5rem 10rem 4.5rem max(1.5rem, calc((100vw - 72rem) / 2));
+    clip-path: polygon(0 0, 100% 0, 78% 100%, 0 100%);
+  }
+  .landing-hero img { margin: 0 0 1.25rem; }
+  .landing-hero h1 { font-size: 2.4rem; margin: 0 0 1rem; }
+  .landing-hero p { font-size: 1.15rem; margin: 0; }
+  .landing-credito { top: auto; bottom: .5rem; }
+  .landing-acoes { flex-direction: row; }
   .landing-secao { max-width: 72rem; margin: 0 auto; padding: 3rem 1.5rem 0; width: 100%; }
   .landing-secao h2 { font-size: 1.5rem; }
   .landing-grade { grid-template-columns: repeat(3, 1fr); gap: 1.25rem; }

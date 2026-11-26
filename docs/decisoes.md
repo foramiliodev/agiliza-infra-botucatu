@@ -37,6 +37,7 @@
 | 2026-11-26 | "Sair" também no menu do perfil; seção "Sessão" da conta removida, botão sair embaixo dos dados (pedido do usuário) | Sair sem abrir as configurações | — |
 | 2026-11-26 | Landing page em `index.html` e login movido para `login.html` (pedido do usuário) | A raiz do site apresenta o serviço antes de pedir login | — |
 | 2026-11-26 | Landing estática, sem Supabase: não redireciona quem já está logado | Abre mesmo sem banco; zero JS | Se incomodar, carregar `db.js` e chamar `Auth.irParaInicio` como no login |
+| 2026-11-26 | Foto da landing do Wikimedia Commons (Prefeitura de Botucatu, CC BY-SA 4.0), com crédito visível | Licença livre, foto oficial da cidade | Se o grupo tiver foto própria ou autorizada, trocar `img/botucatu.jpg` e o crédito em `index.html` |
 
 ## Limites conhecidos
 - Precisa de internet (Supabase na nuvem) e de um projeto configurado (docs/supabase.md).

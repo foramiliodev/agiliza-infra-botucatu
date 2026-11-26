@@ -17,6 +17,7 @@ Todas usam [css/style.css](../css/style.css) e montam conteúdo dinâmico com [j
 ## Landing page (`index.html`)
 - Primeira página do site (`npm start` abre aqui). Estática como os termos: só HTML/CSS, sem Supabase (abre mesmo sem banco).
 - Cabeçalho com a marca e o botão **Entrar** (`.topo-entrar`, visível no celular e no computador).
+- **Foto da cidade** (`img/botucatu.jpg`) no fundo do destaque, cortada na diagonal pelo painel azul translúcido (85%, a foto aparece por trás): no celular a foto fica em cima e o azul sobe em diagonal sobre ela; no computador ficam lado a lado (azul à esquerda com o texto, foto à direita). Crédito obrigatório da licença no canto da foto (`.landing-credito`).
 - Seções: destaque azul ("Viu um problema na rua? Avise a prefeitura." + botões **Registrar ocorrência** → cadastro e **Já tenho conta** → login); "O que você pode registrar" (as 3 categorias do Quadro 2 e a secretaria de cada uma); "Como funciona" (4 passos, com os badges de status); "É servidor da prefeitura?" (→ login); rodapé com os termos (aparece também no celular).
 - Celular: tudo em coluna, botões na largura toda. Computador: categorias em 3 colunas e passos em 4.
 - Quem já está logado e abre a landing continua nela; o "Entrar" leva ao login, que redireciona para a página inicial do perfil.

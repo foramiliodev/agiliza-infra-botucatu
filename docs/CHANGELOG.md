@@ -1,5 +1,20 @@
 # Changelog
 
+## 2026-11-26: Painel azul translúcido e sem arrastar além do topo
+- Landing: o painel azul do destaque ficou 85% opaco (a foto aparece por trás; texto branco continua ≥ 6:1 mesmo sobre partes claras da foto). A foto agora cobre todo o destaque também no celular.
+- Todas as páginas: `html, body { overscroll-behavior-y: none; }` no início de `css/style.css`. Arrastar além do topo mostrava o fundo cinza acima do cabeçalho (efeito "elástico" do celular/trackpad).
+- Regra registrada no `CLAUDE.md` (Convenções) para as próximas páginas.
+- Arquivos: `css/style.css`, `CLAUDE.md`, `docs/telas.md`, `docs/checklist-testes.md`, `tasks/todo.md`.
+- Verificado: screenshots a 360 e 1280 px (Firefox headless). O elástico só dá para conferir no celular/trackpad de verdade (checklist 8.1c). Safari antigo (< 16) ignora a propriedade.
+- Requisitos: RNF01–RNF03.
+
+## 2026-11-26: Foto da cidade no topo da landing
+- Destaque da landing com foto aérea de Botucatu ao fundo (`img/botucatu.jpg`, 1000×667, sem metadados), cortada na diagonal pelo painel azul (`clip-path`). Celular/tablet: foto em cima e o azul sobe em diagonal; computador: azul com o texto à esquerda e foto à direita, lado a lado.
+- Foto: "Botucatu.jpg", Prefeitura de Botucatu, Wikimedia Commons, licença CC BY-SA 4.0. O crédito com links fica no canto da foto (exigido pela licença).
+- Arquivos: `img/botucatu.jpg`, `index.html`, `css/style.css`, `docs/telas.md`, `docs/decisoes.md`, `tasks/todo.md`.
+- Verificado: `npm test` passando; screenshots a 360, 800, 1280 e 1920 px (Firefox headless).
+- Requisitos: RNF01–RNF03 (usabilidade e responsividade).
+
 ## 2026-11-26: Landing page
 - Nova `index.html`: landing pública e estática (sem Supabase) com destaque ("Registrar ocorrência" → cadastro, "Já tenho conta" → login), categorias atendidas, como funciona (4 passos com os badges de status), chamada para servidores e rodapé com os termos. Botão "Entrar" no cabeçalho. Layout de celular em coluna e de computador em grade.
 - O login passou de `index.html` para `login.html` (`git mv`); redirecionamentos e links atualizados (`js/auth.js`: sair e páginas protegidas; `js/cadastro.js`: `login.html?cadastro=ok`; "Entrar" no cadastro e nos termos). A marca do cabeçalho continua levando à raiz (landing) nas páginas públicas.
