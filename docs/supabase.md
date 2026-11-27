@@ -17,7 +17,7 @@ Em **SQL Editor → New query**, cole e rode, nesta ordem:
 1. [sql/01_schema.sql](../sql/01_schema.sql): tabelas, regras (RLS), triggers, função de status e bucket de fotos.
 2. [sql/02_dados_iniciais.sql](../sql/02_dados_iniciais.sql): status, secretarias e categorias.
 3. [sql/04_cpf_cadastrado.sql](../sql/04_cpf_cadastrado.sql): função que o login usa para avisar "CPF não cadastrado". **Se você já rodou o 01 e o 02, rode só este.**
-4. *(opcional)* [sql/testes.sql](../sql/testes.sql): testa as regras e desfaz tudo no fim. Deve terminar com **"TODOS OS TESTES PASSARAM"**.
+4. *(opcional)* [sql/testes.sql](../sql/testes.sql): testa as regras e desfaz tudo no fim. Deve terminar com **"TODOS OS TESTES PASSARAM"**. Pode rodar com os dados de demonstração (`03` e `05`) já no banco: os testes usam CPFs próprios.
 
 ## 4. Ligar o site ao projeto
 Em **Project Settings → API** (ou **API Keys**), copie para [js/config.js](../js/config.js):
@@ -33,6 +33,15 @@ Se trocar `DOMINIO_EMAIL` em `js/config.js`, troque o domínio também nesse arq
 
 Para criar outro servidor: a pessoa se cadastra pelo site e o administrador roda
 `select promover_servidor('<cpf só números>', '<matrícula>', '<cargo>', <id da secretaria>);`
+
+## 6. Popular com ocorrências de demonstração (opcional)
+Depois do passo 5, rode [sql/05_ocorrencias_demo.sql](../sql/05_ocorrencias_demo.sql). Ele cria 3 munícipes de demonstração (senha `municipe123`) e 14 registros nas 3 categorias, com urgências, datas (últimos 30 dias) e status variados (5 aguardando, 4 em andamento, 5 concluídos) e o histórico de cada mudança assinado pelo servidor da secretaria. Pode rodar de novo: se as ocorrências já existem, não insere nada. Não cria fotos (elas ficam no Storage).
+
+| Munícipe | CPF | Senha |
+|---|---|---|
+| Maria Aparecida Souza (5 ocorrências) | 123.456.789-09 | `municipe123` |
+| João Carlos Pereira (5 ocorrências) | 987.654.321-00 | `municipe123` |
+| Ana Beatriz Lima (4 ocorrências) | 246.813.579-28 | `municipe123` |
 
 ## Onde ver os dados
 - **Table Editor**: as tabelas do DER (`usuario`, `registro`, `historico_status`...).

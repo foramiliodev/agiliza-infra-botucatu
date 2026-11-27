@@ -1,6 +1,6 @@
 # Dados (Supabase / PostgreSQL)
 
-Banco: [sql/01_schema.sql](../sql/01_schema.sql) (estrutura e regras), [sql/02_dados_iniciais.sql](../sql/02_dados_iniciais.sql) (carga do Quadro 2) e [sql/04_cpf_cadastrado.sql](../sql/04_cpf_cadastrado.sql) (aviso de CPF não cadastrado).
+Banco: [sql/01_schema.sql](../sql/01_schema.sql) (estrutura e regras), [sql/02_dados_iniciais.sql](../sql/02_dados_iniciais.sql) (carga do Quadro 2) e [sql/04_cpf_cadastrado.sql](../sql/04_cpf_cadastrado.sql) (aviso de CPF não cadastrado). Dados de demonstração: [sql/03_servidores_demo.sql](../sql/03_servidores_demo.sql) (servidores) e [sql/05_ocorrencias_demo.sql](../sql/05_ocorrencias_demo.sql) (3 munícipes + 14 registros com histórico; insere direto como administrador, ajustando status e datas que os triggers não deixam o site escolher).
 Acesso pelo site: [js/db.js](../js/db.js). Como configurar: [supabase.md](supabase.md).
 
 ## Tabelas (DER do documento)

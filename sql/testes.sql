@@ -18,15 +18,15 @@ grant execute on function pg_temp.como(uuid) to authenticated;
 insert into auth.users (id, email, raw_user_meta_data) values
   ('00000000-0000-0000-0000-00000000000a', '39053344705@teste.local', '{"cpf":"39053344705","nome":" Maria ","bairro":"Centro"}'),
   ('00000000-0000-0000-0000-00000000000b', '87748248800@teste.local', '{"cpf":"87748248800","nome":"João"}'),
-  ('00000000-0000-0000-0000-0000000000c1', '52998224725@teste.local', '{"cpf":"52998224725","nome":"Servidor SO"}'),
-  ('00000000-0000-0000-0000-0000000000c2', '11144477735@teste.local', '{"cpf":"11144477735","nome":"Servidor SSP"}');
-select public.promover_servidor('52998224725', 'T-SO', 'Teste', (select id from public.secretaria where sigla = 'SO'));
-select public.promover_servidor('11144477735', 'T-SSP', 'Teste', (select id from public.secretaria where sigla = 'SSP'));
+  ('00000000-0000-0000-0000-0000000000c1', '13579246828@teste.local', '{"cpf":"13579246828","nome":"Servidor SO"}'),
+  ('00000000-0000-0000-0000-0000000000c2', '86420975310@teste.local', '{"cpf":"86420975310","nome":"Servidor SSP"}');
+select public.promover_servidor('13579246828', 'T-SO', 'Teste', (select id from public.secretaria where sigla = 'SO'));
+select public.promover_servidor('86420975310', 'T-SSP', 'Teste', (select id from public.secretaria where sigla = 'SSP'));
 
 do $$ begin
   assert (select nome from public.usuario where cpf = '39053344705') = 'Maria', 'cadastro deveria gravar o nome sem espaços';
   assert (select bairro from public.municipe where usuario_id = '00000000-0000-0000-0000-00000000000a') = 'Centro', 'cadastro deveria gravar municipe';
-  assert (select tipo_usuario from public.usuario where cpf = '52998224725') = 'SERVIDOR', 'promover_servidor deveria mudar o tipo';
+  assert (select tipo_usuario from public.usuario where cpf = '13579246828') = 'SERVIDOR', 'promover_servidor deveria mudar o tipo';
   assert not exists (select 1 from public.municipe where usuario_id = '00000000-0000-0000-0000-0000000000c1'), 'servidor não deveria continuar munícipe';
   raise notice 'OK: cadastro cria usuario + municipe; promover_servidor cria servidor';
 end $$;

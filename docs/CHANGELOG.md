@@ -1,5 +1,12 @@
 # Changelog
 
+## 2026-11-26: Ocorrências de demonstração
+- Novo `sql/05_ocorrencias_demo.sql`: cria 3 munícipes de demonstração (CPFs 123.456.789-09, 987.654.321-00, 246.813.579-28; senha `municipe123`) e 14 registros em Buracos, Iluminação e Limpeza, com urgências variadas, abertos nos últimos 30 dias, 5 aguardando, 4 em andamento e 5 concluídos. Cada mudança de status tem linha no histórico com o servidor da secretaria e observação. Pode rodar de novo (não duplica). Sem fotos.
+- `sql/testes.sql`: os servidores de teste usavam os mesmos CPFs do `03`, e o script falhava em banco com os servidores de demonstração (como o Supabase do grupo). Trocados por CPFs próprios.
+- Arquivos: `sql/05_ocorrencias_demo.sql`, `sql/testes.sql`, `docs/supabase.md` (passo 6), `docs/dados.md`, `docs/testes.md`, `docs/checklist-testes.md`, `README.md`, `tasks/plan.md`, `tasks/todo.md`.
+- Verificado: PostgreSQL 16 local com esqueleto do Supabase (01, 02, 04, 03, 05, 05 de novo, testes.sql). Não rodado no Supabase real.
+- Requisitos: RF03, RF09, RF10, RF12 (dados para demonstrar listas, detalhes, painel e histórico).
+
 ## 2026-11-26: Painel azul translúcido e sem arrastar além do topo
 - Landing: o painel azul do destaque ficou 85% opaco (a foto aparece por trás; texto branco continua ≥ 6:1 mesmo sobre partes claras da foto). A foto agora cobre todo o destaque também no celular.
 - Todas as páginas: `html, body { overscroll-behavior-y: none; }` no início de `css/style.css`. Arrastar além do topo mostrava o fundo cinza acima do cabeçalho (efeito "elástico" do celular/trackpad).

@@ -19,6 +19,10 @@ Inclui um teste de regressão que carrega `js/config.js` + `js/db.js` no mesmo e
 
 ## 3. Telas: [checklist de testes manuais](checklist-testes.md)
 
+## Dados de demonstração (2026-11-26)
+- `sql/05_ocorrencias_demo.sql` verificado no mesmo esqueleto local (Podman, PostgreSQL 16): 14 registros (5/4/5 por status), histórico com servidor em toda mudança, nenhuma data de atualização antes da abertura ou no futuro; rodar duas vezes não duplica.
+- `testes.sql` passa com e sem o `03` e o `05` no banco. Antes, ele usava os mesmos CPFs do `03` e falhava ("duplicate key ... usuario_cpf_key") em qualquer banco onde os servidores de demonstração já existiam (como o Supabase do grupo); os CPFs dos servidores de teste foram trocados.
+
 ## Como isto foi verificado (2026-11-13)
 Sem acesso a um projeto Supabase, a verificação foi feita localmente com Podman:
 - PostgreSQL 16 + um esqueleto mínimo do Supabase (roles `anon`/`authenticated`, `auth.users`, `auth.uid()`, `storage.objects`): `01`, `02`, `03`, `04` (inclusive rodado duas vezes) e `testes.sql` rodaram sem erro. Também foi feita uma checagem estragando de propósito uma regra RLS, e o teste acusou a falha.
