@@ -21,7 +21,8 @@ Não precisa de `npm install`. O `js/config.js` já aponta para o projeto Supaba
 2. `sql/02_dados_iniciais.sql`: status, secretarias e categorias
 3. `sql/04_cpf_cadastrado.sql`: aviso de "CPF não cadastrado" no login
 4. `sql/03_servidores_demo.sql`: cria as contas dos servidores de demonstração (abaixo)
-5. `sql/testes.sql` *(opcional)*: confere as regras e não grava nada
+5. `sql/05_ocorrencias_demo.sql` *(opcional)*: munícipes e ocorrências de demonstração para popular o banco
+6. `sql/testes.sql` *(opcional)*: confere as regras e não grava nada
 
 ## Como usar
 
@@ -34,6 +35,14 @@ Não precisa de `npm install`. O `js/config.js` já aponta para o projeto Supaba
   |---|---|---|
   | Obras | 529.982.247-25 | `servidor123` |
   | Serviços Públicos | 111.444.777-35 | `servidor123` |
+
+- **Munícipes com ocorrências (demonstração):** rode `sql/05_ocorrencias_demo.sql` (14 registros com status e histórico variados).
+
+  | Munícipe | CPF | Senha |
+  |---|---|---|
+  | Maria Aparecida Souza (5 ocorrências) | 123.456.789-09 | `municipe123` |
+  | João Carlos Pereira (5 ocorrências) | 987.654.321-00 | `municipe123` |
+  | Ana Beatriz Lima (4 ocorrências) | 246.813.579-28 | `municipe123` |
 
 ## Tecnologias
 
@@ -67,7 +76,7 @@ js/auth.js        sessão e proteção das páginas
 js/ui.js          helpers de interface
 js/<página>.js    script de cada página
 img/brasao.png    brasão de Botucatu
-sql/              banco: 01_schema, 02_dados_iniciais, 03_servidores_demo, 04_cpf_cadastrado, testes
+sql/              banco: 01_schema, 02_dados_iniciais, 03_servidores_demo, 04_cpf_cadastrado, 05_ocorrencias_demo, testes
 docs/             documentação técnica
 tasks/            plano e lista de tarefas
 ```

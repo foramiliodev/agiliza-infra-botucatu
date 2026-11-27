@@ -228,6 +228,16 @@ Ao concluir cada tarefa: seguir a regra de documentação do [CLAUDE.md](../CLAU
 **Arquivos:** `js/detalhes.js`, `css/style.css`, `docs/telas.md`, `docs/checklist-testes.md`
 **Tamanho:** S
 
+### [x] Tarefa 23: Ocorrências de demonstração para popular o banco
+**Descrição:** Script SQL que cria munícipes e registros de exemplo, com status, datas e histórico variados, para apresentar o site com dados (pedido do usuário).
+**Critérios de aceite:**
+- [x] `sql/05_ocorrencias_demo.sql`: 3 munícipes (senha `municipe123`) e 14 registros nas 3 categorias, urgências variadas, 5 aguardando / 4 em andamento / 5 concluídos, histórico assinado pelo servidor da secretaria
+- [x] Pode rodar de novo sem duplicar; datas coerentes (abertura ≤ atualização ≤ agora)
+- [x] Verificado em PostgreSQL 16 local; `testes.sql` continua passando (CPFs de teste trocados: conflitavam com o `03`)
+- [ ] Rodar no Supabase do grupo e conferir na home (munícipe demo) e no painel (servidores)
+**Arquivos:** `sql/05_ocorrencias_demo.sql`, `sql/testes.sql`, `docs/supabase.md`, `docs/dados.md`, `docs/testes.md`, `docs/checklist-testes.md`, `README.md`, `tasks/plan.md`
+**Tamanho:** S
+
 ### [ ] Tarefa 13: Configurar o projeto Supabase do grupo e conferir
 **Descrição:** Seguir `docs/supabase.md` no projeto real e rodar a checklist.
 **Critérios de aceite:**
@@ -271,7 +281,9 @@ Ao concluir cada tarefa: seguir a regra de documentação do [CLAUDE.md](../CLAU
 - [x] Celular em coluna e computador em grade (screenshots a 360 px e 1280 px no Firefox headless); sem rolagem horizontal
 - [x] Todos os links e redirecionamentos para o login apontam para `login.html` (`js/auth.js`, `js/cadastro.js`, `cadastro.html`, `termos.html`); `npm test` verde
 - [ ] Conferir no navegador real com o Supabase: sair → login; cadastro → login com aviso; página protegida sem sessão → login
-**Arquivos:** `index.html` (nova), `login.html` (era `index.html`), `js/auth.js`, `js/cadastro.js`, `cadastro.html`, `termos.html`, `css/style.css`
+- [x] Foto da cidade no fundo do destaque, dividida na diagonal pelo painel azul (celular: foto em cima; computador: lado a lado), com crédito da licença; screenshots a 360, 800 e 1280 px
+- [x] Painel azul translúcido (85%); nenhuma página arrasta além do topo/fim (`overscroll-behavior-y: none`, regra no CLAUDE.md)
+**Arquivos:** `img/botucatu.jpg`, `index.html` (nova), `login.html` (era `index.html`), `js/auth.js`, `js/cadastro.js`, `cadastro.html`, `termos.html`, `css/style.css`
 **Tamanho:** M
 
 ### Checkpoint 6

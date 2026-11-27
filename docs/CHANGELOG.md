@@ -1,5 +1,27 @@
 # Changelog
 
+## 2026-11-26: Ocorrências de demonstração
+- Novo `sql/05_ocorrencias_demo.sql`: cria 3 munícipes de demonstração (CPFs 123.456.789-09, 987.654.321-00, 246.813.579-28; senha `municipe123`) e 14 registros em Buracos, Iluminação e Limpeza, com urgências variadas, abertos nos últimos 30 dias, 5 aguardando, 4 em andamento e 5 concluídos. Cada mudança de status tem linha no histórico com o servidor da secretaria e observação. Pode rodar de novo (não duplica). Sem fotos.
+- `sql/testes.sql`: os servidores de teste usavam os mesmos CPFs do `03`, e o script falhava em banco com os servidores de demonstração (como o Supabase do grupo). Trocados por CPFs próprios.
+- Arquivos: `sql/05_ocorrencias_demo.sql`, `sql/testes.sql`, `docs/supabase.md` (passo 6), `docs/dados.md`, `docs/testes.md`, `docs/checklist-testes.md`, `README.md`, `tasks/plan.md`, `tasks/todo.md`.
+- Verificado: PostgreSQL 16 local com esqueleto do Supabase (01, 02, 04, 03, 05, 05 de novo, testes.sql). Não rodado no Supabase real.
+- Requisitos: RF03, RF09, RF10, RF12 (dados para demonstrar listas, detalhes, painel e histórico).
+
+## 2026-11-26: Painel azul translúcido e sem arrastar além do topo
+- Landing: o painel azul do destaque ficou 85% opaco (a foto aparece por trás; texto branco continua ≥ 6:1 mesmo sobre partes claras da foto). A foto agora cobre todo o destaque também no celular.
+- Todas as páginas: `html, body { overscroll-behavior-y: none; }` no início de `css/style.css`. Arrastar além do topo mostrava o fundo cinza acima do cabeçalho (efeito "elástico" do celular/trackpad).
+- Regra registrada no `CLAUDE.md` (Convenções) para as próximas páginas.
+- Arquivos: `css/style.css`, `CLAUDE.md`, `docs/telas.md`, `docs/checklist-testes.md`, `tasks/todo.md`.
+- Verificado: screenshots a 360 e 1280 px (Firefox headless). O elástico só dá para conferir no celular/trackpad de verdade (checklist 8.1c). Safari antigo (< 16) ignora a propriedade.
+- Requisitos: RNF01–RNF03.
+
+## 2026-11-26: Foto da cidade no topo da landing
+- Destaque da landing com foto aérea de Botucatu ao fundo (`img/botucatu.jpg`, 1000×667, sem metadados), cortada na diagonal pelo painel azul (`clip-path`). Celular/tablet: foto em cima e o azul sobe em diagonal; computador: azul com o texto à esquerda e foto à direita, lado a lado.
+- Foto: "Botucatu.jpg", Prefeitura de Botucatu, Wikimedia Commons, licença CC BY-SA 4.0. O crédito com links fica no canto da foto (exigido pela licença).
+- Arquivos: `img/botucatu.jpg`, `index.html`, `css/style.css`, `docs/telas.md`, `docs/decisoes.md`, `tasks/todo.md`.
+- Verificado: `npm test` passando; screenshots a 360, 800, 1280 e 1920 px (Firefox headless).
+- Requisitos: RNF01–RNF03 (usabilidade e responsividade).
+
 ## 2026-11-26: Landing page
 - Nova `index.html`: landing pública e estática (sem Supabase) com destaque ("Registrar ocorrência" → cadastro, "Já tenho conta" → login), categorias atendidas, como funciona (4 passos com os badges de status), chamada para servidores e rodapé com os termos. Botão "Entrar" no cabeçalho. Layout de celular em coluna e de computador em grade.
 - O login passou de `index.html` para `login.html` (`git mv`); redirecionamentos e links atualizados (`js/auth.js`: sair e páginas protegidas; `js/cadastro.js`: `login.html?cadastro=ok`; "Entrar" no cadastro e nos termos). A marca do cabeçalho continua levando à raiz (landing) nas páginas públicas.

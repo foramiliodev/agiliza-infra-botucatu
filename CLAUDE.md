@@ -27,4 +27,5 @@ Tudo que fizermos deve ficar registrado em `.md` para preservar o contexto entre
 - **Layout:** o celular segue o protótipo do documento (Figura 7); a partir de 1024 px (`@media (min-width: 64rem)`, no fim de `css/style.css`) há um layout próprio para computador. Toda tela nova precisa das duas versões.
 - **Página da conta (`conta.html`):** toda funcionalidade nova da conta entra como um item da barra lateral (`.conta-menu`) + uma `<section class="conta-secao">`, sem precisar de JS novo para a troca de seção.
 - Páginas não podem rolar quando o conteúdo cabe na tela: o `body` é uma coluna com `min-height: 100dvh` e o card usa `flex: 1`. Não usar `calc(100vh - ...)`.
+- Páginas também não podem ser arrastadas além do topo (acima do cabeçalho) nem do fim: `html, body { overscroll-behavior-y: none; }` no início de `css/style.css` vale para todas. Página nova usa o `css/style.css` e não sobrescreve isso; não criar elemento com conteúdo acima do `<header class="topo">`.
 - Atalhos conhecidos levam o comentário `// shortcut: <limite>, <quando trocar>`.

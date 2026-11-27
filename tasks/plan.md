@@ -88,6 +88,7 @@ Detalhes, critérios de aceite e verificação em [todo.md](todo.md).
 - [x] Tarefa 17: Layout para computador (≥ 1024 px), celular mantém o protótipo
 - [x] Tarefa 18: Servidores de demonstração criados direto no SQL (`sql/03`)
 - [x] Tarefa 19: Fotos ampliadas nos detalhes (visualizador sobre a página)
+- [x] Tarefa 23: Ocorrências de demonstração (`sql/05_ocorrencias_demo.sql`)
 - [ ] Tarefa 13: Configurar o projeto Supabase do grupo e rodar a checklist
 
 ### Fase 6: Termos de uso

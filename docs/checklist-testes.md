@@ -8,6 +8,7 @@ Para conferir o site no navegador antes de apresentar. Cada item traz o requisit
 3. `npm test`: deve terminar com "Todos os testes passaram."
 4. `npm start`: abre `http://localhost:8000` (landing page; o login fica em `login.html`).
 5. Servidores de demonstração: rodar `sql/03_servidores_demo.sql` (cria as contas abaixo).
+6. *(Opcional)* Ocorrências de demonstração: rodar `sql/05_ocorrencias_demo.sql` (munícipes demo abaixo, já com registros).
 
 **Contas de demonstração**
 
@@ -17,6 +18,9 @@ Para conferir o site no navegador antes de apresentar. Cada item traz o requisit
 | Servidor de Serviços Públicos (vê "Iluminação" e "Limpeza") | 111.444.777-35 | `servidor123` |
 | Munícipe A | crie no cadastro, ex.: 390.533.447-05 | escolha |
 | Munícipe B | crie no cadastro, ex.: 877.482.488-00 | escolha |
+| Munícipe demo: Maria Aparecida Souza (5 ocorrências) | 123.456.789-09 | `municipe123` |
+| Munícipe demo: João Carlos Pereira (5 ocorrências) | 987.654.321-00 | `municipe123` |
+| Munícipe demo: Ana Beatriz Lima (4 ocorrências) | 246.813.579-28 | `municipe123` |
 
 Testador: ______________ Data: ___/___/______ Navegador: ______________
 
@@ -119,6 +123,7 @@ Antes: como munícipe, crie um registro de **Buracos** (urgência Baixo), um de 
 No DevTools (Ctrl+Shift+M), testar em **360 px**, **768 px** e **1280 px**:
 
 - [ ] **8.1** Nenhuma página tem rolagem horizontal.
+- [ ] **8.1c** No celular (e trackpad), arrastar para baixo no topo de qualquer página **não** mostra área cinza acima do cabeçalho; idem no fim da página.
 - [ ] **8.1b** Páginas com pouco conteúdo (home vazia, painel vazio, conta) **não** deixam arrastar para baixo, no celular e no computador.
 - [ ] **8.2** No celular, o card ocupa a largura toda e as telas seguem o protótipo (cabeçalho "PORTAL DA PREFEITURA" / "← TÍTULO", botão redondo "+").
 - [ ] **8.2b** No computador (≥ 1024 px): cabeçalho com brasão, nome e menu (o link da página atual destacado); rodapé no fim da página.
