@@ -1,5 +1,5 @@
 -- Testes das regras do banco (RLS, triggers, atualizar_status).
--- Rodar no SQL Editor do Supabase depois de 01, 02 e 04. Tudo acontece numa transação desfeita no fim
+-- Rodar no SQL Editor do Supabase depois de 01, 02, 04 e 06. Tudo acontece numa transação desfeita no fim
 -- (rollback): não sobra nenhum dado. Só os contadores de id avançam (o próximo protocolo pode pular números).
 -- Resultado esperado: uma linha "TODOS OS TESTES PASSARAM". Se alguma regra falhar, o script para com a mensagem dela.
 -- (No psql aparecem também as mensagens "OK: ..." de cada grupo.)
@@ -114,6 +114,16 @@ begin
   raise notice 'OK: foto só na própria pasta; munícipe não altera status; só vê os próprios dados';
 end $$;
 
+do $$ begin
+  begin
+    perform public.exportar_dados();
+    raise exception 'deveria falhar';
+  exception when others then if sqlerrm = 'deveria falhar' then raise; end if;
+    assert sqlstate = '42501', 'exportar_dados deveria recusar munícipe com 42501, veio ' || sqlstate;
+  end;
+  raise notice 'OK: munícipe não exporta os dados';
+end $$;
+
 -- ---------------------------------------------------------------- como munícipe B
 reset role;
 select pg_temp.como('00000000-0000-0000-0000-00000000000b');
@@ -167,6 +177,21 @@ begin
   raise notice 'OK: servidor vê só a sua secretaria, altera status com histórico; recusa repetido, inválido e de outra secretaria';
 end $$;
 
+do $$
+declare d json := public.exportar_dados();
+begin
+  assert exists (select 1 from json_array_elements(d->'Registros') r where r->>'Identificação' = 'Poste'),
+    'exportação deveria trazer registros de outra secretaria (Iluminação)';
+  assert exists (select 1 from json_array_elements(d->'Usuários') u where u->>'CPF' = '390.533.447-05' and u->>'Bairro' = 'Centro'),
+    'exportação deveria trazer os munícipes com CPF formatado e bairro';
+  assert exists (select 1 from json_array_elements(d->'Usuários') u where u->>'Matrícula' = 'T-SSP'),
+    'exportação deveria trazer os servidores';
+  assert json_array_length(d->'Histórico de status') >= 4, 'exportação deveria trazer o histórico';
+  assert json_array_length(d->'Fotos') >= 1, 'exportação deveria trazer as fotos';
+  assert json_array_length(d->'Secretarias') >= 2, 'exportação deveria trazer as secretarias';
+  raise notice 'OK: servidor exporta todos os dados, de todas as secretarias';
+end $$;
+
 -- ---------------------------------------------------------------- como servidor de Serviços Públicos
 reset role;
 select pg_temp.como('00000000-0000-0000-0000-0000000000c2');
@@ -193,7 +218,12 @@ do $$ begin
   assert (select count(*) from public.categoria_servico) = 0, 'anônimo não deveria ver categorias';
   assert public.cpf_cadastrado('39053344705'), 'cpf_cadastrado deveria dizer que o CPF de A existe';
   assert not public.cpf_cadastrado('86288366757'), 'cpf_cadastrado deveria dizer que um CPF novo não existe';
-  raise notice 'OK: sem login não se vê nada, mas dá para saber se um CPF tem cadastro (tela de login)';
+  begin
+    perform public.exportar_dados();
+    raise exception 'deveria falhar';
+  exception when others then if sqlerrm = 'deveria falhar' then raise; end if;
+  end;
+  raise notice 'OK: sem login não se vê nada nem se exporta, mas dá para saber se um CPF tem cadastro (tela de login)';
 end $$;
 
 reset role;

@@ -59,6 +59,9 @@ Testador: ______________ Data: ___/___/______ Navegador: ______________
 - [ ] **2.7** "Sair" no menu do perfil (e "SAIR DA CONTA" na conta, embaixo dos dados) → volta para o login; o botão Voltar do navegador não reabre a página protegida.
 - [ ] **2.8** O menu fecha ao clicar fora dele e com a tecla Esc.
 - [ ] **2.8b** Configurações da conta: a barra lateral (abas no celular) mostra "Dados da conta" (sem aba "Sessão"); `conta.html#dados` abre direto nos dados.
+- [ ] **2.8c** Servidor: a conta mostra também "Exportar dados". **BAIXAR CSV** baixa `agiliza-botucatu-dados-AAAA-MM-DD.csv`; no Excel/LibreOffice abre em colunas, com acentos certos, e traz os blocos Usuários, Registros, Histórico de status, Fotos, Serviços e Secretarias, de **todas** as secretarias.
+- [ ] **2.8d** Servidor: **IMPRIMIR** abre a impressão do navegador só com as tabelas (sem cabeçalho, menu nem botões), em paisagem; ao fechar, a página volta ao normal.
+- [ ] **2.8e** Munícipe: a conta **não** mostra "Exportar dados", nem abrindo `conta.html#exportar` (cai em "Dados da conta").
 - [ ] **2.9** Sem estar logado, abrir `http://localhost:8000/home.html` direto → volta para o login.
 - [ ] **2.10** Logado como munícipe, abrir `servidor.html` → volta para o login.
 - [ ] **2.11** Logado como servidor, abrir `home.html` ou `registrar.html` → volta para o login.
@@ -152,6 +155,6 @@ No DevTools (Ctrl+Shift+M), testar em **360 px**, **768 px** e **1280 px**:
 
 ---
 
-**Resultado:** ____ de 85 itens OK. Problemas encontrados (nº do item + o que aconteceu):
+**Resultado:** ____ de 88 itens OK. Problemas encontrados (nº do item + o que aconteceu):
 
 - 

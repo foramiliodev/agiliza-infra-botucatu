@@ -1,5 +1,15 @@
 # Changelog
 
+## 2026-11-26: Exportar dados (CSV e impressão) na conta do servidor
+- Pedido do professor: na conta da prefeitura, um clique gera um CSV com tudo o que está cadastrado no banco. Liberado para todas as contas de servidor.
+- Novo `sql/06_exportar.sql`: função `exportar_dados()` (`security definer`), só para servidor (munícipe: `42501`; anon sem `execute`). Devolve JSON com Usuários (munícipes e servidores, com CPF, e-mail, telefone, bairro, matrícula, cargo, secretaria), Registros (todas as secretarias, com o munícipe), Histórico de status, Fotos, Serviços e Secretarias. Senhas não saem (ficam no Auth).
+- `js/db.js`: `exportarDados()` e `gerarCSV()` (BOM UTF-8, `;`, um bloco por tabela, proteção contra fórmulas no Excel).
+- `conta.html`/`js/conta.js`: item "Exportar dados" na barra lateral, só para servidor, com **BAIXAR CSV** e **IMPRIMIR** (tabelas + impressão do navegador, em paisagem). `css/style.css`: estilos da seção e `@media print`.
+- Termos de uso e aviso LGPD do cadastro: agora dizem que os servidores podem exportar todos os dados cadastrados.
+- Arquivos: `sql/06_exportar.sql`, `sql/testes.sql`, `js/db.js`, `js/tests.js`, `js/conta.js`, `conta.html`, `css/style.css`, `termos.html`, `cadastro.html`, `docs/dados.md`, `docs/telas.md`, `docs/decisoes.md`, `docs/supabase.md`, `docs/testes.md`, `docs/checklist-testes.md`, `tasks/plan.md`, `tasks/todo.md`.
+- Verificado: `npm test` (inclui `gerarCSV`); `testes.sql` em PostgreSQL 16 local, com teste de mutação; CSV gerado do JSON real lido de volta; screenshots a 1280 e 360 px. **Falta:** rodar o `06` no Supabase do grupo e conferir download e impressão no navegador real (checklist 2.8c–2.8e).
+- Requisitos: RF10 (consulta pelo servidor), RNF07 (LGPD: aviso e termos atualizados).
+
 ## 2026-11-26: Ocorrências de demonstração
 - Novo `sql/05_ocorrencias_demo.sql`: cria 3 munícipes de demonstração (CPFs 123.456.789-09, 987.654.321-00, 246.813.579-28; senha `municipe123`) e 14 registros em Buracos, Iluminação e Limpeza, com urgências variadas, abertos nos últimos 30 dias, 5 aguardando, 4 em andamento e 5 concluídos. Cada mudança de status tem linha no histórico com o servidor da secretaria e observação. Pode rodar de novo (não duplica). Sem fotos.
 - `sql/testes.sql`: os servidores de teste usavam os mesmos CPFs do `03`, e o script falhava em banco com os servidores de demonstração (como o Supabase do grupo). Trocados por CPFs próprios.

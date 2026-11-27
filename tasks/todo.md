@@ -290,3 +290,40 @@ Ao concluir cada tarefa: seguir a regra de documentação do [CLAUDE.md](../CLAU
 - [x] Tarefa 20 conferida no celular e no computador (screenshots; falta clicar no navegador real, checklist seção 11)
 - [x] `npm test` verde
 - [ ] Texto dos termos revisado pelo grupo
+
+---
+
+## Fase 7: Exportar dados (só servidor)
+
+> Pedido de 2026-11-26 (para o professor): na conta da prefeitura, um clique gera um CSV com tudo o que está cadastrado no banco; botões "Baixar CSV" e "Imprimir"; liberado para todas as contas de servidor.
+
+### [x] Tarefa 24: Função de exportação no banco
+**Descrição:** A RLS só deixa o servidor ver a própria secretaria e nenhum dado de munícipe. `public.exportar_dados()` (`security definer`) em `sql/06_exportar.sql` passa por cima disso só para servidor e devolve JSON com Usuários, Registros, Histórico de status, Fotos, Serviços e Secretarias (colunas com nome de cabeçalho, datas e CPF formatados).
+**Critérios de aceite:**
+- [x] Servidor de Obras recebe também a outra secretaria, os munícipes e os servidores
+- [x] Munícipe recebe `42501`; anon não executa
+- [x] Casos em `sql/testes.sql`; passa em PostgreSQL 16 local (teste de mutação confirma que pega a trava removida)
+- [ ] Rodar o `06` no Supabase do grupo
+**Arquivos:** `sql/06_exportar.sql`, `sql/testes.sql`, `docs/dados.md`, `docs/supabase.md`, `docs/testes.md`
+**Tamanho:** S
+
+### [x] Tarefa 25: `DB.exportarDados` e `DB.gerarCSV`
+**Critérios de aceite:**
+- [x] `npm test` cobre BOM, `;`, aspas, quebra de linha, anti-fórmula e seção vazia
+- [x] CSV gerado do JSON real lido de volta pelo leitor de CSV do Python
+**Arquivos:** `js/db.js`, `js/tests.js`, `docs/dados.md`
+**Tamanho:** S
+
+### [x] Tarefa 26: Seção "Exportar dados" na conta do servidor
+**Critérios de aceite:**
+- [x] Servidor vê "Exportar dados"; munícipe não vê nem por `#exportar` (screenshot)
+- [x] Celular (abas, botões na largura toda) e computador conferidos por screenshot a 360 e 1280 px
+- [x] Termos e aviso LGPD do cadastro atualizados (servidores podem exportar todos os dados)
+- [ ] Download e visualização de impressão no navegador real com o Supabase (checklist 2.8c–2.8e)
+**Arquivos:** `conta.html`, `js/conta.js`, `css/style.css`, `termos.html`, `cadastro.html`, `docs/telas.md`, `docs/decisoes.md`, `docs/checklist-testes.md`, `docs/CHANGELOG.md`
+**Tamanho:** M
+
+### Checkpoint 7
+- [x] `npm test` verde e `sql/testes.sql` passando (local)
+- [ ] `sql/06_exportar.sql` rodado no Supabase do grupo; download e impressão conferidos no navegador real
+- [ ] Revisão com o usuário/professor

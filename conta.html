@@ -30,6 +30,7 @@
       <nav class="conta-menu" aria-label="Seções da conta">
         <ul>
           <li><a href="#dados">Dados da conta</a></li>
+          <li data-so-servidor hidden><a href="#exportar">Exportar dados</a></li>
         </ul>
       </nav>
       <div>
@@ -38,10 +39,22 @@
           <dl id="dados-lista" class="detalhes"></dl>
           <button type="button" class="botao botao-secundario" data-sair>SAIR DA CONTA</button>
         </section>
+        <!-- Só servidor (o banco recusa munícipe: sql/06_exportar.sql) -->
+        <section id="exportar" class="conta-secao" tabindex="-1" aria-labelledby="titulo-exportar" data-so-servidor hidden>
+          <h2 id="titulo-exportar">Exportar dados</h2>
+          <p>Gera um arquivo CSV com tudo o que está cadastrado no banco, de todas as secretarias: usuários, registros, histórico de status, fotos, serviços e secretarias. Abre no Excel ou no LibreOffice.</p>
+          <p class="aviso-exportar">O arquivo tem dados pessoais dos munícipes (CPF, e-mail, telefone). Use só para o atendimento e não compartilhe (LGPD).</p>
+          <div class="botoes-exportar">
+            <button type="button" class="botao" id="baixar-csv">BAIXAR CSV</button>
+            <button type="button" class="botao botao-contorno-azul" id="imprimir-dados">IMPRIMIR</button>
+          </div>
+          <p id="erro-exportar" class="erro" role="alert"></p>
+        </section>
       </div>
     </div>
   </main>
   <footer class="rodape">Prefeitura Municipal de Botucatu · Agiliza Infraestrutura · Projeto acadêmico FATEC (2026) · <a href="termos.html">Termos de uso</a></footer>
+  <div id="impressao" hidden></div>
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4/dist/umd/supabase.min.js"></script>
   <script src="js/config.js"></script>
   <script src="js/db.js"></script>
