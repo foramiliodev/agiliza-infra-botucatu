@@ -41,6 +41,14 @@ teste('cadastro e novo registro validam os campos antes de chamar o banco', asyn
   await deveFalhar(() => DB.criarRegistro('x', { ...ok, grau_urgencia: 'URGENTE' }), 'grau_urgencia');
 });
 
+teste('gerarCSV: BOM, ";", aspas, quebra de linha, anti-fórmula e seção vazia', () => {
+  const csv = DB.gerarCSV({
+    'Usuários': [{ Nome: 'Ana; "Bia"', Bairro: null, Obs: 'linha1\nlinha2' }, { Nome: '=1+1', Bairro: '-x', Obs: 3 }],
+    'Fotos': [],
+  });
+  igual(csv, '﻿Usuários\r\nNome;Bairro;Obs\r\n"Ana; ""Bia""";;"linha1\nlinha2"\r\n\'=1+1;\'-x;3\r\n\r\nFotos\r\n(sem dados)\r\n');
+});
+
 teste('login recusa CPF inválido antes de chamar o banco', async () => {
   try { await DB.entrar('123.456.789-00', 'x'); } catch (e) { return igual(e.message, 'CPF inválido.'); }
   throw new Error('deveria ter falhado');

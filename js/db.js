@@ -222,8 +222,34 @@ const DB = (() => {
     throw traduzir(error);
   }
 
+  // ---------------------------------------------------------------- exportação (só servidor; sql/06_exportar.sql)
+
+  // { "Seção": [ { "Coluna": valor } ] } com todos os dados do banco; o banco recusa quem não é servidor
+  async function exportarDados() {
+    const { data, error } = await cliente().rpc('exportar_dados');
+    if (!error) return data;
+    if (error.code === '42501') throw new Error(error.message);
+    throw traduzir(error);
+  }
+
+  // Texto CSV para Excel/LibreOffice em pt-BR: BOM UTF-8, separador ";" e um bloco por seção (título, cabeçalho, linhas)
+  function gerarCSV(secoes) {
+    const celula = v => {
+      let s = String(v ?? '');
+      if (/^[=+\-@\t\r]/.test(s)) s = "'" + s; // texto digitado pelo munícipe não pode virar fórmula (CSV injection)
+      return /[;"\r\n]/.test(s) ? '"' + s.replace(/"/g, '""') + '"' : s;
+    };
+    const linha = valores => valores.map(celula).join(';');
+    const blocos = Object.entries(secoes).map(([titulo, linhas]) => {
+      if (!linhas.length) return [linha([titulo]), linha(['(sem dados)'])].join('\r\n');
+      const colunas = Object.keys(linhas[0]);
+      return [linha([titulo]), linha(colunas), ...linhas.map(l => linha(colunas.map(c => l[c])))].join('\r\n');
+    });
+    return '﻿' + blocos.join('\r\n\r\n') + '\r\n';
+  }
+
   return {
-    ErroCampo, somenteDigitos, validarCPF, formatarCPF,
+    ErroCampo, somenteDigitos, validarCPF, formatarCPF, exportarDados, gerarCSV,
     cadastrarMunicipe, entrar, sair, usuarioAtual, minhaConta,
     categorias, listaStatus,
     registrosDoMunicipe, criarRegistro, adicionarFoto, detalhesRegistro,

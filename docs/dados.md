@@ -1,6 +1,6 @@
 # Dados (Supabase / PostgreSQL)
 
-Banco: [sql/01_schema.sql](../sql/01_schema.sql) (estrutura e regras), [sql/02_dados_iniciais.sql](../sql/02_dados_iniciais.sql) (carga do Quadro 2) e [sql/04_cpf_cadastrado.sql](../sql/04_cpf_cadastrado.sql) (aviso de CPF não cadastrado). Dados de demonstração: [sql/03_servidores_demo.sql](../sql/03_servidores_demo.sql) (servidores) e [sql/05_ocorrencias_demo.sql](../sql/05_ocorrencias_demo.sql) (3 munícipes + 14 registros com histórico; insere direto como administrador, ajustando status e datas que os triggers não deixam o site escolher).
+Banco: [sql/01_schema.sql](../sql/01_schema.sql) (estrutura e regras), [sql/02_dados_iniciais.sql](../sql/02_dados_iniciais.sql) (carga do Quadro 2) , [sql/04_cpf_cadastrado.sql](../sql/04_cpf_cadastrado.sql) (aviso de CPF não cadastrado) e [sql/06_exportar.sql](../sql/06_exportar.sql) (exportação para o servidor). Dados de demonstração: [sql/03_servidores_demo.sql](../sql/03_servidores_demo.sql) (servidores) e [sql/05_ocorrencias_demo.sql](../sql/05_ocorrencias_demo.sql) (3 munícipes + 14 registros com histórico; insere direto como administrador, ajustando status e datas que os triggers não deixam o site escolher).
 Acesso pelo site: [js/db.js](../js/db.js). Como configurar: [supabase.md](supabase.md).
 
 ## Tabelas (DER do documento)
@@ -34,6 +34,7 @@ Acesso pelo site: [js/db.js](../js/db.js). Como configurar: [supabase.md](supaba
 - `atualizar_status(registro, status, observacao)`: chamada pelo site (RPC). Só o servidor da secretaria do registro; recusa status inválido ou repetido (SQLSTATE `22023`); grava o histórico com `servidor_id = auth.uid()`. RF11, RF12, RN05, RN06.
 - `promover_servidor(cpf, matricula, cargo, secretaria_id)`: só pelo SQL Editor (o site não tem permissão).
 - `cpf_cadastrado(cpf)` ([sql/04_cpf_cadastrado.sql](../sql/04_cpf_cadastrado.sql)): diz só se o CPF tem conta; liberada também sem login, para a tela de login.
+- `exportar_dados()` ([sql/06_exportar.sql](../sql/06_exportar.sql)): botão "Exportar dados" da conta do servidor (pedido do professor). Só servidor (munícipe: SQLSTATE `42501`; anon sem `execute`). Passa por cima da RLS de propósito: devolve um JSON com **tudo** de todas as secretarias, uma lista por seção (Usuários, Registros, Histórico de status, Fotos, Serviços, Secretarias), com os nomes das colunas já prontos para o cabeçalho do CSV, datas em `DD/MM/AAAA HH:MM` (Brasília) e CPF com máscara. Não lê `auth.users` (senhas não saem). Auxiliares: `formatar_data`, `formatar_cpf`.
 - `minha_secretaria()`: auxiliar das regras RLS.
 - `cpf_valido(cpf)`: dígitos verificadores.
 
@@ -48,7 +49,7 @@ Acesso pelo site: [js/db.js](../js/db.js). Como configurar: [supabase.md](supaba
 | historico_status | quem vê o registro | não (triggers/`atualizar_status`) |
 | Storage `fotos` (privado, só JPEG, até 2 MB) | quem vê a linha em `foto` | munícipe, na pasta `<uid>/` |
 
-Sem login (anon), nada é visível. Ninguém altera um registro com UPDATE direto: o status só muda por `atualizar_status`.
+Sem login (anon), nada é visível. Exceção à tabela acima: `exportar_dados()` entrega tudo a qualquer servidor. Ninguém altera um registro com UPDATE direto: o status só muda por `atualizar_status`.
 
 ## Funções de `DB` (js/db.js)
 
@@ -69,5 +70,7 @@ Todas async, menos as utilitárias de CPF.
 | `perfilServidor(id)` | Secretaria do servidor | RF10 |
 | `registrosDaSecretaria(secretaria_id)` | Lista ordenada (abertos → urgência → antigos) | RF10 |
 | `atualizarStatus(id, status, obs)` | RPC `atualizar_status`; erro de formulário vira `ErroCampo('status_id')` | RF11, RF12 |
+| `exportarDados()` | RPC `exportar_dados`; munícipe recebe "Somente servidores podem exportar os dados." | — |
+| `gerarCSV(secoes)` | Pura: CSV para Excel pt-BR (BOM UTF-8, `;`, CRLF), um bloco por seção (título, cabeçalho, linhas; vazia = "(sem dados)"); escapa aspas/`;`/quebras e põe `'` antes de célula que começa com `= + - @` (CSV injection) | — |
 
 Erros de validação lançam `ErroCampo(campo, mensagem)`; os demais lançam `Error` com mensagem para o usuário (o detalhe técnico vai para o console).

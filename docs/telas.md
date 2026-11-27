@@ -89,6 +89,8 @@ O celular segue o protótipo; no computador (`@media (min-width: 64rem)`, no fim
 - **Barra lateral** de funcionalidades (`<nav class="conta-menu">`). Cada item mostra só a sua seção (`<section class="conta-secao">`), e o endereço guarda a seção (`conta.html#dados`) sem pular a página. No celular (≤ 640 px) a barra vira abas no topo.
 - **Para adicionar uma funcionalidade:** um `<li><a href="#id">` na barra + uma `<section id="id" class="conta-secao" tabindex="-1" hidden>`. A troca já funciona (`mostrarSecao` em `js/conta.js`).
 - Seções atuais:
+  - **Exportar dados** (só servidor; pedido do professor): texto do que vem no arquivo, aviso de dados pessoais (LGPD) e dois botões. **BAIXAR CSV** busca tudo no banco (`DB.exportarDados`, a cada clique) e baixa `agiliza-botucatu-dados-AAAA-MM-DD.csv` (`DB.gerarCSV`, via `Blob`). **IMPRIMIR** monta as mesmas seções como tabelas em `<div id="impressao">` (depois do rodapé) e chama `print()`; o `@media print` no fim de `css/style.css` mostra só essa área, em paisagem, quando o `body` tem a classe `imprimindo` (tirada no `afterprint`). Botões desativados durante a consulta; erro em `#erro-exportar`. Celular: botões um embaixo do outro na largura toda.
+  - Itens só de servidor levam `data-so-servidor`: `mostrarSecao` os ignora até o login confirmar o perfil; para o munícipe eles são removidos do DOM (`conta.html#exportar` cai em "Dados da conta"). A regra de verdade é a do banco.
   - **Dados da conta** (só leitura), com o botão **SAIR DA CONTA** (contorno vermelho) embaixo: nome, CPF, e-mail, tipo de conta e, conforme o tipo, telefone e bairro (munícipe) ou secretaria, matrícula e cargo (servidor), além da data de cadastro. Campo vazio aparece como "Não informado".
 
 ## Carregamento (Supabase)

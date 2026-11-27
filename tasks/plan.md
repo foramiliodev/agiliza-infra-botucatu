@@ -21,7 +21,7 @@ Site em HTML/CSS/JS puros que implementa o protótipo do documento P1: o muníci
   - `detalhes.html?id=N`: detalhes + histórico (o servidor vê também o formulário de status)
   - `servidor.html`: painel do servidor (lista + filtro por status)
   - `termos.html`: termos de uso (pública, só HTML/CSS, sem Supabase)
-  - `conta.html`: configurações da conta, aberta pelo ícone de perfil do cabeçalho; funcionalidades numa barra lateral (Dados da conta, com o botão sair embaixo); "Sair" também no menu do perfil
+  - `conta.html`: configurações da conta, aberta pelo ícone de perfil do cabeçalho; funcionalidades numa barra lateral (Dados da conta, com o botão sair embaixo; Exportar dados, só servidor); "Sair" também no menu do perfil
 - **JS compartilhado:**
   - `js/config.js`: URL e chave pública do Supabase;
   - `js/db.js`: todas as chamadas ao banco, async;
@@ -99,6 +99,16 @@ Detalhes, critérios de aceite e verificação em [todo.md](todo.md).
 ### Checkpoint 6
 - [ ] `termos.html` abre sem login, no celular e no computador, sem rolagem horizontal; `npm test` verde; revisão do texto com o grupo
 
+### Fase 7: Exportar dados (só servidor)
+> Pedido de 2026-11-26 (para o professor): na conta da prefeitura, um clique gera um CSV com **tudo** o que está cadastrado no banco (usuários, registros, histórico, fotos, serviços, secretarias), de todas as secretarias; botões **Baixar CSV** e **Imprimir**; liberado para **todas** as contas de servidor.
+
+- [x] Tarefa 24: Função `exportar_dados()` no banco, só para servidor (`sql/06_exportar.sql` + `sql/testes.sql`)
+- [x] Tarefa 25: `DB.exportarDados` + `DB.gerarCSV` (função pura, testada no `npm test`)
+- [x] Tarefa 26: Seção "Exportar dados" em `conta.html` (só servidor): Baixar CSV + Imprimir
+
+### Checkpoint 7
+- [ ] `npm test` verde; `sql/testes.sql` passa (local); CSV abre certo no LibreOffice/Excel (acentos, `;`, aspas); impressão mostra só a tabela; munícipe não vê a seção nem consegue chamar a função
+
 ## Riscos e mitigações
 
 | Risco | Impacto | Mitigação |
@@ -110,8 +120,13 @@ Detalhes, critérios de aceite e verificação em [todo.md](todo.md).
 | Projeto gratuito pausa após ~1 semana sem uso | Médio (apresentação) | Reativar no painel antes de apresentar |
 | Regra só no JS seria contornável (a chave anon é pública) | Alto | Toda regra está no banco (RLS/triggers/função) e coberta por `sql/testes.sql` |
 | Supabase/CDN fora do ar ou sem internet | Baixo | Mensagem de erro em vez de página em branco |
+| Exportação abre CPF/telefone de todos os munícipes a qualquer servidor (escolha do usuário, Fase 7) | Médio (LGPD) | Função `security definer` que recusa quem não é servidor (42501), sem acesso anon, coberta por `testes.sql`; citar nos termos/aviso LGPD; rever se a prefeitura restringir a `ADMINISTRADOR` |
+| Texto digitado pelo munícipe começando com `=`, `+`, `-`, `@` vira fórmula no Excel (CSV injection) | Médio | `gerarCSV` prefixa essas células com `'`; teste no `npm test` |
+| Excel em pt-BR abre CSV com vírgula numa coluna só e quebra acentos | Baixo | Separador `;` + BOM UTF-8 no arquivo |
 
 ## Perguntas respondidas
+
+**2026-11-26:** exportação: qualquer servidor pode exportar; o CSV traz todos os dados do banco (um bloco por tabela), não só os registros.
 
 **2026-11-26:** termos de uso aceitos só por aviso no cadastro, sem caixa obrigatória nem gravação no banco.
 
@@ -123,5 +138,6 @@ Detalhes, critérios de aceite e verificação em [todo.md](todo.md).
 4. **Servidor:** servidores fixos de demonstração, sem tela de cadastro (credenciais em `docs/dados.md`).
 
 ## Perguntas em aberto
+
 
 - **Texto dos termos:** redigido a partir do que o sistema já faz (P1 + aviso LGPD). Precisa de revisão do grupo; não é texto jurídico oficial da prefeitura.

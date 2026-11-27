@@ -38,6 +38,10 @@
 | 2026-11-26 | Landing page em `index.html` e login movido para `login.html` (pedido do usuário) | A raiz do site apresenta o serviço antes de pedir login | — |
 | 2026-11-26 | Landing estática, sem Supabase: não redireciona quem já está logado | Abre mesmo sem banco; zero JS | Se incomodar, carregar `db.js` e chamar `Auth.irParaInicio` como no login |
 | 2026-11-26 | Foto da landing do Wikimedia Commons (Prefeitura de Botucatu, CC BY-SA 4.0), com crédito visível | Licença livre, foto oficial da cidade | Se o grupo tiver foto própria ou autorizada, trocar `img/botucatu.jpg` e o crédito em `index.html` |
+| 2026-11-26 | "Exportar dados" na conta: qualquer servidor baixa/imprime um CSV com **tudo** o que está no banco, de todas as secretarias, inclusive CPF/e-mail/telefone dos munícipes (pedido do professor; usuário escolheu liberar para todas as contas da prefeitura) | O professor precisa conferir os dados cadastrados. A função `exportar_dados()` passa por cima da RLS só para servidor; termos e aviso do cadastro foram atualizados | Se a prefeitura restringir: checar `perfil_acesso = 'ADMINISTRADOR'` na função (e no `testes.sql`) |
+| 2026-11-26 | Um único CSV com um bloco por tabela (título, cabeçalho, linhas), em vez de vários arquivos ou ZIP | "Um clique, um arquivo"; abre direto no Excel/LibreOffice; sem biblioteca de ZIP | Se precisarem importar em outro sistema: um CSV por tabela |
+| 2026-11-26 | CSV com BOM UTF-8 e separador `;`; células que começam com `= + - @` ganham `'` | Excel em pt-BR usa `;` e só reconhece acentos com BOM; texto do munícipe não pode virar fórmula | — |
+| 2026-11-26 | Imprimir = tabela HTML + `window.print()`, sem PDF gerado no site | Zero dependência; o navegador já salva em PDF | — |
 
 ## Limites conhecidos
 - Precisa de internet (Supabase na nuvem) e de um projeto configurado (docs/supabase.md).

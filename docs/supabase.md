@@ -17,7 +17,8 @@ Em **SQL Editor → New query**, cole e rode, nesta ordem:
 1. [sql/01_schema.sql](../sql/01_schema.sql): tabelas, regras (RLS), triggers, função de status e bucket de fotos.
 2. [sql/02_dados_iniciais.sql](../sql/02_dados_iniciais.sql): status, secretarias e categorias.
 3. [sql/04_cpf_cadastrado.sql](../sql/04_cpf_cadastrado.sql): função que o login usa para avisar "CPF não cadastrado". **Se você já rodou o 01 e o 02, rode só este.**
-4. *(opcional)* [sql/testes.sql](../sql/testes.sql): testa as regras e desfaz tudo no fim. Deve terminar com **"TODOS OS TESTES PASSARAM"**. Pode rodar com os dados de demonstração (`03` e `05`) já no banco: os testes usam CPFs próprios.
+4. [sql/06_exportar.sql](../sql/06_exportar.sql): função do botão "Exportar dados" da conta do servidor. **Se você já rodou os anteriores, rode só este.**
+5. *(opcional)* [sql/testes.sql](../sql/testes.sql): testa as regras e desfaz tudo no fim. Deve terminar com **"TODOS OS TESTES PASSARAM"**. Pode rodar com os dados de demonstração (`03` e `05`) já no banco: os testes usam CPFs próprios.
 
 ## 4. Ligar o site ao projeto
 Em **Project Settings → API** (ou **API Keys**), copie para [js/config.js](../js/config.js):
@@ -57,6 +58,7 @@ Depois do passo 5, rode [sql/05_ocorrencias_demo.sql](../sql/05_ocorrencias_demo
 | Cadastro falha com "Não foi possível concluir…" e o console mostra "Email address … is invalid" | O Supabase recusou o domínio do e-mail técnico | Troque `DOMINIO_EMAIL` em `js/config.js` por outro domínio válido (ex.: o da faculdade) |
 | Cadastro falha com "Database error saving new user" no console | O trigger recusou os dados (ex.: CPF inválido que passou pelo navegador) ou o `01_schema.sql` não foi rodado | Rode o passo 3 e confira o CPF |
 | Login com CPF não cadastrado mostra "CPF ou senha incorretos." em vez de "CPF não cadastrado" | `04_cpf_cadastrado.sql` não foi rodado | Passo 3 |
+| "Exportar dados" mostra "Não foi possível concluir…" e o console fala de `exportar_dados` | `06_exportar.sql` não foi rodado | Passo 3 |
 | Telas carregam mas sem categorias | `02_dados_iniciais.sql` não foi rodado | Passo 3 |
 | `promover_servidor` diz "CPF não está cadastrado" | O CPF não foi cadastrado pelo site antes | Cadastre pelo site (ou, para os de demonstração, rode o `03` inteiro) |
 | Servidor de demonstração não consegue entrar | `DOMINIO_EMAIL` em `js/config.js` diferente do domínio no `03` | Ajuste o domínio no `03`, apague o usuário em Authentication → Users e rode de novo |

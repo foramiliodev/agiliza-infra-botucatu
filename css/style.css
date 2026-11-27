@@ -344,12 +344,20 @@ h2 { font-size: 1.05rem; margin: 1.75rem 0 .75rem; }
 .conta-secao h2 { margin-top: 0; }
 .conta-secao:focus { outline: none; }
 .conta-secao .botao { margin-left: 0; }
+/* Exportar dados (só servidor): botões lado a lado; no celular, um embaixo do outro na largura toda */
+.aviso-exportar { border-left: 3px solid var(--erro); padding-left: .75rem; }
+.botoes-exportar { display: flex; flex-wrap: wrap; gap: .75rem; margin-top: 1.5rem; }
+.botoes-exportar .botao { margin: 0; }
+.botoes-exportar .botao:disabled { opacity: .6; cursor: wait; }
+.botao.botao-contorno-azul { background: var(--card); color: var(--azul); border: 2px solid var(--azul); }
+.botao.botao-contorno-azul:hover { background: var(--fundo); }
 @media (max-width: 40rem) {
   /* sem largura para coluna lateral: a barra vira abas no topo */
   .conta-layout { grid-template-columns: 1fr; gap: 1rem; }
   .conta-menu ul { display: flex; overflow-x: auto; border-bottom: 1px solid var(--borda); }
   .conta-menu a { border-left: 0; border-bottom: 3px solid transparent; border-radius: 0; white-space: nowrap; }
   .conta-menu a[aria-current] { border-bottom-color: var(--azul); }
+  .botoes-exportar .botao { flex: 1 1 100%; }
 }
 
 /* Status: cor + texto (RNF01/RNF02) */
@@ -491,4 +499,19 @@ h2 { font-size: 1.05rem; margin: 1.75rem 0 .75rem; }
   .landing-grade { grid-template-columns: repeat(3, 1fr); gap: 1.25rem; }
   .landing-passos { grid-template-columns: repeat(4, 1fr); }
   .landing-servidor { max-width: none; margin-top: 3rem; padding: 3rem 1.5rem; }
+}
+
+/* Impressão dos dados exportados (conta.html): só a área #impressao vai para o papel, em paisagem */
+@media print {
+  @page { size: landscape; margin: 1cm; }
+  body.imprimindo > :not(#impressao) { display: none !important; }
+  body.imprimindo #impressao { display: block !important; }
+  body.imprimindo { background: #fff; min-height: 0; }
+  #impressao { font-size: 8pt; color: #000; }
+  #impressao h1 { font-size: 13pt; margin: 0 0 .25rem; }
+  #impressao h2 { font-size: 11pt; margin: 1rem 0 .25rem; break-after: avoid; }
+  #impressao table { width: 100%; border-collapse: collapse; }
+  #impressao th, #impressao td { border: 1px solid #999; padding: 2px 4px; text-align: left; vertical-align: top; overflow-wrap: anywhere; }
+  #impressao thead { display: table-header-group; }
+  #impressao tr { break-inside: avoid; }
 }
